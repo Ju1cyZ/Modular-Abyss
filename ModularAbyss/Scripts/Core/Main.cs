@@ -21,7 +21,7 @@ namespace ModularAbyss
         private static Main _instance;
 
         //Tous les gameObjects
-        Dictionary<string, GameObject> GameObjects = new Dictionary<string, GameObject>();
+        public static Dictionary<string, GameObject> GameObjects = new Dictionary<string, GameObject>();
 
         List<ICollider> colliders = new List<ICollider>();
 

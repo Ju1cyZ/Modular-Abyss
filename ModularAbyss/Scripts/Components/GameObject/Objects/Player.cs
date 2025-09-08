@@ -1,12 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Components.ItemNamespace;
+using ModularAbyss.Scripts.Components.ItemNamespace.Items;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Enums;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +37,12 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         public int speed = 5;
         public PlayerMovementStates PlayerMovementStates;
 
+        /* Attack */
+        private bool asAttacked = false;
+
+        /* Player Properties */
+        public List<Item> inventory = new List<Item>();
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -45,25 +54,43 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                 {"ANIM_RUN", game.Content.Load<Texture2D>(SPRITES.PLAYER_RUN)},
             };
             _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
+
+            inventory.Add(ITEMS.STEEL_SWORD);
         }
 
         protected override void Update(GameTime gameTime, List<ICollider> colliders)
         {
-            //Le mouvement du joueur
+            /* INPUT */
             KeyboardState kState = Keyboard.GetState();
-            
+            MouseState mState = Mouse.GetState();
+
+            #region Player Movement/Animation
+            /* Player Movement */
             PlayerMoveDirections playerMoveDirection = ManageMovementInputs(kState);
             PlayerMovementStates playerMovementState = ManageMovementStatesInputs(kState, playerMoveDirection);
 
             ManageMovement(playerMoveDirection, playerMovementState, colliders);
 
-            //Animation du joueur
+            /* Player Animation */
             ManagePlayerAnimation(playerMoveDirection, playerMovementState);
+            #endregion
 
+            //Attaquer
+            if (mState.LeftButton == ButtonState.Pressed)
+            {
+                asAttacked = true;
+                if (typeof(Weapon).IsAssignableFrom(inventory[0].GetType()))
+                {
+                    (inventory[0] as Weapon).Attack();
+                }
+            }
         }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
+            KeyboardState kState = Keyboard.GetState();
+            MouseState mState = Mouse.GetState();
+
             Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
             _texture.SetData(new Color[] { Color.Red });
             if (GLOBAL.DEBUGING)
@@ -74,6 +101,8 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
             Rectangle rect = ((ITextureAnimated)this).GenerateTextureRect(TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE * _textureY, _animationFrameCount, ref _currentAnimIndex, (float)gameTime.ElapsedGameTime.TotalSeconds, ref _animationTimeBetweenFrame);
             spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, rect, Color.White, 0, new Vector2(0, 0), new Vector2(5, 5), _spriteEffect, 0f);
 
+
+            DrawItems(inventory, mState, spriteBatch);
         }
 
         /// <summary>
@@ -139,7 +168,7 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                     Position -= movement;
                 }
             }
-            
+
         }
 
         /// <summary>
@@ -209,7 +238,7 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                 state = PlayerMovementStates.run;
             }
             //Verifie si le joueur bouge ou pas
-            else if(direction != PlayerMoveDirections.None)
+            else if (direction != PlayerMoveDirections.None)
             {
                 state = PlayerMovementStates.walk;
             }
@@ -222,7 +251,7 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         /// </summary>
         /// <param name="playerMoveDirection">La direction du mouvement</param>
         /// <param name="playerMovementState">L'etat du mouvement</param>
-        public void ManagePlayerAnimation(PlayerMoveDirections playerMoveDirection,PlayerMovementStates playerMovementState)
+        public void ManagePlayerAnimation(PlayerMoveDirections playerMoveDirection, PlayerMovementStates playerMovementState)
         {
             switch (playerMovementState)
             {
@@ -287,6 +316,40 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         public void SetColliderBounds()
         {
             CollisionRect = new Rectangle(new Point((int)Position.X + 160, (int)Position.Y + 160), new Point(TEXTURE_SIZE, TEXTURE_SIZE));
+        }
+
+        /// <summary>
+        /// Dessine les items des slots principaux (1-5)
+        /// </summary>
+        /// <param name="inventory">L'inventaire qui contient les items</param>
+        public void DrawItems(List<Item> inventory, MouseState mState, SpriteBatch spriteBatch)
+        {
+            if (inventory[0] != null)
+            {
+                Item item = inventory[0];
+
+                //La position central du joueur (sprite)
+                Vector2 characterPos = new Vector2(Position.X + 160 + TEXTURE_SIZE / 2, Position.Y + 160 + TEXTURE_SIZE / 2);
+                //L'angle de rotation depuis le joueur vers la souris
+                double angleRadians = AngleBetweenVectors(characterPos, mState.Position.ToVector2());
+                //La position de l'item selon la rotation
+                Vector2 offsetPos = new Vector2((float)Math.Cos(angleRadians) * 50, (float)Math.Sin(angleRadians) * 50);
+                //La position final de l'item
+                Vector2 itemPos = characterPos + offsetPos;
+
+                spriteBatch.Draw(item.GetTexture2D(), itemPos, item.SpriteRectangle, Color.White, (float)angleRadians + (float)Math.PI / 2, new Vector2(7.5f, 20), 5, SpriteEffects.None, 0f);
+            }
+        }
+
+        /// <summary>
+        /// Permet de recuperer l'angle entre deux positions 
+        /// </summary>
+        /// <param name="vector1">La p1</param>
+        /// <param name="vector2">La p2</param>
+        /// <returns>L'angle en Radian</returns>
+        private double AngleBetweenVectors(Vector2 vector1, Vector2 vector2)
+        {
+            return Math.Atan2(vector2.Y - vector1.Y, vector2.X - vector1.X);
         }
     }
 }

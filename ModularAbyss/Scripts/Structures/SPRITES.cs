@@ -17,6 +17,9 @@ namespace ModularAbyss.Scripts.Structures
         public const string SLIME_IDLE = ASSETS_FOLDER + "Enemies/Slime/Slime1_Idle_full";
 
         /* HUD */
-        public const string BARS = ASSETS_FOLDER + "HUD/bars"; 
+        public const string BARS = ASSETS_FOLDER + "HUD/bars";
+
+        /* ITEMS */
+        public const string WEAPON_HAND = ASSETS_FOLDER + "Weapons/hand";
     }
 }
