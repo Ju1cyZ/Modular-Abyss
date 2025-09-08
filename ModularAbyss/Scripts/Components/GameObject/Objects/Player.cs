@@ -62,6 +62,20 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
 
         }
 
+        protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        {
+            Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
+            _texture.SetData(new Color[] { Color.Red });
+            if (GLOBAL.DEBUGING)
+            {
+                spriteBatch.Draw(_texture, new Vector2(Position.X + 160, Position.Y + 160), CollisionRect, Color.White);
+            }
+
+            Rectangle rect = ((ITextureAnimated)this).GenerateTextureRect(TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE * _textureY, _animationFrameCount, ref _currentAnimIndex, (float)gameTime.ElapsedGameTime.TotalSeconds, ref _animationTimeBetweenFrame);
+            spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, rect, Color.White, 0, new Vector2(0, 0), new Vector2(5, 5), _spriteEffect, 0f);
+
+        }
+
         /// <summary>
         /// Permet de deplacer le joueur
         /// </summary>
@@ -265,20 +279,6 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         public override Texture2D GetTexture2D()
         {
             return _currentAnim;
-        }
-
-        protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
-        {
-            Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
-            _texture.SetData(new Color[] { Color.Red });
-            if (GLOBAL.DEBUGING)
-            {
-                spriteBatch.Draw(_texture, new Vector2(Position.X + 160, Position.Y + 160), CollisionRect, Color.White);
-            }
-            
-            Rectangle rect = ((ITextureAnimated)this).GenerateTextureRect(TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE * _textureY, _animationFrameCount, ref _currentAnimIndex, (float)gameTime.ElapsedGameTime.TotalSeconds, ref _animationTimeBetweenFrame);
-            spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, rect, Color.White, 0, new Vector2(0, 0), new Vector2(5, 5), _spriteEffect, 0f);
-
         }
 
         /// <summary>
