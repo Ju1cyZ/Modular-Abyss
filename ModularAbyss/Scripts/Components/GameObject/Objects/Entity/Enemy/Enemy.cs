@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Enemy
+namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy
 {
     public abstract class Enemy : Entity, ICollider
     {

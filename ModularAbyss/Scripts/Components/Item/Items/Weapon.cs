@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using ModularAbyss.Scripts.Components.StatNamespace.StatsNamespace;
 using ModularAbyss.Scripts.Enums;
+using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,8 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items
     public abstract class Weapon : Item
     {
         public Action Attack;
+
+        public int Damage;
 
         public Weapon()
         {

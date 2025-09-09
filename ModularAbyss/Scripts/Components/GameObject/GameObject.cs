@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.GameObject
+namespace ModularAbyss.Scripts.Components.GameObjectNamespace
 {
     public abstract class GameObject
     {

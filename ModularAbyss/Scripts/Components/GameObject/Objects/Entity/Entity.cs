@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity
+namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
 {
     public abstract class Entity : GameObject, ITextureAnimated
     {
@@ -110,6 +110,126 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity
             {
                 return healthBarRectangles[5];
             }
+        }
+
+        /// <summary>
+        /// Permet d'infliger de degats a l'enemi
+        /// </summary>
+        /// <param name="damage">Le nombre de degats</param>
+        /// <returns>La vie apres avoir infliger les degats</returns>
+        public int Hurt(int damage)
+        {
+            if (Health - damage > 0)
+            {
+                Health -= damage;
+            }
+            else if(Health <= 0)
+            {
+                Health = 0;
+                Die();
+            }
+
+            return Health;
+        }
+
+
+        /// <summary>
+        /// Permet d'infliger de degats a l'enemy
+        /// </summary>
+        /// <param name="damage">Le nombre de degats</param>
+        /// <param name="player">Le joueur qui inflige des degats</param>
+        /// <param name="damageType">Le type de degats (STATS_ID.DAMAGE / STATS_ID.RANGED_DAMAGE etc...)</param>
+        /// <returns>La vie apres avoir infliger les degats</returns>
+        public int HurtWithStats(int damage, Player player, string damageType = STATS_ID.DAMAGE)
+        {
+            damage += player.Stats.getStatValue(damageType) - 1;
+
+            int damageDealt = 0;
+
+            if (Health - damage > 0)
+            {
+                Health -= damage;
+                damageDealt = damage;
+            }
+            else if (Health - damage <= 0)
+            {
+                //Le degat reellement infliger
+                damageDealt =  Math.Abs(0 - Health);
+                Health = 0;
+                Die();
+            }
+
+            if (player.Stats.getStatValue(STATS_ID.LIFE_STEAL) > 0)
+            {
+                //Chance aleatoire de soigner le joueur
+                int rnd = GameManager.Random.Next(0, 100);
+                if (rnd <= 2 * player.Stats.getStatValue(STATS_ID.LIFE_STEAL))
+                {
+                    player.Heal(damage * rnd / 100);
+                }
+            }
+
+            return Health;
+        }
+
+        /// <summary>
+        /// Permet d'infliger de degats a l'enemy
+        /// </summary>
+        /// <param name="damage">Le nombre de degats</param>
+        /// <param name="Entity">L'entiter qui inflige des degats</param>
+        /// <param name="damageType">Le type de degats (STATS_ID.DAMAGE / STATS_ID.RANGED_DAMAGE etc...)</param>
+        /// <returns>La vie apres avoir infliger les degats</returns>
+        public int HurtWithStats(int damage, Entity Entity, string damageType = STATS_ID.DAMAGE)
+        {
+            damage += Entity.Stats.getStatValue(damageType) - 1;
+
+            int damageDealt = 0;
+
+            if (Health - damage > 0)
+            {
+                Health -= damage;
+                damageDealt = damage;
+            }
+            else if (Health - damage <= 0)
+            {
+                //Le degat reellement infliger
+                damageDealt = Math.Abs(0 - Health);
+                Health = 0;
+                Die();
+            }
+
+            if (Entity.Stats.getStatValue(STATS_ID.LIFE_STEAL) > 0)
+            {
+                //Chance aleatoire de soigner le joueur
+                int rnd = GameManager.Random.Next(0, 100);
+                if (rnd <= 2 * Entity.Stats.getStatValue(STATS_ID.LIFE_STEAL))
+                {
+                    Entity.Heal(damage * rnd / 100);
+                }
+            }
+
+            return Health;
+        }
+
+        public void Die()
+        {
+
+        }
+
+        /// <summary>
+        /// Permet de soigner le joueur
+        /// </summary>
+        /// <param name="amount">La quantiter de point de vie a donner</param>
+        /// <returns>Les points de vie apres avoir soigner le joueur</returns>
+        public int Heal(int amount)
+        {
+            Health += amount;
+            if (Health > MAX_HEALTH)
+            {
+                Health = MAX_HEALTH;
+            }
+
+            return Health;
         }
 
         /// <summary>

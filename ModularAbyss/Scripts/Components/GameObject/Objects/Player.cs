@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Enemy;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy;
 using ModularAbyss.Scripts.Components.ItemNamespace;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items;
+using ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons;
 using ModularAbyss.Scripts.Components.StatNamespace;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Enums;
@@ -14,11 +15,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.GameObject.Objects
+namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 {
-    internal class Player : GameObject, ITextureAnimated, ICollider
+    public class Player : GameObject, ITextureAnimated, ICollider
     {
         /* Animation */
         private Dictionary<string, Texture2D> _playerAnimations = new Dictionary<string, Texture2D>();
@@ -42,9 +44,29 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         /* Attack */
         private bool asAttacked = false;
 
-        /* Player Properties */
+        /* Player Attributes */
         public Stats Stats = new Stats();
         public List<Item> inventory = new List<Item>();
+
+        public int Health
+        {
+            get
+            {
+                return Stats.getStatValue(STATS_ID.HEALTH);
+            }
+            set
+            {
+                Stats.setStatValue(STATS_ID.HEALTH, value);
+            }
+        }
+
+        public int MAX_HEALTH
+        {
+            get
+            {
+                return Stats.getStat(STATS_ID.HEALTH).MAX_VALUE;
+            }
+        }
 
         protected override void Initialize()
         {
@@ -96,10 +118,10 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
             KeyboardState kState = Keyboard.GetState();
             MouseState mState = Mouse.GetState();
 
-            Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
-            _texture.SetData(new Color[] { Color.Red });
             if (GLOBAL.DEBUGING)
             {
+                Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
+                _texture.SetData(new Color[] { Color.Red });
                 spriteBatch.Draw(_texture, new Vector2(Position.X + 160, Position.Y + 160), CollisionRect, Color.White);
             }
 
@@ -344,6 +366,22 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                 Vector2 itemPos = characterPos + offsetPos;
 
                 spriteBatch.Draw(item.GetTexture2D(), itemPos, item.SpriteRectangle, Color.White, (float)angleRadians + (float)Math.PI / 2, new Vector2(7.5f, 20), 5, SpriteEffects.None, 0f);
+
+                if (typeof(SwingWeapon).IsAssignableFrom(item.GetType()))
+                {
+                    Vector2 colOffsetPos = new Vector2((float)Math.Cos(angleRadians) * 120, (float)Math.Sin(angleRadians) * 120);
+                    Vector2 colPos = characterPos + colOffsetPos - new Vector2(item.SpriteRectangle.Width * 2, item.SpriteRectangle.Width * 2);
+
+                    (item as SwingWeapon).CollisionRectangle = new Rectangle(colPos.ToPoint(), new Point(item.SpriteRectangle.Width * 4, item.SpriteRectangle.Width * 4));
+                    if (GLOBAL.DEBUGING)
+                    {
+                        Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
+                        _texture.SetData(new Color[] { Color.Blue });
+                        spriteBatch.Draw(_texture, colPos, (item as SwingWeapon).CollisionRectangle, Color.White);
+                    }
+                }
+
+                
             }
         }
 
@@ -369,10 +407,11 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
             {
                 if (gameObject.GetType() != typeof(Player) && CollisionRect.Intersects(gameObject.CollisionRect))
                 {
+                    object test = gameObject.GetType();
                     // Enemy
-                    if (gameObject.GetType() == typeof(Enemy))
+                    if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()))
                     {
-
+                        //Enemy collision logic
                     }
                     //Autre
                     else
@@ -381,6 +420,22 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Permet de soigner le joueur
+        /// </summary>
+        /// <param name="amount">La quantiter de point de vie a donner</param>
+        /// <returns>Les points de vie apres avoir soigner le joueur</returns>
+        public int Heal(int amount)
+        {
+            Health += amount;
+            if (Health > MAX_HEALTH)
+            {
+                Health = MAX_HEALTH;
+            }
+
+            return Health;
         }
     }
 }

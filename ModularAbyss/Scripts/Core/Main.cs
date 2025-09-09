@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ModularAbyss.Scripts.Components.GameObject;
-using ModularAbyss.Scripts.Components.GameObject.Objects;
+using ModularAbyss.Scripts.Components.GameObjectNamespace;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
 using System.Collections.Generic;
 using ModularAbyss.Scripts.Structures;
 using ModularAbyss.Scripts.Core;
-using ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Enemy.Enemies;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
 using System.Linq;
 using ModularAbyss.Scripts.Interfaces;
 using System;
@@ -23,7 +23,7 @@ namespace ModularAbyss
         //Tous les gameObjects
         public static Dictionary<string, GameObject> GameObjects = new Dictionary<string, GameObject>();
 
-        List<ICollider> colliders = new List<ICollider>();
+        public static List<ICollider> CollidersObjects = new List<ICollider>();
 
         /* EVENTS */
         public delegate void OnInitializeHandler();
@@ -59,7 +59,7 @@ namespace ModularAbyss
             foreach (ICollider collider in GameObjects.Values.Where(gameObject => typeof(ICollider).IsAssignableFrom(gameObject.GetType())))
             {
                 collider.SetColliderBounds();
-                colliders.Add(collider);
+                CollidersObjects.Add(collider);
             }
 
             OnInitialize?.Invoke();
@@ -82,7 +82,7 @@ namespace ModularAbyss
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            OnUpdate?.Invoke(gameTime, colliders);
+            OnUpdate?.Invoke(gameTime, CollidersObjects);
             base.Update(gameTime);
         }
 
@@ -108,7 +108,10 @@ namespace ModularAbyss
         {
             GameObjects.Add("Slime", new Slime());
             GameObjects.GetValueOrDefault("Slime").Position = new Vector2(500, 200);
-            
+
+            GameObjects.Add("Slime_01", new Slime());
+            GameObjects.GetValueOrDefault("Slime").Position = new Vector2(700, 200);
+
             GameObjects.Add("Player", new Player());
         }
 

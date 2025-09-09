@@ -22,7 +22,8 @@ namespace ModularAbyss.Scripts.Structures
             Description = "MA_DESCRIPTION",
             ItemTier = ItemTier.Common,
             Texture2D = SPRITES.WEAPON_HAND,
-            SpriteRectangle = new Rectangle(0, 0, 13, 21)
+            SpriteRectangle = new Rectangle(0, 0, 13, 21),
+            Damage = 5,
         };
     }
 }
