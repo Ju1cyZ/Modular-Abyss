@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 {
-    internal class Sword : Weapon
+    internal class SwingWeapon : Weapon
     {
-        public Sword()
+        public SwingWeapon()
         {
         }
 
-        public Sword(string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(name, description, itemTier, texturePath, spriteRectangle)
+        public SwingWeapon(string id, string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(id, name, description, itemTier, texturePath, spriteRectangle)
         {
 
         }
 
         /// <summary>
-        /// L'attaque par defaut de l'epee
+        /// L'attaque par defaut
         /// </summary>
         protected override void _attack()
         {
-            //L'attaque de base pour l'epee
+            //L'attaque de base
         }
     }
 }

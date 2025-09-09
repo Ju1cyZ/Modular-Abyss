@@ -15,8 +15,9 @@ namespace ModularAbyss.Scripts.Structures
     public struct ITEMS
     {
         //Equivalent d'un getter
-        public static Item STEEL_SWORD => new Sword()
+        public static Item STEEL_SWORD => new SwingWeapon()
         {
+            Id = "STEEL_SWORD",
             Name = "Basic Sword",
             Description = "MA_DESCRIPTION",
             ItemTier = ItemTier.Common,

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Enemy;
 using ModularAbyss.Scripts.Components.ItemNamespace;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items;
+using ModularAbyss.Scripts.Components.StatNamespace;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Enums;
 using ModularAbyss.Scripts.Interfaces;
@@ -32,15 +34,16 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         private const int TEXTURE_SIZE = 80;
 
         /* Movement */
-        public const int WALK_SPEED = 7;
-        public const int RUN_SPEED = 10;
-        public int speed = 5;
+        public const int WALK_SPEED = 6;
+        public const int RUN_SPEED = 9;
+        public int currentSpeed = 0;
         public PlayerMovementStates PlayerMovementStates;
 
         /* Attack */
         private bool asAttacked = false;
 
         /* Player Properties */
+        public Stats Stats = new Stats();
         public List<Item> inventory = new List<Item>();
 
         protected override void Initialize()
@@ -54,6 +57,8 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                 {"ANIM_RUN", game.Content.Load<Texture2D>(SPRITES.PLAYER_RUN)},
             };
             _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
+
+            DefineStats();
 
             inventory.Add(ITEMS.STEEL_SWORD);
         }
@@ -105,6 +110,11 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
             DrawItems(inventory, mState, spriteBatch);
         }
 
+        public void DefineStats()
+        {
+            Stats.setStatValue(STATS_ID.SPEED, 1);
+        }
+
         /// <summary>
         /// Permet de deplacer le joueur
         /// </summary>
@@ -114,13 +124,13 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
             switch (states)
             {
                 case PlayerMovementStates.idle:
-                    speed = 0;
+                    currentSpeed = 0;
                     break;
                 case PlayerMovementStates.walk:
-                    speed = WALK_SPEED;
+                    currentSpeed = WALK_SPEED + Stats.getStatValue(STATS_ID.SPEED);
                     break;
                 case PlayerMovementStates.run:
-                    speed = RUN_SPEED;
+                    currentSpeed = RUN_SPEED + Stats.getStatValue(STATS_ID.SPEED);
                     break;
             }
 
@@ -131,28 +141,28 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
                 case PlayerMoveDirections.None:
                     break;
                 case PlayerMoveDirections.Left:
-                    movement = new Vector2(-speed, 0);
+                    movement = new Vector2(-currentSpeed, 0);
                     break;
                 case PlayerMoveDirections.Right:
-                    movement = new Vector2(speed, 0);
+                    movement = new Vector2(currentSpeed, 0);
                     break;
                 case PlayerMoveDirections.Down:
-                    movement = new Vector2(0, speed);
+                    movement = new Vector2(0, currentSpeed);
                     break;
                 case PlayerMoveDirections.Up:
-                    movement = new Vector2(0, -speed);
+                    movement = new Vector2(0, -currentSpeed);
                     break;
                 case PlayerMoveDirections.UpRight:
-                    movement = new Vector2(speed - speed * 0.3f, -(speed - speed * 0.3f));
+                    movement = new Vector2(currentSpeed - currentSpeed * 0.3f, -(currentSpeed - currentSpeed * 0.3f));
                     break;
                 case PlayerMoveDirections.UpLeft:
-                    movement = new Vector2(-(speed - speed * 0.3f), -(speed - speed * 0.3f));
+                    movement = new Vector2(-(currentSpeed - currentSpeed * 0.3f), -(currentSpeed - currentSpeed * 0.3f));
                     break;
                 case PlayerMoveDirections.DownRight:
-                    movement = new Vector2(speed - speed * 0.3f, speed - speed * 0.3f);
+                    movement = new Vector2(currentSpeed - currentSpeed * 0.3f, currentSpeed - currentSpeed * 0.3f);
                     break;
                 case PlayerMoveDirections.DownLeft:
-                    movement = new Vector2(-(speed - speed * 0.3f), speed - speed * 0.3f);
+                    movement = new Vector2(-(currentSpeed - currentSpeed * 0.3f), currentSpeed - currentSpeed * 0.3f);
                     break;
             }
 
@@ -161,13 +171,9 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
             SetColliderBounds();
 
             //Collision detection
-            foreach (GameObject gameObject in colliders)
-            {
-                if (gameObject.GetType() != typeof(Player) && CollisionRect.Intersects(gameObject.CollisionRect))
-                {
-                    Position -= movement;
-                }
-            }
+            manageCollision(movement, colliders);
+
+            
 
         }
 
@@ -350,6 +356,31 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects
         private double AngleBetweenVectors(Vector2 vector1, Vector2 vector2)
         {
             return Math.Atan2(vector2.Y - vector1.Y, vector2.X - vector1.X);
+        }
+
+        /// <summary>
+        /// Permet de gerer les collisions avec le joueur et l'environement
+        /// </summary>
+        /// <param name="movement"></param>
+        /// <param name="colliders"></param>
+        private void manageCollision(Vector2 movement, List<ICollider> colliders)
+        {
+            foreach (GameObject gameObject in colliders)
+            {
+                if (gameObject.GetType() != typeof(Player) && CollisionRect.Intersects(gameObject.CollisionRect))
+                {
+                    // Enemy
+                    if (gameObject.GetType() == typeof(Enemy))
+                    {
+
+                    }
+                    //Autre
+                    else
+                    {
+                        Position -= movement;
+                    }
+                }
+            }
         }
     }
 }

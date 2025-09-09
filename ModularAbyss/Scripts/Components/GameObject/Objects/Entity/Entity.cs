@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Components.StatNamespace;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
@@ -26,11 +27,27 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity
         protected Texture2D healthBarsTexture;
         private const int HEALTH_BAR_SIZE_X = 48; 
         private const int HEALTH_BAR_SIZE_Y = 16;
-        public const float MAX_HEALTH = 100;
 
         /* Entity Properties */
 
-        public float health = MAX_HEALTH;
+        private Stats Stats = new Stats();
+
+        public int Health {
+            get
+            {
+                return Stats.getStatValue(STATS_ID.HEALTH);
+            }
+            set {
+                Stats.setStatValue(STATS_ID.HEALTH, value);
+            }
+        }
+
+        public int MAX_HEALTH
+        {
+            get {
+                return Stats.getStat(STATS_ID.HEALTH).MAX_VALUE;
+            }
+        }
 
         protected override void Initialize()
         {
@@ -42,7 +59,7 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(healthBarsTexture, SetHealthBarPos(), getCorrectHealthBar(health), Color.White, 0, new Vector2(0, 0), new Vector2(3, 3), _spriteEffect, 0f);
+            spriteBatch.Draw(healthBarsTexture, SetHealthBarPos(), getCorrectHealthBar(Health), Color.White, 0, new Vector2(0, 0), new Vector2(3, 3), _spriteEffect, 0f);
         }
 
         /// <summary>
@@ -50,7 +67,7 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity
         /// </summary>
         /// <param name="health">La vie de l'entiter</param>
         /// <returns>La bar de vie selon le pourcentage de vie</returns>
-        private Rectangle getCorrectHealthBar(float health)
+        private Rectangle getCorrectHealthBar(int health)
         {
             /// <summary>
             /// 0 => 100%,
@@ -67,22 +84,31 @@ namespace ModularAbyss.Scripts.Components.GameObject.Objects.Entity
                 new Rectangle(HEALTH_BAR_SIZE_X * 4, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
                 new Rectangle(HEALTH_BAR_SIZE_X * 5, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
                 new Rectangle(HEALTH_BAR_SIZE_X * 6, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-            }; ;
+            };
 
-            switch (health)
+            if (health > MAX_HEALTH * 0.8f)
             {
-                case > MAX_HEALTH * 0.8f :
-                    return healthBarRectangles[0];
-                case > MAX_HEALTH * 0.6f:
-                    return healthBarRectangles[1];
-                case > MAX_HEALTH * 0.4f:
-                    return healthBarRectangles[2];
-                case > MAX_HEALTH * 0.2f:
-                    return healthBarRectangles[3];
-                case > MAX_HEALTH * 0f:
-                    return healthBarRectangles[4];
-                default:
-                    return healthBarRectangles[5];
+                return healthBarRectangles[0];
+            }
+            else if (health > MAX_HEALTH * 0.6f)
+            {
+                return healthBarRectangles[1];
+            }
+            if (health > MAX_HEALTH * 0.4f)
+            {
+                return healthBarRectangles[2];
+            }
+            if (health > MAX_HEALTH * 0.2f)
+            {
+                return healthBarRectangles[3];
+            }
+            if (health > MAX_HEALTH * 0f)
+            {
+                return healthBarRectangles[4];
+            }
+            else
+            {
+                return healthBarRectangles[5];
             }
         }
 

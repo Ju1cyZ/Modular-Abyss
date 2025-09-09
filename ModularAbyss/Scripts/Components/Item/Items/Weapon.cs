@@ -17,7 +17,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items
             Attack = _attack;
         }
 
-        public Weapon(string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(name, description, itemTier, texturePath, spriteRectangle)
+        public Weapon(string id, string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(id, name, description, itemTier, texturePath, spriteRectangle)
         {
             Attack = _attack;
         }

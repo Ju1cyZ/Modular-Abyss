@@ -12,6 +12,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace
 {
     public class Item
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public ItemTier ItemTier { get; set; }
@@ -29,8 +30,9 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace
         
         public Item() { }
 
-        public Item(string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle)
+        public Item(string id, string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle)
         {
+            Id = id;
             Name = name;
             Description = description;
             ItemTier = itemTier;

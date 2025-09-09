@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Enemy.Enemies.Slime" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAIAIAAwIAAAAAACAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Components\GameObject\Objects\Entity\Enemy\Enemies\Slime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Enemy.Enemy" Collapsed="true">
+    <Position X="12.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Components\GameObject\Objects\Entity\Enemy\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.GameObject.Objects.Entity.Entity" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEIAAUAAA0AAAAAAACAAAAAAEAAAAAAAgASBAAg=</HashCode>
+      <FileName>Scripts\Components\GameObject\Objects\Entity\Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.GameObject.Objects.Player" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CA0AIEIBIQIYAwIQAEIAAAAAIAAAAQICAAAAAAwAAAA=</HashCode>
+      <FileName>Scripts\Components\GameObject\Objects\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.GameObject.GameObject" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAIAAAAAAAAwAgAEAAAAAAAAAAAAIIAAAAwAAAAgQ=</HashCode>
+      <FileName>Scripts\Components\GameObject\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons.Sword" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Scripts\Components\Item\Items\Weapons\Sword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapon" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Scripts\Components\Item\Items\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Components.ItemNamespace.Item" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAgACAAAAAAAAQAAAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>Scripts\Components\Item\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModularAbyss.Scripts.Core.GameManager" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEABAAAAAAAAAAAAAAAAAABAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Scripts\Core\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModularAbyss.Main" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEQAAEAAAAAwAAAABAAEAAAAACAAQCAIAAEAEAAAQ=</HashCode>
+      <FileName>Scripts\Core\Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ModularAbyss.Scripts.Structures.GLOBAL" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Structures\GLOBAL.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ModularAbyss.Scripts.Structures.ITEMS" Collapsed="true">
+    <Position X="18.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Structures\ITEMS.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ModularAbyss.Scripts.Structures.KEYBINDS" Collapsed="true">
+    <Position X="17" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAEAAAAAAQAAAAAAAAAAAAAAAAEgAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Structures\KEYBINDS.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ModularAbyss.Scripts.Structures.SPRITES" Collapsed="true">
+    <Position X="18.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAABQAAAQAACAAAgACAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Structures\SPRITES.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="ModularAbyss.Scripts.Interfaces.ICollider" Collapsed="true">
+    <Position X="17" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Interfaces\ICollider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ModularAbyss.Scripts.Interfaces.ITextureAnimated" Collapsed="true">
+    <Position X="18.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Interfaces\ITextureAnimated.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ModularAbyss.Scripts.Enums.ItemTier" Collapsed="true">
+    <Position X="17" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAAAQAAAAAAAQgAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Enums\ItemTier.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ModularAbyss.Scripts.Enums.PlayerMoveDirections" Collapsed="true">
+    <Position X="18.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgIAAAAAAAAAAAAAAAAAAAAAAAAACACAIAEBAAI=</HashCode>
+      <FileName>Scripts\Enums\PlayerMoveDirections.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ModularAbyss.Scripts.Enums.PlayerMovementStates" Collapsed="true">
+    <Position X="17" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Scripts\Enums\PlayerMovementStates.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
