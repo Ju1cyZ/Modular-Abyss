@@ -10,7 +10,7 @@ namespace ModularAbyss.Scripts.Structures
     {
         public const bool DEBUGING = false;
 
-        public const int WINDOW_WIDTH = 810;
-        public const int WINDOW_HEIGHT = 540;
+        public const int WINDOW_WIDTH = 1920;
+        public const int WINDOW_HEIGHT = 1080;
     }
 }

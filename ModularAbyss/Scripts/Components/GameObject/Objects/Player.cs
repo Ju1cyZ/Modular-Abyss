@@ -195,8 +195,6 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             //Collision detection
             manageCollision(movement, colliders);
 
-            
-
         }
 
         /// <summary>
@@ -418,6 +416,15 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
                     {
                         Position -= movement;
                     }
+                }
+            }
+
+            //Les murs
+            foreach (Rectangle item in Main.wallTilemap.Colliders)
+            {
+                if (CollisionRect.Intersects(item))
+                {
+                    Position -= movement;
                 }
             }
         }

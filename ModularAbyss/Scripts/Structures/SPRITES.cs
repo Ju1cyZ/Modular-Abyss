@@ -21,5 +21,9 @@ namespace ModularAbyss.Scripts.Structures
 
         /* ITEMS */
         public const string WEAPON_HAND = ASSETS_FOLDER + "Weapons/hand";
+
+        /* TILESETS */
+        public const string FLOOR_TILESET = ASSETS_FOLDER + "Tilesets/floor";
+        public const string WALL_TILESET = ASSETS_FOLDER + "Tilesets/wall";
     }
 }
