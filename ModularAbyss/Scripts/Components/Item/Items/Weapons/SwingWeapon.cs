@@ -33,6 +33,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
                     //Si c'est un Enemi
                     if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()) && !asAttacked)
                     {
+                        Attack();
                         //On empeche d'infiliger plusieur fois les degats
                         asAttacked = true;
                         //On defini la derniere entiter attaquer
