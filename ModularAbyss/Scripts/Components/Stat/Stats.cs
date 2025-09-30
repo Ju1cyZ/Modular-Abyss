@@ -15,8 +15,13 @@ namespace ModularAbyss.Scripts.Components.StatNamespace
         {
             STATS.HEALTH,
             STATS.ARMOR,
-            STATS.SPEED,
+            STATS.MOVEMENT_SPEED,
+            STATS.ATTACK_SPEED,
             STATS.DAMAGE,
+            STATS.MELE_DAMAGE,
+            STATS.RANGED_DAMAGE,
+            STATS.LIFE_STEAL,
+
         };
 
         public List<Stat> getStats()

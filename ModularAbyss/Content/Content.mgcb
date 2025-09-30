@@ -23,7 +23,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime_Attack_shadow.png;Assets/Enemies/Slime/Slime_Attack_shadow
+/build:Assets/Enemies/Slime/Slime_Attack_shadow.png
 
 #begin Assets/Enemies/Slime/Slime_Death_shadow.png
 /importer:TextureImporter
@@ -35,7 +35,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime_Death_shadow.png;Assets/Enemies/Slime/Slime_Death_shadow
+/build:Assets/Enemies/Slime/Slime_Death_shadow.png
 
 #begin Assets/Enemies/Slime/Slime_Hurt_shadow.png
 /importer:TextureImporter
@@ -47,7 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime_Hurt_shadow.png;Assets/Enemies/Slime/Slime_Hurt_shadow
+/build:Assets/Enemies/Slime/Slime_Hurt_shadow.png
 
 #begin Assets/Enemies/Slime/Slime_Idle_shadow.png
 /importer:TextureImporter
@@ -59,7 +59,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime_Idle_shadow.png;Assets/Enemies/Slime/Slime_Idle_shadow
+/build:Assets/Enemies/Slime/Slime_Idle_shadow.png
 
 #begin Assets/Enemies/Slime/Slime_Run_shadow.png
 /importer:TextureImporter
@@ -71,7 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime_Run_shadow.png;Assets/Enemies/Slime/Slime_Run_shadow
+/build:Assets/Enemies/Slime/Slime_Run_shadow.png
 
 #begin Assets/Enemies/Slime/Slime_Walk_shadow.png
 /importer:TextureImporter
@@ -83,7 +83,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime_Walk_shadow.png;Assets/Enemies/Slime/Slime_Walk_shadow
+/build:Assets/Enemies/Slime/Slime_Walk_shadow.png
 
 #begin Assets/Enemies/Slime/Slime1_Attack_body.png
 /importer:TextureImporter
@@ -95,7 +95,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Attack_body.png;Assets/Enemies/Slime/Slime1_Attack_body
+/build:Assets/Enemies/Slime/Slime1_Attack_body.png
 
 #begin Assets/Enemies/Slime/Slime1_Attack_full.png
 /importer:TextureImporter
@@ -107,7 +107,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Attack_full.png;Assets/Enemies/Slime/Slime1_Attack_full
+/build:Assets/Enemies/Slime/Slime1_Attack_full.png
 
 #begin Assets/Enemies/Slime/Slime1_Death_body.png
 /importer:TextureImporter
@@ -119,7 +119,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Death_body.png;Assets/Enemies/Slime/Slime1_Death_body
+/build:Assets/Enemies/Slime/Slime1_Death_body.png
 
 #begin Assets/Enemies/Slime/Slime1_Death_full.png
 /importer:TextureImporter
@@ -131,7 +131,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Death_full.png;Assets/Enemies/Slime/Slime1_Death_full
+/build:Assets/Enemies/Slime/Slime1_Death_full.png
 
 #begin Assets/Enemies/Slime/Slime1_Hurt_body.png
 /importer:TextureImporter
@@ -143,7 +143,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Hurt_body.png;Assets/Enemies/Slime/Slime1_Hurt_body
+/build:Assets/Enemies/Slime/Slime1_Hurt_body.png
 
 #begin Assets/Enemies/Slime/Slime1_Hurt_full.png
 /importer:TextureImporter
@@ -155,7 +155,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Hurt_full.png;Assets/Enemies/Slime/Slime1_Hurt_full
+/build:Assets/Enemies/Slime/Slime1_Hurt_full.png
 
 #begin Assets/Enemies/Slime/Slime1_Idle_body.png
 /importer:TextureImporter
@@ -167,7 +167,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Idle_body.png;Assets/Enemies/Slime/Slime1_Idle_body
+/build:Assets/Enemies/Slime/Slime1_Idle_body.png
 
 #begin Assets/Enemies/Slime/Slime1_Idle_full.png
 /importer:TextureImporter
@@ -179,7 +179,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Idle_full.png;Assets/Enemies/Slime/Slime1_Idle_full
+/build:Assets/Enemies/Slime/Slime1_Idle_full.png
 
 #begin Assets/Enemies/Slime/Slime1_Run_body.png
 /importer:TextureImporter
@@ -191,7 +191,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Run_body.png;Assets/Enemies/Slime/Slime1_Run_body
+/build:Assets/Enemies/Slime/Slime1_Run_body.png
 
 #begin Assets/Enemies/Slime/Slime1_Run_full.png
 /importer:TextureImporter
@@ -203,7 +203,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Run_full.png;Assets/Enemies/Slime/Slime1_Run_full
+/build:Assets/Enemies/Slime/Slime1_Run_full.png
 
 #begin Assets/Enemies/Slime/Slime1_Walk_body.png
 /importer:TextureImporter
@@ -215,7 +215,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Walk_body.png;Assets/Enemies/Slime/Slime1_Walk_body
+/build:Assets/Enemies/Slime/Slime1_Walk_body.png
 
 #begin Assets/Enemies/Slime/Slime1_Walk_full.png
 /importer:TextureImporter
@@ -227,7 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime1_Walk_full.png;Assets/Enemies/Slime/Slime1_Walk_full
+/build:Assets/Enemies/Slime/Slime1_Walk_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Attack_body.png
 /importer:TextureImporter
@@ -239,7 +239,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Attack_body.png;Assets/Enemies/Slime/Slime2_Attack_body
+/build:Assets/Enemies/Slime/Slime2_Attack_body.png
 
 #begin Assets/Enemies/Slime/Slime2_Attack_full.png
 /importer:TextureImporter
@@ -251,7 +251,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Attack_full.png;Assets/Enemies/Slime/Slime2_Attack_full
+/build:Assets/Enemies/Slime/Slime2_Attack_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Attack_shadow.png
 /importer:TextureImporter
@@ -263,7 +263,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Attack_shadow.png;Assets/Enemies/Slime/Slime2_Attack_shadow
+/build:Assets/Enemies/Slime/Slime2_Attack_shadow.png
 
 #begin Assets/Enemies/Slime/Slime2_Death_body.png
 /importer:TextureImporter
@@ -275,7 +275,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Death_body.png;Assets/Enemies/Slime/Slime2_Death_body
+/build:Assets/Enemies/Slime/Slime2_Death_body.png
 
 #begin Assets/Enemies/Slime/Slime2_Death_full.png
 /importer:TextureImporter
@@ -287,7 +287,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Death_full.png;Assets/Enemies/Slime/Slime2_Death_full
+/build:Assets/Enemies/Slime/Slime2_Death_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Death_shadow.png
 /importer:TextureImporter
@@ -299,7 +299,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Death_shadow.png;Assets/Enemies/Slime/Slime2_Death_shadow
+/build:Assets/Enemies/Slime/Slime2_Death_shadow.png
 
 #begin Assets/Enemies/Slime/Slime2_Hurt_body.png
 /importer:TextureImporter
@@ -311,7 +311,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Hurt_body.png;Assets/Enemies/Slime/Slime2_Hurt_body
+/build:Assets/Enemies/Slime/Slime2_Hurt_body.png
 
 #begin Assets/Enemies/Slime/Slime2_Hurt_full.png
 /importer:TextureImporter
@@ -323,7 +323,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Hurt_full.png;Assets/Enemies/Slime/Slime2_Hurt_full
+/build:Assets/Enemies/Slime/Slime2_Hurt_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Hurt_shadow.png
 /importer:TextureImporter
@@ -335,7 +335,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Hurt_shadow.png;Assets/Enemies/Slime/Slime2_Hurt_shadow
+/build:Assets/Enemies/Slime/Slime2_Hurt_shadow.png
 
 #begin Assets/Enemies/Slime/Slime2_Idle_body.png
 /importer:TextureImporter
@@ -347,7 +347,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Idle_body.png;Assets/Enemies/Slime/Slime2_Idle_body
+/build:Assets/Enemies/Slime/Slime2_Idle_body.png
 
 #begin Assets/Enemies/Slime/Slime2_Idle_full.png
 /importer:TextureImporter
@@ -359,7 +359,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Idle_full.png;Assets/Enemies/Slime/Slime2_Idle_full
+/build:Assets/Enemies/Slime/Slime2_Idle_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Idle_shadow.png
 /importer:TextureImporter
@@ -371,7 +371,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Idle_shadow.png;Assets/Enemies/Slime/Slime2_Idle_shadow
+/build:Assets/Enemies/Slime/Slime2_Idle_shadow.png
 
 #begin Assets/Enemies/Slime/Slime2_Run_body.png
 /importer:TextureImporter
@@ -383,7 +383,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Run_body.png;Assets/Enemies/Slime/Slime2_Run_body
+/build:Assets/Enemies/Slime/Slime2_Run_body.png
 
 #begin Assets/Enemies/Slime/Slime2_Run_full.png
 /importer:TextureImporter
@@ -395,7 +395,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Run_full.png;Assets/Enemies/Slime/Slime2_Run_full
+/build:Assets/Enemies/Slime/Slime2_Run_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Run_shadow.png
 /importer:TextureImporter
@@ -407,7 +407,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Run_shadow.png;Assets/Enemies/Slime/Slime2_Run_shadow
+/build:Assets/Enemies/Slime/Slime2_Run_shadow.png
 
 #begin Assets/Enemies/Slime/Slime2_Walk_body.png
 /importer:TextureImporter
@@ -419,7 +419,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Walk_body.png;Assets/Enemies/Slime/Slime2_Walk_body
+/build:Assets/Enemies/Slime/Slime2_Walk_body.png
 
 #begin Assets/Enemies/Slime/Slime2_Walk_full.png
 /importer:TextureImporter
@@ -431,7 +431,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Walk_full.png;Assets/Enemies/Slime/Slime2_Walk_full
+/build:Assets/Enemies/Slime/Slime2_Walk_full.png
 
 #begin Assets/Enemies/Slime/Slime2_Walk_shadow.png
 /importer:TextureImporter
@@ -443,7 +443,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime2_Walk_shadow.png;Assets/Enemies/Slime/Slime2_Walk_shadow
+/build:Assets/Enemies/Slime/Slime2_Walk_shadow.png
 
 #begin Assets/Enemies/Slime/Slime3_Attack_body.png
 /importer:TextureImporter
@@ -455,7 +455,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Attack_body.png;Assets/Enemies/Slime/Slime3_Attack_body
+/build:Assets/Enemies/Slime/Slime3_Attack_body.png
 
 #begin Assets/Enemies/Slime/Slime3_Attack_full.png
 /importer:TextureImporter
@@ -467,7 +467,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Attack_full.png;Assets/Enemies/Slime/Slime3_Attack_full
+/build:Assets/Enemies/Slime/Slime3_Attack_full.png
 
 #begin Assets/Enemies/Slime/Slime3_Attack_shadow.png
 /importer:TextureImporter
@@ -479,7 +479,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Attack_shadow.png;Assets/Enemies/Slime/Slime3_Attack_shadow
+/build:Assets/Enemies/Slime/Slime3_Attack_shadow.png
 
 #begin Assets/Enemies/Slime/Slime3_Death_body.png
 /importer:TextureImporter
@@ -491,7 +491,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Death_body.png;Assets/Enemies/Slime/Slime3_Death_body
+/build:Assets/Enemies/Slime/Slime3_Death_body.png
 
 #begin Assets/Enemies/Slime/Slime3_Death_full.png
 /importer:TextureImporter
@@ -503,7 +503,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Death_full.png;Assets/Enemies/Slime/Slime3_Death_full
+/build:Assets/Enemies/Slime/Slime3_Death_full.png
 
 #begin Assets/Enemies/Slime/Slime3_Death_shadow.png
 /importer:TextureImporter
@@ -515,7 +515,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Death_shadow.png;Assets/Enemies/Slime/Slime3_Death_shadow
+/build:Assets/Enemies/Slime/Slime3_Death_shadow.png
 
 #begin Assets/Enemies/Slime/Slime3_Hurt_body.png
 /importer:TextureImporter
@@ -527,7 +527,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Hurt_body.png;Assets/Enemies/Slime/Slime3_Hurt_body
+/build:Assets/Enemies/Slime/Slime3_Hurt_body.png
 
 #begin Assets/Enemies/Slime/Slime3_Hurt_full.png
 /importer:TextureImporter
@@ -539,7 +539,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Hurt_full.png;Assets/Enemies/Slime/Slime3_Hurt_full
+/build:Assets/Enemies/Slime/Slime3_Hurt_full.png
 
 #begin Assets/Enemies/Slime/Slime3_Hurt_shadow.png
 /importer:TextureImporter
@@ -551,7 +551,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Hurt_shadow.png;Assets/Enemies/Slime/Slime3_Hurt_shadow
+/build:Assets/Enemies/Slime/Slime3_Hurt_shadow.png
 
 #begin Assets/Enemies/Slime/Slime3_Idle_body.png
 /importer:TextureImporter
@@ -563,7 +563,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Idle_body.png;Assets/Enemies/Slime/Slime3_Idle_body
+/build:Assets/Enemies/Slime/Slime3_Idle_body.png
 
 #begin Assets/Enemies/Slime/Slime3_Idle_full.png
 /importer:TextureImporter
@@ -575,7 +575,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Idle_full.png;Assets/Enemies/Slime/Slime3_Idle_full
+/build:Assets/Enemies/Slime/Slime3_Idle_full.png
 
 #begin Assets/Enemies/Slime/Slime3_Idle_shadow.png
 /importer:TextureImporter
@@ -587,7 +587,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Idle_shadow.png;Assets/Enemies/Slime/Slime3_Idle_shadow
+/build:Assets/Enemies/Slime/Slime3_Idle_shadow.png
 
 #begin Assets/Enemies/Slime/Slime3_Run_body.png
 /importer:TextureImporter
@@ -599,7 +599,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Run_body.png;Assets/Enemies/Slime/Slime3_Run_body
+/build:Assets/Enemies/Slime/Slime3_Run_body.png
 
 #begin Assets/Enemies/Slime/Slime3_Run_full.png
 /importer:TextureImporter
@@ -611,7 +611,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Run_full.png;Assets/Enemies/Slime/Slime3_Run_full
+/build:Assets/Enemies/Slime/Slime3_Run_full.png
 
 #begin Assets/Enemies/Slime/Slime3_Run_shadow.png
 /importer:TextureImporter
@@ -623,7 +623,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Run_shadow.png;Assets/Enemies/Slime/Slime3_Run_shadow
+/build:Assets/Enemies/Slime/Slime3_Run_shadow.png
 
 #begin Assets/Enemies/Slime/Slime3_Walk_body.png
 /importer:TextureImporter
@@ -635,7 +635,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Walk_body.png;Assets/Enemies/Slime/Slime3_Walk_body
+/build:Assets/Enemies/Slime/Slime3_Walk_body.png
 
 #begin Assets/Enemies/Slime/Slime3_Walk_full.png
 /importer:TextureImporter
@@ -647,7 +647,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Walk_full.png;Assets/Enemies/Slime/Slime3_Walk_full
+/build:Assets/Enemies/Slime/Slime3_Walk_full.png
 
 #begin Assets/Enemies/Slime/Slime3_Walk_shadow.png
 /importer:TextureImporter
@@ -659,7 +659,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Enemies/Slime/Slime3_Walk_shadow.png;Assets/Enemies/Slime/Slime3_Walk_shadow
+/build:Assets/Enemies/Slime/Slime3_Walk_shadow.png
 
 #begin Assets/HUD/bars.png
 /importer:TextureImporter

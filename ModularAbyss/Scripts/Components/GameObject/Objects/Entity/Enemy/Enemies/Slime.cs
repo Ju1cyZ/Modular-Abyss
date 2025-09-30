@@ -71,6 +71,15 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
             CollisionRect = new Rectangle(new Point((int)Position.X + 120, (int)Position.Y + 120), new Point(TEXTURE_SIZE + 20, TEXTURE_SIZE + 20));
         }
 
+        public override void Attack(Player p, GameTime gameTime)
+        {
+            if (attackTime <= 0)
+            {
+                p.HurtWithStats(Stats.getStatValue(STATS_ID.DAMAGE), this);
+                attackTime = Stats.getStatValue(STATS_ID.ATTACK_SPEED);
+            }
+        }
+
         protected override Vector2 SetHealthBarPos()
         {
             return new Vector2(Position.X + 90, Position.Y + 60);

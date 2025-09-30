@@ -30,7 +30,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
 
         /* Entity Properties */
 
-        private Stats Stats = new Stats();
+        public Stats Stats = new Stats();
 
         public int Health {
             get
@@ -140,7 +140,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
         /// <param name="player">Le joueur qui inflige des degats</param>
         /// <param name="damageType">Le type de degats (STATS_ID.DAMAGE / STATS_ID.RANGED_DAMAGE etc...)</param>
         /// <returns>La vie apres avoir infliger les degats</returns>
-        public int HurtWithStats(int damage, Player player, string damageType = STATS_ID.DAMAGE)
+        public int HurtWithStats(int damage, Player player, string damageType = STATS_ID.MELE_DAMAGE)
         {
             damage += player.Stats.getStatValue(damageType) - 1;
 

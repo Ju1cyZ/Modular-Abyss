@@ -21,7 +21,6 @@ namespace ModularAbyss.Scripts.Structures
             Value = 10,
             MAX_VALUE = 10,
         };
-
         public static Stat ARMOR => new Stat()
         {
             Id = STATS_ID.ARMOR,
@@ -29,20 +28,11 @@ namespace ModularAbyss.Scripts.Structures
             Description = "Le nombre de point d'armure. \nPermet d'encaisser un certain nombre de dégats avant de diminuer les points de vies",
             Value = 0,
         };
-
-        public static Stat SPEED => new Stat()
+        public static Stat MOVEMENT_SPEED => new Stat()
         {
-            Id = STATS_ID.SPEED,
+            Id = STATS_ID.MOVEMENT_SPEED,
             Name = "Vitesse",
             Description = "La vitesse de déplacement.",
-            Value = 1,
-        };
-
-        public static Stat DAMAGE => new Stat()
-        {
-            Id = STATS_ID.DAMAGE,
-            Name = "Dégats",
-            Description = "Les dégâts infligée à un enemi lors d'une attaque au corps à corps.",
             Value = 1,
         };
         public static Stat ATTACK_SPEED => new Stat()
@@ -52,15 +42,27 @@ namespace ModularAbyss.Scripts.Structures
             Description = "Diminue le temps nécéssaire entre les attaques",
             Value = 1,
         };
-
+        public static Stat DAMAGE => new Stat()
+        {
+            Id = STATS_ID.DAMAGE,
+            Name = "Dégats",
+            Description = "Les dégâts infligée à un enemi lors d'une attaque au corps à corps.",
+            Value = 1,
+        };
+        public static Stat MELE_DAMAGE => new Stat()
+        {
+            Id = STATS_ID.MELE_DAMAGE,
+            Name = "Dégâts au corps à corps",
+            Description = "Les dégâts infligée à un enemi lors d'une attaque au corps à corps.",
+            Value = 1,
+        };
         public static Stat RANGED_DAMAGE => new Stat()
         {
             Id = STATS_ID.RANGED_DAMAGE,
             Name = "Dégâts de distance",
-            Description = "Les dégâts infligée à un enumi lors d'une attaque à longue ou mi-distance.",
+            Description = "Les dégâts infligée à un enemi lors d'une attaque à longue ou mi-distance.",
             Value = 1,
         };
-
         public static Stat LIFE_STEAL => new Stat()
         {
             Id = STATS_ID.LIFE_STEAL,

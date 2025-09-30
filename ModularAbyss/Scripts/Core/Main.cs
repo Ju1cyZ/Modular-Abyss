@@ -37,6 +37,12 @@ namespace ModularAbyss
         internal static Tilemap floorTilemap;
         internal static TilemapCollider wallTilemap;
 
+        public Player Player {
+            get {
+                return GameObjects.GetValueOrDefault("Player") as Player;
+            }
+        }
+
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);

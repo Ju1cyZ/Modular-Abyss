@@ -38,7 +38,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
                         //On defini la derniere entiter attaquer
                         lastAttackedEntity = gameObject as Entity;
                         //Inflige les degats a l'entiter
-                        (gameObject as Enemy).HurtWithStats(Damage, (Player)Main.GameObjects.GetValueOrDefault("Player"));
+                        (gameObject as Enemy).HurtWithStats(Damage, Main.getInstance().Player);
                     }
                 }
 

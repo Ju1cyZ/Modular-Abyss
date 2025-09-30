@@ -48,6 +48,8 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
         public Stats Stats = new Stats();
         public List<Item> inventory = new List<Item>();
 
+        SpriteFont baseFont;
+
         public int Health
         {
             get
@@ -56,7 +58,14 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             }
             set
             {
-                Stats.setStatValue(STATS_ID.HEALTH, value);
+                if (Stats.getStatValue(STATS_ID.HEALTH) + value >= Stats.getStat(STATS_ID.HEALTH).MAX_VALUE)
+                {
+                    Stats.setStatValue(STATS_ID.HEALTH, Stats.getStat(STATS_ID.HEALTH).MAX_VALUE);
+                }
+                else
+                {
+                    Stats.setStatValue(STATS_ID.HEALTH, value);
+                }
             }
         }
 
@@ -96,7 +105,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             PlayerMoveDirections playerMoveDirection = ManageMovementInputs(kState);
             PlayerMovementStates playerMovementState = ManageMovementStatesInputs(kState, playerMoveDirection);
 
-            ManageMovement(playerMoveDirection, playerMovementState, colliders);
+            ManageMovement(playerMoveDirection, playerMovementState, colliders, gameTime);
 
             /* Player Animation */
             ManagePlayerAnimation(playerMoveDirection, playerMovementState);
@@ -134,14 +143,14 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 
         public void DefineStats()
         {
-            Stats.setStatValue(STATS_ID.SPEED, 1);
+            Stats.setStatValue(STATS_ID.MOVEMENT_SPEED, 1);
         }
 
         /// <summary>
         /// Permet de deplacer le joueur
         /// </summary>
         /// <param name="direction">La direction de deplacement</param>
-        public void ManageMovement(PlayerMoveDirections direction, PlayerMovementStates states, List<ICollider> colliders)
+        public void ManageMovement(PlayerMoveDirections direction, PlayerMovementStates states, List<ICollider> colliders, GameTime gameTime)
         {
             switch (states)
             {
@@ -149,10 +158,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
                     currentSpeed = 0;
                     break;
                 case PlayerMovementStates.walk:
-                    currentSpeed = WALK_SPEED + Stats.getStatValue(STATS_ID.SPEED);
+                    currentSpeed = WALK_SPEED + Stats.getStatValue(STATS_ID.MOVEMENT_SPEED);
                     break;
                 case PlayerMovementStates.run:
-                    currentSpeed = RUN_SPEED + Stats.getStatValue(STATS_ID.SPEED);
+                    currentSpeed = RUN_SPEED + Stats.getStatValue(STATS_ID.MOVEMENT_SPEED);
                     break;
             }
 
@@ -193,7 +202,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             SetColliderBounds();
 
             //Collision detection
-            manageCollision(movement, colliders);
+            manageCollision(movement, colliders, gameTime);
 
         }
 
@@ -399,7 +408,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
         /// </summary>
         /// <param name="movement"></param>
         /// <param name="colliders"></param>
-        private void manageCollision(Vector2 movement, List<ICollider> colliders)
+        private void manageCollision(Vector2 movement, List<ICollider> colliders, GameTime gameTime)
         {
             foreach (GameObject gameObject in colliders)
             {
@@ -410,6 +419,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
                     if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()))
                     {
                         //Enemy collision logic
+                        (gameObject as Enemy).Attack(this, gameTime);
                     }
                     //Autre
                     else
@@ -430,19 +440,57 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
         }
 
         /// <summary>
+        /// Permet d'infliger de degats au Joueur
+        /// </summary>
+        /// <param name="damage">Le nombre de degats</param>
+        /// <param name="enemi">L'enemi qui inflige des degats</param>
+        /// <param name="damageType">Le type de degats (STATS_ID.DAMAGE / STATS_ID.RANGED_DAMAGE etc...)</param>
+        /// <returns>La vie apres avoir infliger les degats</returns>
+        public int HurtWithStats(int damage, Enemy enemi, string damageType = STATS_ID.MELE_DAMAGE)
+        {
+            damage += enemi.Stats.getStatValue(damageType) - 1;
+
+            int damageDealt = 0;
+
+            if (Health - damage > 0)
+            {
+                Health -= damage;
+                damageDealt = damage;
+            }
+            else if (Health - damage <= 0)
+            {
+                //Le degat reellement infliger
+                damageDealt = Math.Abs(0 - Health);
+                Health = 0;
+                Die();
+            }
+
+            if (enemi.Stats.getStatValue(STATS_ID.LIFE_STEAL) > 0)
+            {
+                //Chance aleatoire de soigner le joueur
+                int rnd = GameManager.Random.Next(0, 100);
+                if (rnd <= 2 * enemi.Stats.getStatValue(STATS_ID.LIFE_STEAL))
+                {
+                    enemi.Heal(damage * rnd / 100);
+                }
+            }
+
+            return Health;
+        }
+
+        public void Die()
+        {
+
+        }
+
+        /// <summary>
         /// Permet de soigner le joueur
         /// </summary>
         /// <param name="amount">La quantiter de point de vie a donner</param>
         /// <returns>Les points de vie apres avoir soigner le joueur</returns>
         public int Heal(int amount)
         {
-            Health += amount;
-            if (Health > MAX_HEALTH)
-            {
-                Health = MAX_HEALTH;
-            }
-
-            return Health;
+            return Health += amount;
         }
     }
 }

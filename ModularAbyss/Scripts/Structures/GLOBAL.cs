@@ -8,7 +8,7 @@ namespace ModularAbyss.Scripts.Structures
 {
     public struct GLOBAL
     {
-        public const bool DEBUGING = false;
+        public const bool DEBUGING = true;
 
         public const int WINDOW_WIDTH = 1920;
         public const int WINDOW_HEIGHT = 1080;
