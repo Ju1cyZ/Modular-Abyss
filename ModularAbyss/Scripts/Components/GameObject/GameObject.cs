@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using System;
@@ -18,6 +19,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
 
         private float posX = 0;
         private float posY = 0;
+
+        /* Gameobject Events */
+        public delegate void DestroyedHandler(GameObject obj);
+        public event DestroyedHandler Destroyed;
 
         public Vector2 Position
         {
@@ -134,6 +139,20 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
             Vector2 tempPos = managePos(this);
             Position = new Vector2(tempPos.X + offsetX, tempPos.Y + offsetY);
             return this;
+        }
+    
+        /// <summary>
+        /// Permet de detruit le gameobject
+        /// </summary>
+        public virtual void Destroy()
+        {
+            //On se desabonne aux events
+            game.OnInitialize -= Initialize;
+            game.OnLoadContent -= LoadContent;
+            game.OnUpdate -= Update;
+            game.OnDraw -= Draw;
+
+            Destroyed?.Invoke(this);
         }
     }
 }

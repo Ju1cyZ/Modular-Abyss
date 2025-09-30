@@ -19,6 +19,8 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
             attackTime -= gameTime.ElapsedGameTime.TotalSeconds;
 
             Position += moveTowardsPlayer() * Stats.getStatValue(STATS_ID.MOVEMENT_SPEED);
+
+            SetColliderBounds();
         }
 
         public virtual Vector2 moveTowardsPlayer()

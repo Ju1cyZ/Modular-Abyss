@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ModularAbyss.Scripts.Components.GameObjectNamespace;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
 using ModularAbyss.Scripts.Components.TilemapNamespace;
 using ModularAbyss.Scripts.Interfaces;
@@ -22,7 +23,22 @@ namespace ModularAbyss
         //Tous les gameObjects
         public static Dictionary<string, GameObject> GameObjects = new Dictionary<string, GameObject>();
 
-        public static List<ICollider> CollidersObjects = new List<ICollider>();
+        //public static List<ICollider> CollidersObjects = new List<ICollider>();
+
+        public static List<ICollider> CollidersObjects
+        {
+            get
+            {
+                List<ICollider> newList = new List<ICollider>();
+                //Recupere tous les elemets de la liste qui implementes l'interface ICollider et l'ajoute a colliders
+                foreach (ICollider collider in GameObjects.Values.Where(gameObject => typeof(ICollider).IsAssignableFrom(gameObject.GetType())))
+                {
+                    collider.SetColliderBounds();
+                    newList.Add(collider);
+                }
+                return newList;
+            }
+        }
 
         /* EVENTS */
         public delegate void OnInitializeHandler();
@@ -126,9 +142,11 @@ namespace ModularAbyss
         {
             GameObjects.Add("Slime", new Slime());
             GameObjects.GetValueOrDefault("Slime").Position = new Vector2(500, 200);
+            (GameObjects.GetValueOrDefault("Slime") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Slime_01", new Slime());
             GameObjects.GetValueOrDefault("Slime_01").Position = new Vector2(700, 200);
+            (GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Player", new Player());
         }
@@ -203,6 +221,16 @@ namespace ModularAbyss
             wallTilemap.Colliders.Add(new Rectangle(new Point(1920 - 160, 0), new Point(160, 1080)));
 
             #endregion
+        }
+
+        public void DestroyGameobject(GameObject gameObject)
+        {
+            //On retire l'element du dictionnaire
+            foreach (var item in GameObjects.Where(e => e.Value == gameObject))
+            {
+                //GameObjects.GetValueOrDefault(item.Key).;
+                GameObjects.Remove(item.Key);
+            }
         }
     }
 }

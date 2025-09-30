@@ -7,6 +7,7 @@ using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,7 +30,6 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
         private const int HEALTH_BAR_SIZE_Y = 16;
 
         /* Entity Properties */
-
         public Stats Stats = new Stats();
 
         public int Health {
@@ -211,9 +211,12 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
             return Health;
         }
 
+        /// <summary>
+        /// La fonction qui tue l'enemi
+        /// </summary>
         public void Die()
         {
-
+            Destroy();
         }
 
         /// <summary>
