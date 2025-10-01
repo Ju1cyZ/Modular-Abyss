@@ -27,5 +27,6 @@ namespace ModularAbyss.Scripts.Structures
         public const string WALL_TILESET = ASSETS_FOLDER + "Tilesets/wall";
 
         /* FONTS */
+        public const string ARIAL_FONT = ASSETS_FOLDER + "Fonts/Arial";
     }
 }

@@ -661,6 +661,13 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Enemies/Slime/Slime3_Walk_shadow.png
 
+#begin Assets/Fonts/Arial.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Assets/Fonts/Arial.spritefont
+
 #begin Assets/HUD/bars.png
 /importer:TextureImporter
 /processor:TextureProcessor

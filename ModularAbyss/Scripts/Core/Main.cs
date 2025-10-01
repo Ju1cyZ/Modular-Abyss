@@ -5,6 +5,8 @@ using ModularAbyss.Scripts.Components.GameObjectNamespace;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
+using ModularAbyss.Scripts.Components.HudObject;
+using ModularAbyss.Scripts.Components.HudObject.Objects;
 using ModularAbyss.Scripts.Components.TilemapNamespace;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
@@ -23,7 +25,8 @@ namespace ModularAbyss
         //Tous les gameObjects
         public static Dictionary<string, GameObject> GameObjects = new Dictionary<string, GameObject>();
 
-        //public static List<ICollider> CollidersObjects = new List<ICollider>();
+        //Tous les hudObjects
+        public static Dictionary<string, HudObject> HudObjects = new Dictionary<string, HudObject>();
 
         public static List<ICollider> CollidersObjects
         {
@@ -78,6 +81,7 @@ namespace ModularAbyss
         {
             base.Initialize();
             CreateGameObjects();
+            CreateHudObjects();
 
             //Recupere tous les elemets de la liste qui implementes l'interface ICollider et l'ajoute a colliders
             foreach (ICollider collider in GameObjects.Values.Where(gameObject => typeof(ICollider).IsAssignableFrom(gameObject.GetType())))
@@ -114,6 +118,7 @@ namespace ModularAbyss
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             OnUpdate?.Invoke(gameTime, CollidersObjects);
             base.Update(gameTime);
         }
@@ -136,7 +141,7 @@ namespace ModularAbyss
         }
 
         /// <summary>
-        /// Create all games objects
+        /// Créer les gameobjects
         /// </summary>
         private void CreateGameObjects()
         {
@@ -149,6 +154,15 @@ namespace ModularAbyss
             (GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Player", new Player());
+        }
+
+
+        /// <summary>
+        /// Créer les hudObjects
+        /// </summary>
+        private void CreateHudObjects()
+        {
+
         }
 
         /// <summary>
