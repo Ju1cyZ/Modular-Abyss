@@ -10,20 +10,14 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 {
     internal class SwingWeapon : Weapon
     {
-        public Rectangle CollisionRectangle = Rectangle.Empty;
-
-        private bool asAttacked = false;
-
-        private Entity lastAttackedEntity;
 
         public SwingWeapon()
         {
-            Main.getInstance().OnUpdate += Update;
         }
 
         public SwingWeapon(string id, string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(id, name, description, itemTier, texturePath, spriteRectangle) { }
 
-        private void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
+        protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
         {
             foreach (GameObject gameObject in Main.CollidersObjects)
             {
@@ -36,6 +30,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
                         Attack();
                         //On empeche d'infiliger plusieur fois les degats
                         asAttacked = true;
+
                         //On defini la derniere entiter attaquer
                         lastAttackedEntity = gameObject as Entity;
                         //Inflige les degats a l'entiter
@@ -55,7 +50,9 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
         /// </summary>
         protected override void _attack()
         {
+            // -----------------
             //L'attaque de base
+            // -----------------
         }
     }
 }

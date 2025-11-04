@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items;
 using ModularAbyss.Scripts.Enums;
 using System;
@@ -20,7 +21,9 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
         /// </summary>
         protected override void _attack()
         {
-            //L'attaque de base
+            // -----------------
+            // L'attaque de base
+            // -----------------
         }
     }
 }

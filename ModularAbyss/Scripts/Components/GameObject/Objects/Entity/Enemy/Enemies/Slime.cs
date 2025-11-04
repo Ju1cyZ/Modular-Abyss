@@ -34,7 +34,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
         {
             base.Draw(gameTime, ref spriteBatch);
             Texture2D _texture = new Texture2D(game.GraphicsDevice, 1, 1);
-            _texture.SetData(new Color[] { Color.Red });
+            _texture.SetData(new Color[] { Color.Blue });
             if (GLOBAL.DEBUGING)
             {
                 spriteBatch.Draw(_texture, new Vector2(Position.X + 120, Position.Y + 120), CollisionRect, Color.White);
