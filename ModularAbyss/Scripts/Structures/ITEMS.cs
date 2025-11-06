@@ -22,8 +22,19 @@ namespace ModularAbyss.Scripts.Structures
             Description = "MA_DESCRIPTION",
             ItemTier = ItemTier.Common,
             Texture2D = SPRITES.WEAPON_HAND,
-            SpriteRectangle = new Rectangle(0, 0, 13, 21),
+            SpriteRectangle = new Rectangle(0, 0, 13, 21), // La position de la texture dans le spritesheet
             Damage = 5,
+        };
+
+        public static Item STEEL_KNIFE => new PokeWeapon()
+        {
+            Id = "STEEL_KNIFE",
+            Name = "Basic Knife",
+            Description = "MA_DESCRIPTION",
+            ItemTier = ItemTier.Common,
+            Texture2D = SPRITES.WEAPON_HAND,
+            SpriteRectangle = new Rectangle(40, 0, 7, 20),
+            Damage = 3,
         };
     }
 }

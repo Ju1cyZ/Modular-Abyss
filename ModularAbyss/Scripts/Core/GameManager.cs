@@ -73,5 +73,17 @@ namespace ModularAbyss.Scripts.Core
         {
             MoveCamera(movementAxes.X, movementAxes.Y);
         }
+
+
+        /// <summary>
+        /// Permet de recuperer l'angle entre deux positions 
+        /// </summary>
+        /// <param name="vector1">La p1</param>
+        /// <param name="vector2">La p2</param>
+        /// <returns>L'angle en Radian</returns>
+        public static double AngleBetweenVectors(Vector2 vector1, Vector2 vector2)
+        {
+            return Math.Atan2(vector2.Y - vector1.Y, vector2.X - vector1.X);
+        }
     }
 }

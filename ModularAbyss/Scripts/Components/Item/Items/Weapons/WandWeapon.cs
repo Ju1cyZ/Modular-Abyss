@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items;
 using ModularAbyss.Scripts.Enums;

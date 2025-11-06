@@ -5,6 +5,11 @@ using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
 using ModularAbyss.Scripts.Enums;
 using System.Collections.Generic;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
+using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Structures;
+using System;
+using ModularAbyss.Scripts.Core;
+using Microsoft.Xna.Framework.Input;
 
 namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 {
@@ -27,14 +32,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
                     //Si c'est un Enemi
                     if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()) && !asAttacked)
                     {
-                        Attack();
-                        //On empeche d'infiliger plusieur fois les degats
-                        asAttacked = true;
-
-                        //On defini la derniere entiter attaquer
-                        lastAttackedEntity = gameObject as Entity;
-                        //Inflige les degats a l'entiter
-                        (gameObject as Enemy).HurtWithStats(Damage, Main.getInstance().Player);
+                        HurtEntity(gameObject as Entity);
                     }
                 }
 
