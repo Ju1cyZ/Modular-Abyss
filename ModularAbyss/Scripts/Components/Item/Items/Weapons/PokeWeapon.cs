@@ -8,6 +8,7 @@ using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items;
 using ModularAbyss.Scripts.Enums;
 using ModularAbyss.Scripts.Interfaces;
+using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 {
     internal class PokeWeapon : Weapon
     {
+        private bool playingAnimation = false;
+
         public PokeWeapon() { }
 
         public PokeWeapon(string id, string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(id, name, description, itemTier, texturePath, spriteRectangle) { }
@@ -35,20 +38,26 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
         /// </summary>
         protected override void _attack()
         {
-            // -----------------
-            // L'attaque de base
-            // -----------------
-            asAttacked = true;
-
-            foreach (GameObject gameObject in Main.CollidersObjects)
+            if (!asAttacked)
             {
-                // Detecte si le joueur touche un Collider avec son PokeWeapon
-                if (CollisionRectangle.Intersects(gameObject.CollisionRect))
+                // -----------------
+                // L'attaque de base
+                // -----------------
+                
+                playingAnimation = true;
+
+                foreach (GameObject gameObject in Main.CollidersObjects)
                 {
-                    // Si c'est un Enemi
-                    if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()))
+                    // Detecte si le joueur touche un Collider avec son PokeWeapon
+                    if (CollisionRectangle.Intersects(gameObject.CollisionRect))
                     {
-                        HurtEntity(gameObject as Entity);
+                        // Si c'est un Enemi
+                        if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()))
+                        {
+                            // On empeche d'infiliger plusieur fois les degats
+                            asAttacked = true;
+                            HurtEntity(gameObject as Entity);
+                        }
                     }
                 }
             }
@@ -56,9 +65,26 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 
         private void PlayAttackAnimation(GameTime gameTime)
         {
-            if (asAttacked)
+            if (playingAnimation)
             {
                 itemOffset += 1 * gameTime.ElapsedGameTime.Milliseconds;
+                if (itemOffset == MAX_ITEM_OFFSET) // Verifie si l'arme a parcourus tous le "chemin"
+                {
+                    //Defini asAttacked apres 200 Millisecondes
+                    Task.Delay(200).ContinueWith(t =>
+                    {
+                        playingAnimation = false;
+                    });
+                }
+            }
+
+            if (!playingAnimation && itemOffset != MIN_ITEM_OFFSET) // Permet de remettre l'arme a zero
+            {
+                itemOffset -= 1 * gameTime.ElapsedGameTime.Milliseconds;
+                if (itemOffset == MIN_ITEM_OFFSET)
+                {
+                    asAttacked = false;
+                }
             }
         }
     }

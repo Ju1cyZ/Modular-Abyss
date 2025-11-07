@@ -24,6 +24,26 @@ namespace ModularAbyss.Scripts.Components.StatNamespace
 
         };
 
+        public Stats() { }
+
+        /// <summary>
+        /// Permet de construire les stats avec des valeurs modifiees
+        /// </summary>
+        /// <param name="editedStats">Le(s) stat(s) modifiee</param>
+        public Stats(List<Stat> editedStats)
+        {
+            foreach (Stat editedStat in editedStats)
+            {
+                for (int i = 0; i < stats.Count; i++)
+                {
+                    if (editedStat.Id == stats[i].Id)
+                    {
+                        stats[i] = editedStat;
+                    }
+                }
+            }
+        }
+
         public List<Stat> getStats()
         {
             return stats;
@@ -50,7 +70,7 @@ namespace ModularAbyss.Scripts.Components.StatNamespace
         /// <summary>
         /// Permet de changer la valeur d'une stat
         /// </summary>
-        /// <param name="id">L'id de la stat a changee</param>
+        /// <param name="id">L'id de la stat a change</param>
         /// <param name="value">La nouvelle valeur</param>
         public void setStatValue(string id, int value)
         {
@@ -64,6 +84,27 @@ namespace ModularAbyss.Scripts.Components.StatNamespace
                         stat.Value = value;
                     }
                     else
+                    {
+                        stat.Value = value;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Permet de changer la maximale valeur d'une stat
+        /// </summary>
+        /// <param name="id">L'id de la stat a change</param>
+        /// <param name="value">La nouvelle valeur</param>
+        /// <param name="defineValue">Si la valeur de la stat doit être defini au max</param>
+        public void setStatMaxValue(string id, int value, bool defineValue)
+        {
+            foreach (Stat stat in stats)
+            {
+                if (stat.Id == id)
+                {
+                    stat.MAX_VALUE = value;
+                    if (defineValue)
                     {
                         stat.Value = value;
                     }

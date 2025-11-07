@@ -6,6 +6,7 @@ using ModularAbyss.Scripts.Components.ItemNamespace;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items;
 using ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons;
 using ModularAbyss.Scripts.Components.StatNamespace;
+using ModularAbyss.Scripts.Components.StatNamespace.StatsNamespace;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Enums;
 using ModularAbyss.Scripts.Interfaces;
@@ -46,6 +47,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 
         /* Player Attributes */
         public Stats Stats = new Stats();
+
         public List<Item> inventory = new List<Item>();
 
         SpriteFont baseFont;
@@ -80,6 +82,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
         protected override void Initialize()
         {
             base.Initialize();
+
+            // Define max Health
+            Stats.setStatMaxValue(STATS_ID.HEALTH, 25, true);
+
             /* Animation */
             _playerAnimations = new Dictionary<string, Texture2D>()
             {
@@ -91,7 +97,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 
             DefineStats();
 
-            inventory.Add(ITEMS.STEEL_SWORD);
+            inventory.Add(ITEMS.STEEL_KNIFE);
         }
 
         protected override void Update(GameTime gameTime, List<ICollider> colliders)

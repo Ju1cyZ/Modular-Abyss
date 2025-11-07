@@ -32,6 +32,9 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
                     //Si c'est un Enemi
                     if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()) && !asAttacked)
                     {
+                        // On empeche d'infiliger plusieur fois les degats
+                        asAttacked = true;
+
                         HurtEntity(gameObject as Entity);
                     }
                 }
@@ -52,5 +55,6 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
             //L'attaque de base
             // -----------------
         }
+
     }
 }

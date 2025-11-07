@@ -153,7 +153,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
             }
             else if (Health - damage <= 0)
             {
-                //Le degat reellement infliger
+                // Le degat reellement infliger
                 damageDealt =  Math.Abs(0 - Health);
                 Health = 0;
                 Die();
@@ -165,7 +165,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
                 int rnd = GameManager.Random.Next(0, 100);
                 if (rnd <= 2 * player.Stats.getStatValue(STATS_ID.LIFE_STEAL))
                 {
-                    player.Heal(damage * rnd / 100);
+                    player.Heal(damageDealt * rnd / 100); // Soigne le joueur de pourcentage tirer (rnd) des degats infliger
                 }
             }
 
@@ -204,7 +204,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
                 int rnd = GameManager.Random.Next(0, 100);
                 if (rnd <= 2 * Entity.Stats.getStatValue(STATS_ID.LIFE_STEAL))
                 {
-                    Entity.Heal(damage * rnd / 100);
+                    Entity.Heal(damageDealt * rnd / 100);
                 }
             }
 
