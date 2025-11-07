@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Components.HudObject.Objects;
 using ModularAbyss.Scripts.Components.StatNamespace;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
@@ -25,9 +26,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
         protected SpriteEffects _spriteEffect = SpriteEffects.None;
 
         /* Overlay */
-        protected Texture2D healthBarsTexture;
-        private const int HEALTH_BAR_SIZE_X = 48; 
+        private const int HEALTH_BAR_SIZE_X = 48;
         private const int HEALTH_BAR_SIZE_Y = 16;
+
+        protected ProgressBar healthBar = new ProgressBar(HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y, 4);
 
         /* Entity Properties */
         public Stats Stats = new Stats();
@@ -52,64 +54,17 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
         protected override void Initialize()
         {
             base.Initialize();
-
-            //Charge la texture contenant toutes les barres
-            healthBarsTexture = game.Content.Load<Texture2D>(SPRITES.BARS);
+            healthBar.maxValue = MAX_HEALTH;
+            healthBar.Scale = 3;
         }
 
-        protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(healthBarsTexture, SetHealthBarPos(), getCorrectHealthBar(Health), Color.White, 0, new Vector2(0, 0), new Vector2(3, 3), _spriteEffect, 0f);
-        }
+        protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch) { }
 
-        /// <summary>
-        /// Permet d'afficher la bar de vie qui correspond le plus a la vie de l'entiter
-        /// </summary>
-        /// <param name="health">La vie de l'entiter</param>
-        /// <returns>La bar de vie selon le pourcentage de vie</returns>
-        private Rectangle getCorrectHealthBar(int health)
+        protected override void Update(GameTime gameTime, List<ICollider> colliders)
         {
-            /// <summary>
-            /// 0 => 100%,
-            /// 1 => 80%,
-            /// 2 => 60%,
-            /// 3 => 40%,
-            /// 4 => 20%,
-            /// 5 => 0%
-            /// </summary>
-            Rectangle[] healthBarRectangles = new Rectangle[] {
-                new Rectangle(HEALTH_BAR_SIZE_X * 1, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-                new Rectangle(HEALTH_BAR_SIZE_X * 2, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-                new Rectangle(HEALTH_BAR_SIZE_X * 3, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-                new Rectangle(HEALTH_BAR_SIZE_X * 4, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-                new Rectangle(HEALTH_BAR_SIZE_X * 5, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-                new Rectangle(HEALTH_BAR_SIZE_X * 6, HEALTH_BAR_SIZE_Y * 4, HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y),
-            };
-
-            if (health > MAX_HEALTH * 0.8f)
-            {
-                return healthBarRectangles[0];
-            }
-            else if (health > MAX_HEALTH * 0.6f)
-            {
-                return healthBarRectangles[1];
-            }
-            if (health > MAX_HEALTH * 0.4f)
-            {
-                return healthBarRectangles[2];
-            }
-            if (health > MAX_HEALTH * 0.2f)
-            {
-                return healthBarRectangles[3];
-            }
-            if (health > MAX_HEALTH * 0f)
-            {
-                return healthBarRectangles[4];
-            }
-            else
-            {
-                return healthBarRectangles[5];
-            }
+            base.Update(gameTime, colliders);
+            healthBar.Position = GetHealthBarPos(); // On definie la position de la bar de vie
+            healthBar.value = Health;
         }
 
         /// <summary>
@@ -239,6 +194,12 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
         /// Defini la position de la bar de vie
         /// </summary>
         /// <returns>Sa position</returns>
-        protected abstract Vector2 SetHealthBarPos();
+        protected abstract Vector2 GetHealthBarPos();
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            healthBar.Destroy();
+        }
     }
 }

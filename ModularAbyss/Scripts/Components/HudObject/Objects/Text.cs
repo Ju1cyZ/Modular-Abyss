@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.HudObject.Objects
 {
-    internal class TextObject : HudObject
+    internal class Text : HudObject
     {
         protected string _text;
         protected SpriteFont _font;
 
-        public TextObject(string text = "", bool hidden = false) : base (hidden)
+        public Text(string text = "", bool hidden = false) : base (hidden)
         {
             _text = text;
             _font = Main.Content.Load<SpriteFont>(SPRITES.ARIAL_FONT);
         }
 
-        public TextObject(SpriteFont font, bool hidden = false) : base(hidden)
+        public Text(SpriteFont font, bool hidden = false) : base(hidden)
         {
             _text = "";
             _font = font;
         }
 
-        public TextObject(string text, SpriteFont font, bool hidden = false) : base(hidden)
+        public Text(string text, SpriteFont font, bool hidden = false) : base(hidden)
         {
             _text = text;
             _font = font;
@@ -43,7 +43,6 @@ namespace ModularAbyss.Scripts.Components.HudObject.Objects
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, ref spriteBatch);
             spriteBatch.DrawString(_font, _text, Position, Color.Black, Rotation, new Vector2(0,0), Scale, SpriteEffects.None, 0);
         }
 

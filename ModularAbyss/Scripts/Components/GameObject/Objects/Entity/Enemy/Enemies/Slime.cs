@@ -80,7 +80,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
             }
         }
 
-        protected override Vector2 SetHealthBarPos()
+        protected override Vector2 GetHealthBarPos()
         {
             return new Vector2(Position.X + 90, Position.Y + 60);
         }

@@ -17,7 +17,7 @@ namespace ModularAbyss.Scripts.Interfaces
         /// <param name="deltaTime">Le deltaTime</param>
         /// <param name="animationTimeBetweenFrame">Le temps entre chaque frame (Logic)</param>
         /// <returns>Un rectangle pour la texture</returns>
-        public Rectangle GenerateTextureRect(int width, int height, int posY, int frameCount, ref int frameIndex, float deltaTime, ref float animationTimeBetweenFrame)
+        public Rectangle GenerateTextureRect(int width, int height, int posY, int frameCount, ref int frameIndex, float deltaTime, ref float animationTimeBetweenFrame, bool stayInLastFrame = false)
         {
             animationTimeBetweenFrame += deltaTime;
 
@@ -29,6 +29,10 @@ namespace ModularAbyss.Scripts.Interfaces
             if (frameIndex >= frameCount)
             {
                 frameIndex = 0;
+                if (stayInLastFrame)
+                {
+                    frameIndex = frameCount - 1;
+                }
             }
 
             return new Rectangle(width * frameIndex, posY, width, height);

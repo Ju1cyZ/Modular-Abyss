@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Components.GameObjectNamespace;
+using ModularAbyss.Scripts.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Interfaces;
 
 namespace ModularAbyss.Scripts.Components.HudObject
 {
@@ -22,6 +23,11 @@ namespace ModularAbyss.Scripts.Components.HudObject
         public Color BackgroundColor = Color.Transparent;
 
         protected bool _hidden = false;
+
+
+        /* Hudobjects Events */
+        public delegate void DestroyedHandler(HudObject obj);
+        public event DestroyedHandler Destroyed;
 
         public HudObject(bool hidden = false)
         {
@@ -45,10 +51,7 @@ namespace ModularAbyss.Scripts.Components.HudObject
 
         }
 
-        protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(GetTexture2D(), Position, Color.White);
-        }
+        protected abstract void Draw(GameTime gameTime, ref SpriteBatch spriteBatch);
 
         /// <summary>
         /// Permet de recuperer la texture du GameObject
@@ -101,6 +104,19 @@ namespace ModularAbyss.Scripts.Components.HudObject
             {
                 Hide();
             }
+        }
+
+        /// <summary>
+        /// Permet de detruit le hudobject
+        /// </summary>
+        public virtual void Destroy()
+        {
+            //On se desabonne aux events
+            Main.OnInitialize -= Initialize;
+            Main.OnUpdate -= Update;
+            Main.OnDraw -= Draw;
+
+            Destroyed?.Invoke(this);
         }
     }
 }

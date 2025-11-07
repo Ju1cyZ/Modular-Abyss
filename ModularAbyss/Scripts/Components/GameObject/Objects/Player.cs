@@ -47,10 +47,21 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 
         /* Player Attributes */
         public Stats Stats = new Stats();
+        private bool _isDead = false;
+
+        public bool IsDead 
+        { 
+            get
+            {
+                return _isDead;
+            }
+        }
 
         public List<Item> inventory = new List<Item>();
 
-        SpriteFont baseFont;
+        /* Gameobject Events */
+        public delegate void OnDeathHandler(Player obj);
+        public event OnDeathHandler OnDeath;
 
         public int Health
         {
@@ -60,7 +71,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             }
             set
             {
-                if (Stats.getStatValue(STATS_ID.HEALTH) + value >= Stats.getStat(STATS_ID.HEALTH).MAX_VALUE)
+                if (value >= Stats.getStat(STATS_ID.HEALTH).MAX_VALUE)
                 {
                     Stats.setStatValue(STATS_ID.HEALTH, Stats.getStat(STATS_ID.HEALTH).MAX_VALUE);
                 }
@@ -92,6 +103,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
                 {"ANIM_IDLE", game.Content.Load<Texture2D>(SPRITES.PLAYER_IDLE)},
                 {"ANIM_WALK", game.Content.Load<Texture2D>(SPRITES.PLAYER_WALK)},
                 {"ANIM_RUN", game.Content.Load<Texture2D>(SPRITES.PLAYER_RUN)},
+                {"ANIM_DEATH", game.Content.Load<Texture2D>(SPRITES.PLAYER_DEATH)},
             };
             _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
 
@@ -115,6 +127,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 
             /* Player Animation */
             ManagePlayerAnimation(playerMoveDirection, playerMovementState);
+
             #endregion
 
             ManageInputs(kState, mState);
@@ -132,11 +145,13 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
                 spriteBatch.Draw(_texture, new Vector2(Position.X + 160, Position.Y + 160), CollisionRect, Color.White);
             }
 
-            Rectangle rect = ((ITextureAnimated)this).GenerateTextureRect(TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE * _textureY, _animationFrameCount, ref _currentAnimIndex, (float)gameTime.ElapsedGameTime.TotalSeconds, ref _animationTimeBetweenFrame);
+            Rectangle rect = ((ITextureAnimated)this).GenerateTextureRect(TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE * _textureY, _animationFrameCount, ref _currentAnimIndex, (float)gameTime.ElapsedGameTime.TotalSeconds, ref _animationTimeBetweenFrame, IsDead);
             spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, rect, Color.White, 0, new Vector2(0, 0), new Vector2(5, 5), _spriteEffect, 0f);
 
-
-            DrawItems(inventory, mState, spriteBatch);
+            if (!IsDead)
+            {
+                DrawItems(inventory, mState, spriteBatch);
+            }
         }
 
         public void DefineStats()
@@ -304,6 +319,11 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
         /// <param name="playerMovementState">L'etat du mouvement</param>
         public void ManagePlayerAnimation(PlayerMoveDirections playerMoveDirection, PlayerMovementStates playerMovementState)
         {
+            if (IsDead)
+            {
+                return;
+            }
+
             switch (playerMovementState)
             {
                 case PlayerMovementStates.idle:
@@ -392,7 +412,6 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             {
                 if (gameObject.GetType() != typeof(Player) && CollisionRect.Intersects(gameObject.CollisionRect))
                 {
-                    object test = gameObject.GetType();
                     // Enemy
                     if (typeof(Enemy).IsAssignableFrom(gameObject.GetType()))
                     {
@@ -458,7 +477,14 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
 
         public void Die()
         {
+            game.OnUpdate -= Update;
+            
+            _isDead = true;
+            _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_DEATH");
+            _animationFrameCount = 6;
+            _currentAnimIndex = 0;
 
+            OnDeath?.Invoke(this);
         }
 
         /// <summary>

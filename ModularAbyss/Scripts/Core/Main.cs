@@ -12,6 +12,7 @@ using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace ModularAbyss
 {
@@ -120,6 +121,7 @@ namespace ModularAbyss
                 Exit();
 
             OnUpdate?.Invoke(gameTime, CollidersObjects);
+            UpdateHudObjects();
             base.Update(gameTime);
         }
 
@@ -154,15 +156,36 @@ namespace ModularAbyss
             (GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Player", new Player());
+            Player.OnDeath += (player) =>
+            {
+                // PLAYER DED :(
+            };
         }
-
 
         /// <summary>
         /// Créer les hudObjects
         /// </summary>
         private void CreateHudObjects()
         {
+            /* Overlay */
+            int HEALTH_BAR_SIZE_X = 48;
+            int HEALTH_BAR_SIZE_Y = 16;
 
+            HudObjects.Add("HealthBar", new ProgressBar(HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y, 8));
+            HudObjects.GetValueOrDefault("HealthBar").Destroyed += DestroyHudobject;
+
+            HudObjects.Add("HealthInfo", new Text($"{Player.Health} / {Player.MAX_HEALTH}"));
+            HudObjects.GetValueOrDefault("HealthInfo").Position = new Vector2(54, 29);
+            HudObjects.GetValueOrDefault("HealthInfo").Destroyed += DestroyHudobject;
+        }
+
+        private void UpdateHudObjects()
+        {
+            (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).value = Player.Health;
+            (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).maxValue = Player.MAX_HEALTH;
+            HudObjects.GetValueOrDefault("HealthBar").Scale = 5;
+
+            (HudObjects.GetValueOrDefault("HealthInfo") as Text).setText($"{Player.Health} / {Player.MAX_HEALTH}");
         }
 
         /// <summary>
@@ -242,8 +265,16 @@ namespace ModularAbyss
             //On retire l'element du dictionnaire
             foreach (var item in GameObjects.Where(e => e.Value == gameObject))
             {
-                //GameObjects.GetValueOrDefault(item.Key).;
                 GameObjects.Remove(item.Key);
+            }
+        }
+
+        public void DestroyHudobject(HudObject hudObject)
+        {
+            //On retire l'element du dictionnaire
+            foreach (var item in HudObjects.Where(e => e.Value == hudObject))
+            {
+                HudObjects.Remove(item.Key);
             }
         }
     }
