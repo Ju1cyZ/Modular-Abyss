@@ -115,7 +115,7 @@ namespace ModularAbyss.Scripts.Components.Scene
         /// <summary>
         /// Mets a jour les HudObjects
         /// </summary>
-        protected abstract void UpdateHudObjects();
+        protected virtual void UpdateHudObjects() { }
 
         public void DestroyGameobject(GameObject gameObject)
         {

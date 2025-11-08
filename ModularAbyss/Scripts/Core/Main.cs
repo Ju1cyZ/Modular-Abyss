@@ -26,6 +26,7 @@ namespace ModularAbyss
 
         private static Main _instance;
         public static Scene ActiveScene;
+        public static MouseObject Mouse;
 
         /* EVENTS */
         public delegate void OnInitializeHandler();
@@ -65,6 +66,7 @@ namespace ModularAbyss
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ActiveScene = new MainMenuScene();
+            Mouse = new MouseObject();
             OnLoadContent?.Invoke();
         }
 
@@ -97,20 +99,6 @@ namespace ModularAbyss
             {
                 OnDraw?.Invoke(gameTime, ref _spriteBatch);
             }
-
-            /* Custom Cursor */
-            MouseState mState = Mouse.GetState();
-
-            _spriteBatch.Draw(
-                Content.Load<Texture2D>(SPRITES.MOUSE_ICONS),
-                mState.Position.ToVector2(),
-                mState.LeftButton == ButtonState.Pressed ? MOUSE_ID.HAND_FINGER_CLICKED : MOUSE_ID.HAND_FINGER,
-                Color.White, 0,
-                new Vector2(0, 0),
-                new Vector2(2, 2),
-                SpriteEffects.None, 0f
-            );
-
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -123,6 +111,16 @@ namespace ModularAbyss
         public static Main getInstance()
         {
             return _instance;
+        }
+
+        /// <summary>
+        /// Permet de charger une nouvelle scene
+        /// </summary>
+        /// <typeparam name="T">Le Type de la scene a charger</typeparam>
+        public static void LoadScene<T>() where T : Scene, new()
+        {
+            ActiveScene.DestroyScene();
+            ActiveScene = new T();
         }
 
     }
