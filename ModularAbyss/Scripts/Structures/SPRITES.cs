@@ -29,5 +29,8 @@ namespace ModularAbyss.Scripts.Structures
 
         /* FONTS */
         public const string ARIAL_FONT = ASSETS_FOLDER + "Fonts/Arial";
+
+        /* HUD */
+        public const string MOUSE_ICONS = ASSETS_FOLDER + "HUD/MouseIcons";
     }
 }

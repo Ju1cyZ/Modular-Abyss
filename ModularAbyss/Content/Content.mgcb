@@ -824,7 +824,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/HUD/Minimap/Style F/tilemap.png;Assets/HUD/Minimap/Style F/tilemap
 
-#begin Assets/Icons.png
+#begin Assets/HUD/MouseIcons.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -834,7 +834,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Icons.png
+/build:Assets/HUD/MouseIcons.png
 
 #begin Assets/Player/death.png
 /importer:TextureImporter
