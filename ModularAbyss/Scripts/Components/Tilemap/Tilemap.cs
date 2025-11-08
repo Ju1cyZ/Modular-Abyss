@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.TilemapNamespace
 {
-    internal class Tilemap
+    public class Tilemap
     {
         public int Width { get; }
         public int Height { get; }

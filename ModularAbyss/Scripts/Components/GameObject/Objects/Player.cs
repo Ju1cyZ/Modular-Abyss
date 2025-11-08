@@ -90,7 +90,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             }
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
 
@@ -427,7 +427,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             }
 
             //Les murs
-            foreach (Rectangle item in Main.wallTilemap.Colliders)
+            foreach (Rectangle item in Main.ActiveScene.tilemapCollider.Colliders)
             {
                 if (CollisionRect.Intersects(item))
                 {

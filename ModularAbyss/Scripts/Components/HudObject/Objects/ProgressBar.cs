@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.HudObject.Objects
+namespace ModularAbyss.Scripts.Components.HudObjectNamespace.Objects
 {
     public class ProgressBar : HudObject
     {

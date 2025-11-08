@@ -49,7 +49,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
             game.OnDraw += Draw;
         }
 
-        protected virtual void Initialize() { }
+        public virtual void Initialize() { }
 
         protected virtual void LoadContent() { }
 

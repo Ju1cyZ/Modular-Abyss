@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.HudObject
+namespace ModularAbyss.Scripts.Components.HudObjectNamespace
 {
     public abstract class HudObject
     {

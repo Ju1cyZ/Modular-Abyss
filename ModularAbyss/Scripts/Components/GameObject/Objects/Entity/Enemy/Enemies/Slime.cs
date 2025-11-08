@@ -17,7 +17,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
         protected const int TEXTURE_SIZE = 64;
         protected int _animationFrameCount = 6;
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
             /* Animation */

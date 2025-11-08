@@ -46,7 +46,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
                 
                 playingAnimation = true;
 
-                foreach (GameObject gameObject in Main.CollidersObjects)
+                foreach (GameObject gameObject in Main.ActiveScene.CollidersObjects)
                 {
                     // Detecte si le joueur touche un Collider avec son PokeWeapon
                     if (CollisionRectangle.Intersects(gameObject.CollisionRect))

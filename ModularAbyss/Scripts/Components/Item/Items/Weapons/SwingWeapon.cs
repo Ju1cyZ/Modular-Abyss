@@ -24,7 +24,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 
         protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
         {
-            foreach (GameObject gameObject in Main.CollidersObjects)
+            foreach (GameObject gameObject in Main.ActiveScene.CollidersObjects)
             {
                 //Detecte si le joueur touche un Collider avec son SwingWeapon
                 if (CollisionRectangle.Intersects(gameObject.CollisionRect))

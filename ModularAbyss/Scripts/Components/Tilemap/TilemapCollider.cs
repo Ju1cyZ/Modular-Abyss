@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.TilemapNamespace
 {
-    internal class TilemapCollider : Tilemap
+    public class TilemapCollider : Tilemap
     {
         public List<Rectangle> Colliders = new List<Rectangle>();
 

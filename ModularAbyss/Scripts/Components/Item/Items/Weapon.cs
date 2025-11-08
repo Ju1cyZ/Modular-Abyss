@@ -98,7 +98,7 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items
             //On defini la derniere entiter attaquer
             lastAttackedEntity = entity;
             //Inflige les degats a l'entiter
-            entity.HurtWithStats(Damage, Main.getInstance().Player);
+            entity.HurtWithStats(Damage, Main.ActiveScene.Player);
         }
 
 

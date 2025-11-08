@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Components.HudObject.Objects;
+using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.StatNamespace;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
@@ -29,7 +29,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
         private const int HEALTH_BAR_SIZE_X = 48;
         private const int HEALTH_BAR_SIZE_Y = 16;
 
-        protected ProgressBar healthBar = new ProgressBar(HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y, 4);
+        protected ProgressBar healthBar;
 
         /* Entity Properties */
         public Stats Stats = new Stats();
@@ -51,9 +51,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
             }
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
+            healthBar = new ProgressBar(HEALTH_BAR_SIZE_X, HEALTH_BAR_SIZE_Y, 4);
             healthBar.maxValue = MAX_HEALTH;
             healthBar.Scale = 3;
         }
