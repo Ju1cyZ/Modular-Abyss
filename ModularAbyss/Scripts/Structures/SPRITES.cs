@@ -32,5 +32,6 @@ namespace ModularAbyss.Scripts.Structures
 
         /* HUD */
         public const string MOUSE_ICONS = ASSETS_FOLDER + "HUD/MouseIcons";
+        public const string UI = ASSETS_FOLDER + "HUD/UI";
     }
 }

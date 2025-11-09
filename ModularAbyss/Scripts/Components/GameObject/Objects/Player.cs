@@ -108,8 +108,6 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
 
             DefineStats();
-
-            inventory.Add(ITEMS.STEEL_KNIFE);
         }
 
         protected override void Update(GameTime gameTime, List<ICollider> colliders)
@@ -305,7 +303,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
             if (mState.LeftButton == ButtonState.Pressed)
             {
                 asAttacked = true;
-                if (typeof(Weapon).IsAssignableFrom(inventory[0].GetType()))
+                if (inventory.Count > 0 && typeof(Weapon).IsAssignableFrom(inventory[0].GetType()))
                 {
                     (inventory[0] as Weapon).Attack();
                 }
@@ -395,9 +393,12 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects
         /// <param name="inventory">L'inventaire qui contient les items</param>
         public void DrawItems(List<Item> inventory, MouseState mState, SpriteBatch spriteBatch)
         {
-            if (typeof(Weapon).IsAssignableFrom(inventory[0].GetType()))
+            foreach (Item item in inventory)
             {
-                (inventory[0] as Weapon).RenderItem(this, TEXTURE_SIZE, mState, ref spriteBatch);
+                if (typeof(Weapon).IsAssignableFrom(item.GetType()))
+                {
+                    (item as Weapon).RenderItem(this, TEXTURE_SIZE, mState, ref spriteBatch);
+                }
             }
         }
 

@@ -62,7 +62,6 @@ namespace ModularAbyss.Scripts.Components.TilemapNamespace
         {
             //Verification si le tileId existe
 
-
             _tilesIds[x, y] = tileId;
         }
 

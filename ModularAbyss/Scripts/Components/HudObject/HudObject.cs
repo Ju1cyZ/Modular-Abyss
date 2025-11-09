@@ -29,7 +29,7 @@ namespace ModularAbyss.Scripts.Components.HudObjectNamespace
         public delegate void DestroyedHandler(HudObject obj);
         public event DestroyedHandler Destroyed;
 
-        public HudObject(bool hidden = false)
+        public HudObject(Vector2 position = new(), float scale = 1, bool hidden = false)
         {
             Main = Main.getInstance();
 
@@ -37,7 +37,10 @@ namespace ModularAbyss.Scripts.Components.HudObjectNamespace
             Main.OnUpdate += Update;
             Main.OnDraw += Draw;
 
-            if(hidden)
+            Position = position;
+            Scale = scale;
+
+            if (hidden)
                 Hide();
         }
 

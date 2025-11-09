@@ -38,7 +38,7 @@ namespace ModularAbyss
         public delegate void OnDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
         public event OnDrawHandler OnDraw;
 
-        public Main()
+        private Main()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -79,6 +79,7 @@ namespace ModularAbyss
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Mouse.Update(gameTime, ActiveScene.CollidersObjects);
             if (ActiveScene.isInitialized)
             {
                 OnUpdate?.Invoke(gameTime, ActiveScene.CollidersObjects);
@@ -99,6 +100,7 @@ namespace ModularAbyss
             {
                 OnDraw?.Invoke(gameTime, ref _spriteBatch);
             }
+            Mouse.Draw(gameTime, ref _spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -110,6 +112,10 @@ namespace ModularAbyss
         /// <returns>Le Main</returns>
         public static Main getInstance()
         {
+            if (_instance == null)
+            {
+                _instance = new Main();
+            }
             return _instance;
         }
 

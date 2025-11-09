@@ -14,7 +14,7 @@ namespace ModularAbyss.Scripts.Structures
          * Les types de souris son pris de "SPRITES.MOUSE_ICONS"
          */
 
-        private const int ICON_SIZE = 16;
+        public const int ICON_SIZE = 16;
 
         public static Rectangle HAND_FINGER => new Rectangle()
         {

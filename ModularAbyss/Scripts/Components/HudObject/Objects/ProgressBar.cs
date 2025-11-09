@@ -19,7 +19,7 @@ namespace ModularAbyss.Scripts.Components.HudObjectNamespace.Objects
         public int maxValue;
         public Vector2 Position = new Vector2();
 
-        public ProgressBar(int progressBarSizeX, int progressBarSizeY, int barId)
+        public ProgressBar(int progressBarSizeX, int progressBarSizeY, int barId, Vector2 position = new(), float scale = 1, bool hidden = false) : base(position, scale, hidden)
         {
             _progressBarSizeX = progressBarSizeX;
             _progressBarSizeY = progressBarSizeY;

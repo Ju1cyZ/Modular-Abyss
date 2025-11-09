@@ -138,8 +138,11 @@ namespace ModularAbyss.Scripts.Components.Scene
         /// <summary>
         /// Permet de detruire une scene
         /// </summary>
-        public void DestroyScene()
+        public virtual void DestroyScene()
         {
+            main.OnUpdate -= Update;
+            main.OnDraw -= Draw;
+
             foreach (GameObject item in GameObjects.Values)
             {
                 item.Destroy();

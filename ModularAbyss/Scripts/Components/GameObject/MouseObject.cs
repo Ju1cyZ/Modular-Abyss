@@ -49,10 +49,6 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
         {
             _main = Main.getInstance();
 
-            //On s'abonne aux events
-            _main.OnUpdate += Update;
-            _main.OnDraw += Draw;
-
             CollisionRect = new Rectangle()
             {
                 Width = 16 * 2,
@@ -60,7 +56,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
             };
         }
 
-        private void Update(GameTime gameTime, List<ICollider> colliders)
+        public void Update(GameTime gameTime, List<ICollider> colliders)
         {
             CollisionRect.X = Position.X;
             CollisionRect.Y = Position.Y;
@@ -94,7 +90,8 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
                 Color.White, 0,
                 new Vector2(0, 0),
                 new Vector2(2, 2),
-                SpriteEffects.None, 0f
+                SpriteEffects.None, 
+                0f
             );
         }
     }

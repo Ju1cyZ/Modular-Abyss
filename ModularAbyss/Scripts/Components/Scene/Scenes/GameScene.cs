@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Scene.Scenes
@@ -28,7 +29,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            //tilemap.Draw(gameTime, ref spriteBatch);
+            tilemap.Draw(gameTime, ref spriteBatch);
             tilemapCollider.Draw(gameTime, ref spriteBatch);
             base.Draw(gameTime, ref spriteBatch);
         }
@@ -64,6 +65,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             (GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Player", new Player());
+            Player.inventory.Add(ITEMS.STEEL_KNIFE);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(
@@ -140,7 +142,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             }
             tilemapCollider.SetTile(22, 11, 6);
 
-            /* COllision */
+            /* Collision */
 
             tilemapCollider.Colliders.Add(new Rectangle(new Point(0, 0), new Point(1920, 120)));
             tilemapCollider.Colliders.Add(new Rectangle(new Point(0, 1080 - 120), new Point(1920, 120)));
@@ -150,5 +152,6 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 
             #endregion
         }
+
     }
 }
