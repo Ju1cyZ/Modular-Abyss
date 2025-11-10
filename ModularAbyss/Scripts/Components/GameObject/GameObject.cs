@@ -16,6 +16,7 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
         private Texture2D texture2D;
         public Rectangle CollisionRect;
         protected Main game;
+        private bool _created = false;
 
         private float posX = 0;
         private float posY = 0;
@@ -28,16 +29,20 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
         {
             get
             {
-                return new Vector2(posX, posY);
+                return new Vector2(posX, posY) + CollisionRect.Size.ToVector2() / 2;
             }
             set
             {
-                posX = value.X;
-                posY = value.Y;
+                posX = value.X - CollisionRect.Size.X / 2;
+                posY = value.Y - CollisionRect.Size.Y / 2;
             }
         }
 
-        public GameObject()
+        /// <summary>
+        /// Construire 
+        /// </summary>
+        /// <param name="needsToBeCreated">Permet de determiner si l'objet se creer tout seul ou doit etre creer avec la fonction Create()</param>
+        public GameObject(bool needsToBeCreated = false)
         {
             //Recupere l'instance de Game1 
             game = Main.getInstance();
@@ -45,8 +50,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
             //On s'abonne aux events
             game.OnInitialize += Initialize;
             game.OnLoadContent += LoadContent;
-            game.OnUpdate += Update;
-            game.OnDraw += Draw;
+            if (!needsToBeCreated)
+            {
+                Create();
+            }
         }
 
         public virtual void Initialize() { }
@@ -141,6 +148,20 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace
             return this;
         }
     
+
+        /// <summary>
+        /// Permet de creer un objet
+        /// </summary>
+        public virtual void Create()
+        {
+            if (!_created)
+            {
+                game.OnUpdate += Update;
+                game.OnDraw += Draw;
+                _created = true;
+            }
+        }
+
         /// <summary>
         /// Permet de detruit le gameobject
         /// </summary>

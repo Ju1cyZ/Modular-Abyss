@@ -1,19 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
 using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.TilemapNamespace;
 using ModularAbyss.Scripts.Components.WaveNamespace;
 using ModularAbyss.Scripts.Structures;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Scene.Scenes
 {
@@ -75,16 +69,22 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 
 
             List<Enemy> enemies = new List<Enemy>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
-                Enemy enemy = new Slime();
+                Enemy enemy = new Slime(true);
                 enemy.Initialize();
                 enemy.Destroyed += DestroyGameobject;
                 enemies.Add(enemy);
             }
 
             Wave wave = new Wave(enemies);
-            wave.mapSize = new Vector2(500, 500);
+            wave.mapSize = new Vector2(1920 - 160, 1080 - 160);
+            List<Enemy> spawnedEnemies = wave.SpawnEnemies();
+
+            foreach (Enemy item in spawnedEnemies)
+            {
+                GameObjects.Add(item.GetType().ToString() + GameObjects.Count, item);
+            }
         }
 
         /// <summary>

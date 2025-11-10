@@ -13,6 +13,16 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
     {
         protected double attackTime = 0;
 
+
+        /// <summary>
+        /// construire
+        /// </summary>
+        /// <param name="needsToBeCreated">Permet de determiner si l'objet se creer tout seul ou doit etre creer avec la fonction Create()</param>
+        public Enemy(bool needsToBeCreated = false) : base(needsToBeCreated)
+        {
+
+        }
+
         protected override void Update(GameTime gameTime, List<ICollider> colliders)
         {
             base.Update(gameTime, colliders);

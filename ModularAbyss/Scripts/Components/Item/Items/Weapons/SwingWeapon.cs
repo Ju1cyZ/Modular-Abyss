@@ -15,9 +15,12 @@ namespace ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons
 {
     internal class SwingWeapon : Weapon
     {
-
         public SwingWeapon()
         {
+            MIN_ITEM_OFFSET = 120;
+            MAX_ITEM_OFFSET = 120;
+
+            itemOffset = 184021;
         }
 
         public SwingWeapon(string id, string name, string description, ItemTier itemTier, string texturePath, Rectangle spriteRectangle) : base(id, name, description, itemTier, texturePath, spriteRectangle) { }

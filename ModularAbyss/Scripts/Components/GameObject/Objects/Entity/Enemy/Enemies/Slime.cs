@@ -17,6 +17,10 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Ene
         protected const int TEXTURE_SIZE = 64;
         protected int _animationFrameCount = 6;
 
+        public Slime(bool needsToBeCreated = false) : base(needsToBeCreated)
+        {
+        }
+
         public override void Initialize()
         {
             base.Initialize();

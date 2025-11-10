@@ -51,6 +51,15 @@ namespace ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity
             }
         }
 
+        /// <summary>
+        /// construire
+        /// </summary>
+        /// <param name="needsToBeCreated">Permet de determiner si l'objet se creer tout seul ou doit etre creer avec la fonction Create()</param>
+        public Entity(bool needsToBeCreated = false) : base(needsToBeCreated)
+        {
+
+        }
+
         public override void Initialize()
         {
             base.Initialize();
