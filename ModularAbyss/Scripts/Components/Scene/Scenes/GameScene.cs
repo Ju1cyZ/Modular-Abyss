@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
+using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
 using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.TilemapNamespace;
+using ModularAbyss.Scripts.Components.WaveNamespace;
 using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
@@ -56,13 +58,13 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         /// </summary>
         protected override void CreateGameObjects()
         {
-            GameObjects.Add("Slime", new Slime());
-            GameObjects.GetValueOrDefault("Slime").Position = new Vector2(500, 200);
-            (GameObjects.GetValueOrDefault("Slime") as Entity).Destroyed += DestroyGameobject;
+            //GameObjects.Add("Slime", new Slime());
+            //GameObjects.GetValueOrDefault("Slime").Position = new Vector2(500, 200);
+            //(GameObjects.GetValueOrDefault("Slime") as Entity).Destroyed += DestroyGameobject;
 
-            GameObjects.Add("Slime_01", new Slime());
-            GameObjects.GetValueOrDefault("Slime_01").Position = new Vector2(700, 200);
-            (GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
+            //GameObjects.Add("Slime_01", new Slime());
+            //GameObjects.GetValueOrDefault("Slime_01").Position = new Vector2(700, 200);
+            //(GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Player", new Player());
             Player.inventory.Add(ITEMS.STEEL_KNIFE);
@@ -70,6 +72,19 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             {
                 // PLAYER DED :(
             };
+
+
+            List<Enemy> enemies = new List<Enemy>();
+            for (int i = 0; i < 10; i++)
+            {
+                Enemy enemy = new Slime();
+                enemy.Initialize();
+                enemy.Destroyed += DestroyGameobject;
+                enemies.Add(enemy);
+            }
+
+            Wave wave = new Wave(enemies);
+            wave.mapSize = new Vector2(500, 500);
         }
 
         /// <summary>
