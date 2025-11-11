@@ -69,7 +69,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 
 
             List<Enemy> enemies = new List<Enemy>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 1; i++)
             {
                 Enemy enemy = new Slime(true);
                 enemy.Initialize();

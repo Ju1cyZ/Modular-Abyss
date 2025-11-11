@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ModularAbyss.Scripts.Components.GameObjectNamespace;
@@ -45,11 +46,11 @@ namespace ModularAbyss.Scripts.Components.WaveNamespace
         /// </summary>
         public List<Enemy> SpawnEnemies()
         {
-            foreach (Enemy item in _enemies)
+            Parallel.For(0, _enemies.Count, (i) =>
             {
-                item.Position = FindSpawnablePos(item);
-                item.Create();
-            }
+                FindSpawnablePos(_enemies[i], i);
+                _enemies[i].Create();
+            });
 
             return _enemies;
         }
@@ -58,26 +59,41 @@ namespace ModularAbyss.Scripts.Components.WaveNamespace
         /// Permet de recuperer un endroit ou une entiter peut apparaitre
         /// </summary>
         /// <returns>Une position</returns>
-        private Vector2 FindSpawnablePos(Entity entity)
+        private Vector2 FindSpawnablePos(Entity entity, int iteration)
         {
-            Player player;
-            Random rnd = new Random();
+            Player player = Main.ActiveScene.Player;
+            Random rnd;
             Vector2 spawnPos;
             bool checkCollision;
+            int maxIteration = 500;
+            int i = 0;
 
             do
             {
                 checkCollision = false;
-
-                player = Main.ActiveScene.Player;
+                rnd = new Random(i * iteration + 1);
 
                 // Recupere un direction aleatoire depuis le joueur
                 Vector2 rndPos = new Vector2(rnd.Next(0, (int)mapSize.X), rnd.Next(0, (int)mapSize.Y));
-                Vector2 spawnDirection = Vector2.Normalize(player.Position - rndPos);
+                Vector2 spawnDirection = Vector2.Normalize(rndPos - player.Position);
+
+                int distance = rnd.Next(SpawnRaduisMin, SpawnRaduisMax);
 
                 // trouve une position avec la direction entre SpawnRaduisMin et SpawnRaduisMax
-                spawnPos = spawnDirection * rnd.Next(SpawnRaduisMin, SpawnRaduisMax) + player.Position;
+                spawnPos = spawnDirection * distance + player.Position;
 
+                entity.Position = spawnPos;
+
+                foreach (Rectangle item in Main.ActiveScene.tilemapCollider.Colliders)
+                {
+                    if (item.Intersects(entity.CollisionRect))
+                    {
+                        checkCollision = true;
+                        break;
+                    }
+                }
+
+                i++;
             }
             while (checkCollision);
 
