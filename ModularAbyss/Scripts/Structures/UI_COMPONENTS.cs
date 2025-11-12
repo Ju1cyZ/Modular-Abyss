@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    public struct UI_COMPONENTS
+    internal struct UI_COMPONENTS
     {
         /*
          * Permet de recuperer les rectangles adapter type de souris
@@ -48,7 +48,7 @@ namespace ModularAbyss.Scripts.Structures
             new Rectangle() { X = SQUARE_SIZE * 0, Y = SQUARE_SIZE * 2, Size = new Point(SQUARE_SIZE * 2, SQUARE_SIZE * 2)},
             new Rectangle() { X = SQUARE_SIZE * 2, Y = SQUARE_SIZE * 2, Size = new Point(SQUARE_SIZE * 2, SQUARE_SIZE * 2)},
             new Rectangle() { X = SQUARE_SIZE * 4, Y = SQUARE_SIZE * 2, Size = new Point(SQUARE_SIZE * 2, SQUARE_SIZE * 2)},
-            
+
             new Rectangle() { X = SQUARE_SIZE * 0, Y = SQUARE_SIZE * 4, Size = new Point(SQUARE_SIZE * 2, SQUARE_SIZE * 2)},
             new Rectangle() { X = SQUARE_SIZE * 2, Y = SQUARE_SIZE * 4, Size = new Point(SQUARE_SIZE * 2, SQUARE_SIZE * 2)},
             new Rectangle() { X = SQUARE_SIZE * 4, Y = SQUARE_SIZE * 4, Size = new Point(SQUARE_SIZE * 2, SQUARE_SIZE * 2)},

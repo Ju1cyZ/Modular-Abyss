@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Enums
 {
-    public enum PlayerMovementStates
+    internal enum PlayerMovementStates
     {
         idle,
         walk,

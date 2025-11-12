@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    public struct ITEMS
+    internal struct ITEMS
     {
         //Equivalent d'un getter
         public static Item STEEL_SWORD => new SwingWeapon()

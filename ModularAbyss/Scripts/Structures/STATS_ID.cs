@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    public struct STATS_ID
+    internal struct STATS_ID
     {
         public const string HEALTH = "STAT_HEALTH";
         public const string ARMOR = "STAT_ARMOR";

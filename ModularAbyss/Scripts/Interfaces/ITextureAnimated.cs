@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    public interface ITextureAnimated
+    internal interface ITextureAnimated
     {
         /// <summary>
         /// Permet de genere une texture a partir d'un spritesheet avec une animation

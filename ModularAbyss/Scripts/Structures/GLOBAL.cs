@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    public struct GLOBAL
+    internal struct GLOBAL
     {
         public const bool DEBUGING = false;
 

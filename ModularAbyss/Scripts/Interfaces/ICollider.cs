@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    public interface ICollider 
+    internal interface ICollider 
     {
         public abstract void SetColliderBounds();
     }

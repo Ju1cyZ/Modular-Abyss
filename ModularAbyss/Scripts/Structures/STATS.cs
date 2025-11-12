@@ -10,7 +10,7 @@ using ModularAbyss.Scripts.Components.StatNamespace.StatsNamespace;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    public struct STATS
+    internal struct STATS
     {
         //Equivalent d'un getter
         public static Stat HEALTH => new Stat()

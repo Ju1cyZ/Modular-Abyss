@@ -19,7 +19,7 @@ using System.Runtime.CompilerServices;
 
 namespace ModularAbyss
 {
-    public class Main : Game
+    internal class Main : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;

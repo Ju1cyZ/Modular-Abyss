@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Enums
 {
-    public enum PlayerMoveDirections
+    internal enum PlayerMoveDirections
     {
         None,
         Left,

@@ -3,7 +3,7 @@ using ModularAbyss.Scripts.Components.TilemapNamespace.TilesetNamespace;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    public struct TILESET
+    internal struct TILESET
     {
         public static Tileset FLOOR => new Tileset(16, 4, 4)
         {

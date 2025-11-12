@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Core
 {
-    public static class GameManager
+    internal static class GameManager
     {
         public static Vector2 CameraPosition = new Vector2(0, 0);
 
