@@ -1,21 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ModularAbyss.Scripts.Components.GameObjectNamespace;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
-using ModularAbyss.Scripts.Components.HudObjectNamespace;
-using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.Scene;
 using ModularAbyss.Scripts.Components.Scene.Scenes;
-using ModularAbyss.Scripts.Components.TilemapNamespace;
-using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using ModularAbyss.Scripts.Components.InputDevices;
 
 namespace ModularAbyss
 {

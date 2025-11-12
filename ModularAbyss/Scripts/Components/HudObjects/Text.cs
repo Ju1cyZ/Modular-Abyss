@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace ModularAbyss.Scripts.Components.HudObjectNamespace.Objects
+namespace ModularAbyss.Scripts.Components.HudObjects;
 {
     internal class Text : HudObject
     {

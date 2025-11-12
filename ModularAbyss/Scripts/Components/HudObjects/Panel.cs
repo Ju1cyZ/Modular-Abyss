@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.HudObjectNamespace.Objects
+namespace ModularAbyss.Scripts.Components.HudObjects;
 {
     internal class Panel : HudObject
     {

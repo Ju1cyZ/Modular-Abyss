@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.Gameobjects.Entities
+namespace ModularAbyss.Scripts.Interfaces
 {
-    internal class Player
+    internal interface IJSONLoader
     {
+
     }
 }

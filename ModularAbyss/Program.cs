@@ -1,2 +1,2 @@
-﻿using var game = new ModularAbyss.Game1();
-game.Run();
+﻿using var Main = new ModularAbyss.Main();
+Main.Run();

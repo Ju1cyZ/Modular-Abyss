@@ -4,7 +4,7 @@ using ModularAbyss.Scripts.Components.GameObjectNamespace;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
 using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
-using ModularAbyss.Scripts.Components.Gameobjects.Entities;
+using ModularAbyss.Scripts.Components.Gameobjects;
 using ModularAbyss.Scripts.Components.HudObjectNamespace;
 using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
 using ModularAbyss.Scripts.Components.TilemapNamespace;
