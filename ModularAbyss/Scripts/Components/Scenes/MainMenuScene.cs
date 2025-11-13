@@ -1,19 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.HudObjectNamespace;
-using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.TilemapNamespace;
+using ModularAbyss.Scripts.Components.Gameobjects;
+using ModularAbyss.Scripts.Components.HudObjects;
+using ModularAbyss.Scripts.Components.Tilemaps;
 using ModularAbyss.Scripts.Structures;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Scene.Scenes
 {
-    internal class MainMenuScene : Scene
+    public class MainMenuScene : Scene
     {
         protected override void LoadContent()
         {

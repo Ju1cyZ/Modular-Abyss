@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace ModularAbyss.Scripts.Components.HudObjects;
+namespace ModularAbyss.Scripts.Components.HudObjects
 {
-    internal class Text : HudObject
+    public class Text : HudObject
     {
         protected string _text;
         private bool _centered;

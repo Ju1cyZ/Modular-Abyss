@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Items.Weapons
 {
-    internal class RangedWeapon
-    {
-    }
+    public abstract class RangedWeapon : Weapon { }
 }

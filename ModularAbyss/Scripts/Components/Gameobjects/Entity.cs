@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Gameobjects
 {
-    internal abstract class Entity : GameObject, ITextureAnimated, IStat
+    public abstract class Entity : GameObject, ITextureAnimated, IStat, ILifeBar
     {
         /* Animation */
         protected Dictionary<string, Texture2D> _entityAnimations = new Dictionary<string, Texture2D>();
@@ -23,11 +23,13 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         protected int _textureY = 0;
         protected SpriteEffects _spriteEffect = SpriteEffects.None;
 
-        private Stats _stats;
-        public Stats Stats
-        {
-            get => _stats;
-            set => _stats = value;
+        public Stats Stats { get; set; } = new Stats();
+
+        private ProgressBar _healthBar;
+        public ProgressBar HealthBar 
+        { 
+            get => _healthBar;
+            set => _healthBar = value;
         }
 
         public int Health
@@ -197,8 +199,14 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         public override void Destroy()
         {
             base.Destroy();
-            healthBar.Destroy();
+            HealthBar.Destroy();
         }
+
+        /// <summary>
+        /// Defini la position de la bar de vie
+        /// </summary>
+        /// <returns>Sa position</returns>
+        public abstract Vector2 GetHealthBarPos();
     }
-}
+
 }

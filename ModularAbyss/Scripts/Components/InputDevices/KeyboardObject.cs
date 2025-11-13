@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.InputDevices
 {
-    internal class KeyboardObject
+    public class KeyboardObject
     {
     }
 }

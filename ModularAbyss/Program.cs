@@ -1,2 +1,4 @@
-﻿using var Main = new ModularAbyss.Main();
+﻿using ModularAbyss;
+
+using var Main = ModularAbyss.Main.getInstance();
 Main.Run();

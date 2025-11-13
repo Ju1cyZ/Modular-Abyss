@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    internal interface IJSONLoader
+    public interface IJSONLoader
     {
 
     }

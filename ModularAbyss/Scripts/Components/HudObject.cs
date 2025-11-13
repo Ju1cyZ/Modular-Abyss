@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components
 {
-    internal abstract class HudObject
+    public abstract class HudObject : IDestroyer
     {
         protected Main Main;
 

@@ -10,7 +10,7 @@ using ModularAbyss.Scripts.Components.InputDevices;
 
 namespace ModularAbyss
 {
-    internal class Main : Game
+    public class Main : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;

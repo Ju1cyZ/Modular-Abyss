@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    internal struct MOUSE_ID
+    public struct MOUSE_ID
     {
         /*
          * Permet de recuperer les rectangles adapter type de souris

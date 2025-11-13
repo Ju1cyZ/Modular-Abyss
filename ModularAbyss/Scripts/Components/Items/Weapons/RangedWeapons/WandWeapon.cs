@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
 {
-    internal class WandWeapon
+    public class WandWeapon
     {
     }
 }

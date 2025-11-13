@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 namespace ModularAbyss.Scripts.Interfaces
 {
-    internal interface IAi
+    public interface IAi
     {
         public static Vector2 moveTowardsPlayer(Vector2 objectPosition)
         {

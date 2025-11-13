@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components.InputDevices
 {
-    internal class MouseObject : InputManager
+    public class MouseObject : InputManager
     {
         private Main _main;
         public Rectangle CollisionRect;

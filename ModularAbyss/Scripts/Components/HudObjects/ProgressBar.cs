@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.HudObjects;
+namespace ModularAbyss.Scripts.Components.HudObjects
 {
-    internal class ProgressBar : HudObject
+    public class ProgressBar : HudObject
     {
         private int _barID = 4;
         private int _progressBarSizeX = 48;
@@ -17,7 +17,6 @@ namespace ModularAbyss.Scripts.Components.HudObjects;
 
         public int value;
         public int maxValue;
-        public Vector2 Position = new Vector2();
 
         public ProgressBar(int progressBarSizeX, int progressBarSizeY, int barId, Vector2 position = new(), float scale = 1, bool hidden = false) : base(position, scale, hidden)
         {
@@ -85,5 +84,9 @@ namespace ModularAbyss.Scripts.Components.HudObjects;
                 return healthBarRectangles[5];
             }
         }
+
     }
 }
+
+
+

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Enums
 {
-    internal enum ItemTier
+    public enum ItemTier
     {
         Common,
         Uncommon,

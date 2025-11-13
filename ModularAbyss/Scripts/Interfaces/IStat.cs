@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    internal interface IStat
+    public interface IStat
     {
         Stats Stats { get; set; }
     }

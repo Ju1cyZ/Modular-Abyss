@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    internal interface ILifeBar
+    public interface ILifeBar
     {
         public ProgressBar HealthBar { get; set; }
 

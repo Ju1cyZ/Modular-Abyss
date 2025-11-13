@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    internal struct UI_COMPONENTS
+    public struct UI_COMPONENTS
     {
         /*
          * Permet de recuperer les rectangles adapter type de souris

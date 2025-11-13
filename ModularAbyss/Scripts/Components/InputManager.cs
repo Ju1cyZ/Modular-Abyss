@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components
 {
-    internal class InputManager
+    public class InputManager
     {
     }
 }

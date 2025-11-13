@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components
 {
-    internal abstract class GameObject : ICollider, IDestroyer
+    public abstract class GameObject : ICollider, IDestroyer
     {
         private Texture2D texture2D;
         private Rectangle _collisionRect;
@@ -16,12 +16,15 @@ namespace ModularAbyss.Scripts.Components
         private float posX = 0;
         private float posY = 0;
 
+        public delegate void OnDestroyedHandler(GameObject gameObject);
+        public event OnDestroyedHandler OnDestroyed;
+
         /// <summary>
         /// Le rectange de collision
         /// </summary>
-        public Rectangle Bounds 
+        public Rectangle Bounds
         {
-            get 
+            get
             {
                 return _collisionRect;
             }
@@ -138,9 +141,11 @@ namespace ModularAbyss.Scripts.Components
             Main.OnLoadContent -= LoadContent;
             if (_created)
             {
-                Main.OnUpdate += Update;
-                Main.OnDraw += Draw;
+                Main.OnUpdate -= Update;
+                Main.OnDraw -= Draw;
             }
+
+            OnDestroyed?.Invoke(this);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    internal interface ICollider 
+    public interface ICollider 
     {
         Rectangle Bounds { get; set; }
 

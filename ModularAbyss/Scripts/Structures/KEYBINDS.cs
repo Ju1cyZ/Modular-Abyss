@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    internal struct KEYBINDS
+    public struct KEYBINDS
     {
         public static Keys MOVE_UP = Keys.W;
         public static Keys MOVE_LEFT = Keys.A;

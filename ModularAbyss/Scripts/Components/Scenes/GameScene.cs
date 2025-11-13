@@ -1,17 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
-using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.TilemapNamespace;
-using ModularAbyss.Scripts.Components.WaveNamespace;
+using ModularAbyss.Scripts.Components.Gameobjects;
+using ModularAbyss.Scripts.Components.Gameobjects.Entities;
+using ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies;
+using ModularAbyss.Scripts.Components.HudObjects;
+using ModularAbyss.Scripts.Components.Tilemaps;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components.Scene.Scenes
 {
-    internal class GameScene : Scene
+    public class GameScene : Scene
     {
         protected override void LoadContent()
         {
@@ -69,11 +68,11 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 
 
             List<Enemy> enemies = new List<Enemy>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Enemy enemy = new Slime(true);
                 enemy.Initialize();
-                enemy.Destroyed += DestroyGameobject;
+                enemy.OnDestroyed += DestroyGameobject;
                 enemies.Add(enemy);
             }
 

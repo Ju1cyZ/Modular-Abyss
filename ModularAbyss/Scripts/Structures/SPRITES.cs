@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    internal struct SPRITES
+    public struct SPRITES
     {
         private const string ASSETS_FOLDER = "Assets/";
         public const string PLAYER_IDLE = ASSETS_FOLDER + "Player/idle";

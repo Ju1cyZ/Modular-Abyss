@@ -1,23 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Components.GameObjectNamespace;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity;
-using ModularAbyss.Scripts.Components.GameObjectNamespace.Objects.Entity.Enemy.Enemies;
 using ModularAbyss.Scripts.Components.Gameobjects;
-using ModularAbyss.Scripts.Components.HudObjectNamespace;
-using ModularAbyss.Scripts.Components.HudObjectNamespace.Objects;
-using ModularAbyss.Scripts.Components.TilemapNamespace;
+using ModularAbyss.Scripts.Components.Tilemaps;
 using ModularAbyss.Scripts.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Scene
 {
-    internal abstract class Scene
+    public abstract class Scene
     {
         protected Main main;
         public Tilemap tilemap;
@@ -93,14 +84,9 @@ namespace ModularAbyss.Scripts.Components.Scene
             UpdateHudObjects();
         }
 
-        protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
-        {
+        protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch) { }
 
-        }
-
-        protected virtual void LoadContent()
-        {
-        }
+        protected virtual void LoadContent() { }
 
 
         /// <summary>

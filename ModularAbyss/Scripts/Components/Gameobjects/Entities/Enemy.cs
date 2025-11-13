@@ -10,11 +10,9 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Gameobjects.Entities
 {
-    internal abstract class Enemy : Entity, ILifeBar, IAi
+    public abstract class Enemy : Entity, IAi
     {
         protected double attackTime = 0;
-
-        public ProgressBar HealthBar { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         /// <summary>
         /// construire
@@ -40,10 +38,5 @@ namespace ModularAbyss.Scripts.Components.Gameobjects.Entities
 
         public abstract void Attack(Player p, GameTime gameTime);
 
-        /// <summary>
-        /// Defini la position de la bar de vie
-        /// </summary>
-        /// <returns>Sa position</returns>
-        public abstract Vector2 GetHealthBarPos();
     }
 }

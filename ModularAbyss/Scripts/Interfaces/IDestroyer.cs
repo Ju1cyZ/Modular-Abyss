@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    internal interface IDestroyer
+    public interface IDestroyer
     {
-        public abstract void Destroy();
+        void Destroy();
     }
 }

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModularAbyss.Scripts.Components.HudObjects;
+namespace ModularAbyss.Scripts.Components.HudObjects
 {
-    internal class Panel : HudObject
+    public class Panel : HudObject
     {
         Rectangle[] _panelType;
 
@@ -185,3 +185,4 @@ namespace ModularAbyss.Scripts.Components.HudObjects;
         }
     }
 }
+

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Components.Gameobjects
 {
-    internal class Player : GameObject, ITextureAnimated, ICollider, IStat
+    public class Player : GameObject, ITextureAnimated, ICollider, IStat
     {
         /* Animation */
         private Dictionary<string, Texture2D> _playerAnimations = new Dictionary<string, Texture2D>();
@@ -40,13 +40,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         private bool asAttacked = false;
 
         /* Player Attributes */
-        private Stats _stats;
-
-        public Stats Stats 
-        { 
-            get => _stats; 
-            set => _stats = value; 
-        }
+        public Stats Stats { get; set; } = new Stats();
 
         private bool _isDead = false;
 
@@ -91,7 +85,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             }
         }
 
-        public Player() : base(true) { }
+        public Player() : base(false) { }
 
         public override void Initialize()
         {

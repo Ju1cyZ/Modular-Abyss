@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Components.TilemapNamespace.TilesetNamespace;
+using ModularAbyss.Scripts.Components;
 
 namespace ModularAbyss.Scripts.Structures
 {
-    internal struct TILESET
+    public struct TILESET
     {
         public static Tileset FLOOR => new Tileset(16, 4, 4)
         {
