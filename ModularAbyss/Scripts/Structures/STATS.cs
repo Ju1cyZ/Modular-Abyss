@@ -1,12 +1,4 @@
-﻿using ModularAbyss.Scripts.Components.ItemNamespace.Items.Weapons;
-using ModularAbyss.Scripts.Components.ItemNamespace;
-using ModularAbyss.Scripts.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModularAbyss.Scripts.Components.StatNamespace.StatsNamespace;
+﻿using ModularAbyss.Scripts.Components;
 
 namespace ModularAbyss.Scripts.Structures
 {

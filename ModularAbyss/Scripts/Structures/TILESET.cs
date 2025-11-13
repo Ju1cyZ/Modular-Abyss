@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using ModularAbyss.Scripts.Components.TilemapNamespace.TilesetNamespace;
+using ModularAbyss.Scripts.Components;
 
 namespace ModularAbyss.Scripts.Structures
 {
