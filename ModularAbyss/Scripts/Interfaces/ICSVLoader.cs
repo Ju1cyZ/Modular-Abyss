@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ModularAbyss.Scripts.Interfaces
 {
-    public interface IJSONLoader
+    public interface ICSVLoader
     {
+        public void LoadBidensionnalCSV()
+        {
 
+        }
     }
 }

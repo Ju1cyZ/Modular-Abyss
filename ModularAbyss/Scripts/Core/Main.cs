@@ -8,6 +8,7 @@ using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 using ModularAbyss.Scripts.Components.InputDevices;
 using ModularAbyss.Scripts.Components;
+using System.Diagnostics;
 
 namespace ModularAbyss
 {
@@ -40,6 +41,10 @@ namespace ModularAbyss
             _graphics.PreferredBackBufferHeight = GLOBAL.WINDOW_HEIGHT;
 
             _instance = this;
+
+            _graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
+            _graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -68,6 +73,8 @@ namespace ModularAbyss
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            Debug.WriteLine(1 / gameTime.ElapsedGameTime.TotalSeconds);
 
             InputManager.Update(gameTime, ActiveScene.CollidersObjects);
             

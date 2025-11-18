@@ -9,7 +9,7 @@ using ModularAbyss.Scripts.Interfaces;
 
 namespace ModularAbyss.Scripts.Components
 {
-    public class Tilemap : IJSONLoader
+    public class Tilemap : ICSVLoader
     {
         public int Width { get; }
         public int Height { get; }
