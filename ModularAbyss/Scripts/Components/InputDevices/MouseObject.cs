@@ -7,35 +7,46 @@ using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components.InputDevices
 {
-    public class MouseObject : InputManager
+    public class MouseObject
     {
+        public MouseState mState
+        {
+            get => Mouse.GetState();
+        }
+
         private Main _main;
         public Rectangle CollisionRect;
         private Rectangle MouseType;
 
+        /// <summary>
+        /// Get Left Click State
+        /// </summary>
         public bool LeftButtonPressed
         {
             get
             {
-                MouseState mState = Mouse.GetState();
                 return mState.LeftButton == ButtonState.Pressed;
             }
         }
 
+        /// <summary>
+        /// Get Right Click State
+        /// </summary>
         public bool RightButtonPressed
         {
             get
             {
-                MouseState mState = Mouse.GetState();
                 return mState.RightButton == ButtonState.Pressed;
             }
         }
 
+        /// <summary>
+        /// La position de la souris
+        /// </summary>
         public Point Position
         {
             get
             {
-                MouseState mState = Mouse.GetState();
                 return mState.Position;
             }
         }
@@ -43,6 +54,7 @@ namespace ModularAbyss.Scripts.Components.InputDevices
         public MouseObject()
         {
             _main = Main.getInstance();
+            _main.IsMouseVisible = false;
 
             CollisionRect = new Rectangle()
             {
@@ -69,8 +81,6 @@ namespace ModularAbyss.Scripts.Components.InputDevices
         public void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             /* Custom Cursor */
-            MouseState mState = Mouse.GetState();
-
             if (GLOBAL.DEBUGING)
             {
                 Texture2D _texture = new Texture2D(Main.getInstance().GraphicsDevice, 1, 1);

@@ -76,7 +76,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
         {
             base.Update(gameTime, colliders);
 
-            MouseObject mouse = Main.Mouse;
+            MouseObject mouse = InputManager.MouseObject;
 
             if (mouse.CollisionRect.Intersects(_buttonRect))
             {

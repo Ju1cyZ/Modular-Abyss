@@ -224,39 +224,43 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             //La direction par defaut
             PlayerMoveDirections direction = PlayerMoveDirections.None;
 
+            bool input = InputManager.MOVE_RIGHT;
+
+
+
             //Defini la direction dans l'axe X
-            if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_RIGHT))
+            if (InputManager.MOVE_RIGHT)
             {
                 direction = PlayerMoveDirections.Right;
             }
-            else if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_LEFT))
+            else if (InputManager.MOVE_LEFT)
             {
                 direction = PlayerMoveDirections.Left;
             }
 
             //Defini la direction dans l'axe Y
-            if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_UP))
+            if (InputManager.MOVE_UP)
             {
                 direction = PlayerMoveDirections.Up;
                 //Defini la direction dans l'axe X
-                if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_RIGHT))
+                if (InputManager.MOVE_RIGHT)
                 {
                     direction = PlayerMoveDirections.UpRight;
                 }
-                else if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_LEFT))
+                else if (InputManager.MOVE_LEFT)
                 {
                     direction = PlayerMoveDirections.UpLeft;
                 }
             }
-            else if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_DOWN))
+            else if (InputManager.MOVE_DOWN)
             {
                 direction = PlayerMoveDirections.Down;
                 //Defini la direction dans l'axe X
-                if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_RIGHT))
+                if (InputManager.MOVE_RIGHT)
                 {
                     direction = PlayerMoveDirections.DownRight;
                 }
-                else if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_LEFT))
+                else if (InputManager.MOVE_LEFT)
                 {
                     direction = PlayerMoveDirections.DownLeft;
                 }

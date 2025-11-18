@@ -7,6 +7,7 @@ using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 using ModularAbyss.Scripts.Components.InputDevices;
+using ModularAbyss.Scripts.Components;
 
 namespace ModularAbyss
 {
@@ -17,7 +18,7 @@ namespace ModularAbyss
 
         private static Main _instance;
         public static Scene ActiveScene;
-        public static MouseObject Mouse;
+        //public static MouseObject Mouse;
 
         /* EVENTS */
         public delegate void OnInitializeHandler();
@@ -39,7 +40,6 @@ namespace ModularAbyss
             _graphics.PreferredBackBufferHeight = GLOBAL.WINDOW_HEIGHT;
 
             _instance = this;
-            IsMouseVisible = false;
         }
 
         /// <summary>
@@ -57,7 +57,6 @@ namespace ModularAbyss
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ActiveScene = new MainMenuScene();
-            Mouse = new MouseObject();
             OnLoadContent?.Invoke();
         }
 
@@ -70,7 +69,8 @@ namespace ModularAbyss
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Mouse.Update(gameTime, ActiveScene.CollidersObjects);
+            InputManager.Update(gameTime, ActiveScene.CollidersObjects);
+            
             if (ActiveScene.isInitialized)
             {
                 OnUpdate?.Invoke(gameTime, ActiveScene.CollidersObjects);
@@ -91,7 +91,7 @@ namespace ModularAbyss
             {
                 OnDraw?.Invoke(gameTime, ref _spriteBatch);
             }
-            Mouse.Draw(gameTime, ref _spriteBatch);
+            InputManager.Draw(gameTime, ref _spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
