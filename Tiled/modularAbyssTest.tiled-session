@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "wallTest.tmx",
+    "activeFile": "mainMenuFloor.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -25,6 +25,22 @@
                 "y": 40.089585666293395
             }
         },
+        "mainMenuFloor.tmx": {
+            "scale": 5.58125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 96.03583426651736,
+                "y": 56.080627099664056
+            }
+        },
+        "mainMenuWall.tmx": {
+            "scale": 5.58125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 92.45240761478163,
+                "y": 58.40985442329227
+            }
+        },
         "sans titre.tmx": {
             "scale": 2,
             "selectedLayer": 0,
@@ -37,8 +53,8 @@
             "scale": 5.58125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 96.21500559910415,
-                "y": 58.40985442329227
+                "x": 96.03583426651736,
+                "y": 105.53191489361701
             }
         }
     },
@@ -52,19 +68,18 @@
     "map.tileWidth": 16,
     "map.width": 12,
     "openFiles": [
-        "sans titre.tmx",
-        "Floor.tsx",
-        "floorTest.tmx",
-        "wallTest.tmx",
-        "Wall.tsx"
+        "mainMenuWall.tmx",
+        "mainMenuFloor.tmx"
     ],
     "project": "modularAbyssTest.tiled-project",
     "recentFiles": [
-        "sans titre.tmx",
-        "Floor.tsx",
-        "floorTest.tmx",
+        "mainMenuWall.tmx",
+        "mainMenuFloor.tmx",
         "Wall.tsx",
-        "wallTest.tmx"
+        "wallTest.tmx",
+        "floorTest.tmx",
+        "Floor.tsx",
+        "sans titre.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
