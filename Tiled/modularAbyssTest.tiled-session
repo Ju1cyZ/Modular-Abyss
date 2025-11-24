@@ -3,46 +3,68 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "sans titre.tmx",
+    "activeFile": "wallTest.tmx",
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
         "Floor.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 11
         },
         "Wall.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 11
+        },
+        "floorTest.tmx": {
+            "scale": 6.6975,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79.88055244494215,
+                "y": 40.089585666293395
+            }
         },
         "sans titre.tmx": {
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 223.5,
-                "y": 160.5
+                "x": 160,
+                "y": 159.75
+            }
+        },
+        "wallTest.tmx": {
+            "scale": 5.58125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 96.21500559910415,
+                "y": 58.40985442329227
             }
         }
     },
     "last.exportedFilePath": "C:/Users/fabio.srsjr/Documents/ModularAbys/Modular-Abyss/Tiled",
     "last.imagePath": "C:/Users/fabio.srsjr/Documents/ModularAbys/Modular-Abyss/Assets/Tilesets",
+    "map.height": 7,
     "map.lastUsedExportFilter": "Fichiers CSV (*.csv)",
     "map.lastUsedFormat": "tmx",
     "map.renderOrder": null,
     "map.tileHeight": 16,
     "map.tileWidth": 16,
-    "map.width": 20,
+    "map.width": 12,
     "openFiles": [
         "sans titre.tmx",
         "Floor.tsx",
+        "floorTest.tmx",
+        "wallTest.tmx",
         "Wall.tsx"
     ],
     "project": "modularAbyssTest.tiled-project",
     "recentFiles": [
-        "Wall.tsx",
+        "sans titre.tmx",
         "Floor.tsx",
-        "sans titre.tmx"
+        "floorTest.tmx",
+        "Wall.tsx",
+        "wallTest.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

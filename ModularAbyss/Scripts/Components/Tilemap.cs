@@ -87,6 +87,39 @@ namespace ModularAbyss.Scripts.Components
                     spriteBatch.Draw(_tileset.GetTexture2D(), new Vector2(X * _tileset.TILE_SIZE * 10, Y * _tileset.TILE_SIZE * 10) + Position, _tileset.getTile(_tilesIds[X, Y]), Color.White, 0, Vector2.Zero, 10, SpriteEffects.None, 0);
                 }
             }
+        } 
+
+        /// <summary>
+        /// Permet de creer un tileset a partir d'un string
+        /// </summary>
+        /// <param name="CSVData"></param>
+        public virtual void LoadFromCSV(string CSVData)
+        {
+            List<int> tilesId = new List<int>();
+            string[] Lines = CSVData.Split("\n");
+
+            int tilemapWidth = 0;
+
+            foreach (var item in Lines.Select(x => x.Split(",")))
+            {
+                if (item.Length > tilemapWidth)
+                {
+                    tilemapWidth = item.Length;
+                }
+            }
+
+            _tilesIds = new int[tilemapWidth, Lines.Length];
+
+            int MAXY = Lines.Count() - 1;
+
+            for (int Y = 0; Y < MAXY; Y++)
+            {
+                string[] linetileIds = Lines[Y].Split(",");
+                for (int X = 0; X < linetileIds.Count(); X++)
+                {
+                    _tilesIds[X, Y] = Convert.ToInt32(linetileIds[X]);
+                }
+            }
         }
     }
 }

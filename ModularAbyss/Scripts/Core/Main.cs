@@ -42,9 +42,9 @@ namespace ModularAbyss
 
             _instance = this;
 
-            _graphics.SynchronizeWithVerticalRetrace = false;
-            IsFixedTimeStep = false;
-            _graphics.ApplyChanges();
+            //_graphics.SynchronizeWithVerticalRetrace = false;
+            //IsFixedTimeStep = false;
+            //_graphics.ApplyChanges();
         }
 
         /// <summary>

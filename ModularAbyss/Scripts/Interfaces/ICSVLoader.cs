@@ -8,9 +8,6 @@ namespace ModularAbyss.Scripts.Interfaces
 {
     public interface ICSVLoader
     {
-        public void LoadBidensionnalCSV()
-        {
-
-        }
+        public void LoadFromCSV(string CSVData);
     }
 }

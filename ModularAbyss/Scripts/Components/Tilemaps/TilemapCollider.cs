@@ -53,7 +53,26 @@ namespace ModularAbyss.Scripts.Components.Tilemaps
 
         public void SetColliderBounds()
         {
-            throw new NotImplementedException();
+            for (int X = 0; X < _tilesIds.GetLength(0); X++)
+            {
+                for (int Y = 0; Y < _tilesIds.GetLength(1); Y++)
+                {
+                    if (_tilesIds[X, Y] != -1)
+                    {
+                        Colliders.Add(new Rectangle(new Point(160 * X, 160 * Y), new Point(160, 160)));
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Permet de creer un tileset a partir d'un string
+        /// </summary>
+        /// <param name="CSVData"></param>
+        public override void LoadFromCSV(string CSVData)
+        {
+            base.LoadFromCSV(CSVData);
+            SetColliderBounds();
         }
     }
 }
