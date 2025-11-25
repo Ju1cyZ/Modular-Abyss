@@ -72,11 +72,13 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.MeleeWeapons
             if (!playingAnimation && itemOffset != MIN_ITEM_OFFSET) // Permet de remettre l'arme a zero
             {
                 itemOffset -= 1 * gameTime.ElapsedGameTime.Milliseconds;
-                if (itemOffset == MIN_ITEM_OFFSET)
+                if (itemOffset <= MIN_ITEM_OFFSET)
                 {
+                    itemOffset = MIN_ITEM_OFFSET;
                     asAttacked = false;
                 }
             }
         }
     }
 }
+    
