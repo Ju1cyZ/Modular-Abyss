@@ -496,6 +496,10 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// <returns>Les points de vie apres avoir soigner le joueur</returns>
         public int Heal(int amount)
         {
+            if (amount < 0)
+            {
+                return Health;
+            }
             return Health += amount;
         }
     }

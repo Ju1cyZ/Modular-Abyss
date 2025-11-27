@@ -1,4 +1,5 @@
-﻿using ModularAbyss.Scripts.Structures;
+﻿using ModularAbyss.Scripts.Interfaces;
+using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components
@@ -68,18 +69,22 @@ namespace ModularAbyss.Scripts.Components
         /// <param name="value">La nouvelle valeur</param>
         public void setStatValue(string id, int value)
         {
-            foreach (Stat stat in stats)
+            for (int i = 0; i < stats.Count; i++)
             {
-                if (stat.Id == id)
+                if (stats[i].Id == id)
                 {
                     //Cas ou la stat a une valeur max
-                    if (stat.MAX_VALUE != 0 && value <= stat.MAX_VALUE)
+                    if (stats[i].MAX_VALUE != 0 && value <= stats[i].MAX_VALUE)
                     {
-                        stat.Value = value;
+                        stats[i].Value = value;
+                    }
+                    else if (stats[i].MAX_VALUE != 0 && value >= stats[i].MAX_VALUE)
+                    {
+                        stats[i].Value = stats[i].MAX_VALUE;
                     }
                     else
                     {
-                        stat.Value = value;
+                        stats[i].Value = value;
                     }
                 }
             }
