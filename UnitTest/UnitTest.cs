@@ -60,6 +60,25 @@ namespace UnitTest
             Assert.AreEqual(expected, stats.getStat(STATS_ID.ARMOR).Value);
         }
 
+        [DataTestMethod]
+        [DataRow(14, 20, 32, 50)]
+        [DataRow(20, 20, 40, 50)]
+        public void Stats_sumTwoStats_NewStatLengthAreEqual(int stat1Value, int maxStat1Value, int stat2Value, int maxStat2Value)
+        {
+            Stats stats1 = new Stats();
+            stats1.setStatMaxValue(STATS_ID.ARMOR, maxStat1Value, true);
+            stats1.setStatValue(STATS_ID.ARMOR, stat1Value);
+
+            Stats stats2 = new Stats();
+            stats1.setStatMaxValue(STATS_ID.ARMOR, maxStat2Value, true);
+            stats2.setStatValue(STATS_ID.ARMOR, stat2Value);
+
+            Stats stats = stats1 + stats2;
+
+            Assert.AreEqual(stats1.getStats().Count, stats.getStats().Count);
+        }
+
+
         #region Player Test
         [TestMethod]
         public void TestPlayer_hurtWithStats()
