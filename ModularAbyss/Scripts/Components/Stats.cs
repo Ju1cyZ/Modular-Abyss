@@ -1,5 +1,6 @@
 ﻿using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components
@@ -74,11 +75,7 @@ namespace ModularAbyss.Scripts.Components
                 if (stats[i].Id == id)
                 {
                     //Cas ou la stat a une valeur max
-                    if (stats[i].MAX_VALUE != 0 && value <= stats[i].MAX_VALUE)
-                    {
-                        stats[i].Value = value;
-                    }
-                    else if (stats[i].MAX_VALUE != 0 && value >= stats[i].MAX_VALUE)
+                    if (stats[i].MAX_VALUE != 0 && value >= stats[i].MAX_VALUE)
                     {
                         stats[i].Value = stats[i].MAX_VALUE;
                     }
@@ -139,11 +136,10 @@ namespace ModularAbyss.Scripts.Components
                 if (b.stats[i] != null && a.stats[i].Id == b.stats[i].Id)
                 {
                     //On additionne les values
-                    a.stats[i].Value += b.stats[i].Value;
-                    newStats.Add(a.stats[i]);
+                    newStats.Add(a.stats[i] + b.stats[i]);
                 }
             }
-            //On retourne un instance de Stats avec les nouvelle stats
+            //On retourne une instance de Stats avec les nouvelle stats
             return new Stats() { stats = newStats };
         }
     }

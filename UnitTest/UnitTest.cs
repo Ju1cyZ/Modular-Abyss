@@ -41,18 +41,16 @@ namespace UnitTest
         }
 
         [DataTestMethod]
-        [DataRow(14, 20, 32, 50, 46)]
+        [DataRow(14, 20, 32, 100, 46)]
         [DataRow(20, 20, 40, 50, 50)]
         public void Stats_sumTwoStats_EachStatAreAdditionned(int stat1Value, int maxStat1Value, int stat2Value, int maxStat2Value, int expected)
         {
-            // TEST PAS FINI
-
             Stats stats1 = new Stats();
             stats1.setStatMaxValue(STATS_ID.ARMOR, maxStat1Value, true);
             stats1.setStatValue(STATS_ID.ARMOR, stat1Value);
 
             Stats stats2 = new Stats();
-            stats1.setStatMaxValue(STATS_ID.ARMOR, maxStat2Value, true);
+            stats2.setStatMaxValue(STATS_ID.ARMOR, maxStat2Value, true);
             stats2.setStatValue(STATS_ID.ARMOR, stat2Value);
 
             Stats stats = stats1 + stats2;
@@ -76,6 +74,24 @@ namespace UnitTest
             Stats stats = stats1 + stats2;
 
             Assert.AreEqual(stats1.getStats().Count, stats.getStats().Count);
+        }
+
+        [DataTestMethod]
+        [DataRow(14, 20, 32, 50, 46)]
+        [DataRow(20, 20, 40, 50, 50)]
+        public void Stat_sumTwoStat_NewStatValueAreCorrect(int stat1Value, int maxStat1Value, int stat2Value, int maxStat2Value, int expected)
+        {
+            Stat stat1 = STATS.HEALTH;
+            stat1.MAX_VALUE = maxStat1Value;
+            stat1.Value = stat1Value;
+
+            Stat stat2 = STATS.HEALTH;
+            stat2.MAX_VALUE = maxStat2Value;
+            stat2.Value = stat2Value;
+
+            Stat stat = stat1 + stat2;
+
+            Assert.AreEqual(expected, stat.Value);
         }
 
 
