@@ -17,7 +17,7 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.MeleeWeapons
             MIN_ITEM_OFFSET = 120;
             MAX_ITEM_OFFSET = 120;
 
-            itemOffset = 184021;
+            itemOffset = 120;
         }
 
         protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)

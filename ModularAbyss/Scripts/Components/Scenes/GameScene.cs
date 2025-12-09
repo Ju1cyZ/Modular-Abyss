@@ -60,7 +60,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             //(GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
 
             GameObjects.Add("Player", new Player());
-            Player.inventory.Add(ITEMS.STEEL_KNIFE);
+            Player.inventory.Add(ITEMS.WOODEN_WAND);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(

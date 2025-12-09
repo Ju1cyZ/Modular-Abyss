@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using ModularAbyss.Scripts.Components;
 using ModularAbyss.Scripts.Components.Items.Weapons.MeleeWeapons;
+using ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons;
 using ModularAbyss.Scripts.Enums;
 
 namespace ModularAbyss.Scripts.Structures
@@ -27,6 +28,17 @@ namespace ModularAbyss.Scripts.Structures
             ItemTier = ItemTier.Common,
             Texture2D = SPRITES.WEAPON_HAND,
             SpriteRectangle = new Rectangle(40, 0, 7, 20),
+            Damage = 3,
+        };
+
+        public static Item WOODEN_WAND => new WandWeapon()
+        {
+            Id = "WOODEN_WAND",
+            Name = "Wooden Wand",
+            Description = "MA_DESCRIPTION",
+            ItemTier = ItemTier.Common,
+            Texture2D = SPRITES.WEAPON_WAND,
+            SpriteRectangle = new Rectangle(0, 0, 13, 32),
             Damage = 3,
         };
     }
