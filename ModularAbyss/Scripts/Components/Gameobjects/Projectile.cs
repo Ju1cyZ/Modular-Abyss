@@ -19,6 +19,8 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         // La position de depart
         private Vector2 _startPos;
 
+        public int Speed = 20;
+
         public Vector2 Direction
         {
             get
@@ -45,7 +47,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
         protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
         {
-            Position += Direction * 20.0f;
+            Position += Direction * Speed;
         }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
