@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModularAbyss.Scripts.Components.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,24 @@ namespace ModularAbyss.Scripts.Structures
 
         /* HUD */
         public const string BARS = ASSETS_FOLDER + "HUD/bars";
+        public const string MOUSE_ICONS = ASSETS_FOLDER + "HUD/MouseIcons";
+        public const string UI = ASSETS_FOLDER + "HUD/UI";
 
         /* ITEMS */
         public const string WEAPON_HAND = ASSETS_FOLDER + "Weapons/hand";
         public const string WEAPON_WAND = ASSETS_FOLDER + "Weapons/wand";
+
+        /* PROJECTILE */
+        public const string PROJECTILES_FOLDER = "Weapons/Projectile/";
+
+        public const string FIRE_BULLETS_ORANGE =       ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_00";
+        public const string FIRE_BULLETS_RED =          ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_01";
+        public const string FIRE_BULLETS_BLUE =         ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_02";
+        public const string FIRE_BULLETS_GREEN =        ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_03";
+        public const string FIRE_BULLETS_LIGHT_ORANGE = ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_04";
+        public const string FIRE_BULLETS_PURPLE =       ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_05";
+        public const string FIRE_BULLETS_LIGHT_PURPLE = ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_06";
+        public const string FIRE_BULLETS_LIGHT_RED =    ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_07";
 
         /* TILESETS */
         public const string FLOOR_TILESET = ASSETS_FOLDER + "Tilesets/floor";
@@ -31,8 +46,5 @@ namespace ModularAbyss.Scripts.Structures
         /* FONTS */
         public const string ARIAL_FONT = ASSETS_FOLDER + "Fonts/Arial";
 
-        /* HUD */
-        public const string MOUSE_ICONS = ASSETS_FOLDER + "HUD/MouseIcons";
-        public const string UI = ASSETS_FOLDER + "HUD/UI";
     }
 }

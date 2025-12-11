@@ -17,9 +17,9 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
         public WandWeapon()
         {
             MIN_ITEM_OFFSET = 50;
-            MAX_ITEM_OFFSET = 70;
+            MAX_ITEM_OFFSET = 90;
 
-            itemOffset = 70;
+            itemOffset = 90;
         }
 
         protected override void Update(GameTime gameTime, List<ICollider> colliders)

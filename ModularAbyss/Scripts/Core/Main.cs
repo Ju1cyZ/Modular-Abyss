@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using ModularAbyss.Scripts.Components.InputDevices;
 using ModularAbyss.Scripts.Components;
 using System.Diagnostics;
+using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
+using ModularAbyss.Scripts.Components.Gameobjects;
 
 namespace ModularAbyss
 {
@@ -74,8 +76,6 @@ namespace ModularAbyss
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Debug.WriteLine(1 / gameTime.ElapsedGameTime.TotalSeconds);
-
             InputManager.Update(gameTime, ActiveScene.CollidersObjects);
             
             if (ActiveScene.isInitialized)
@@ -83,6 +83,11 @@ namespace ModularAbyss
                 OnUpdate?.Invoke(gameTime, ActiveScene.CollidersObjects);
             }
             base.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                new Fireball(ActiveScene.Player.Position, new Vector2(0,0));
+            }
         }
 
         /// <summary>

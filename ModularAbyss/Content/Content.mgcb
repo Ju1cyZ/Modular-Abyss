@@ -1028,6 +1028,102 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Weapons/hand.png;Assets/Weapons/hand
 
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_00.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_00.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_00
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_01.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_01.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_01
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_02.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_02.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_02
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_03.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_03.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_03
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_04.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_04.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_04
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_05.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_05.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_05
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_06.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_06.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_06
+
+#begin Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_07.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_07.png;Assets/Weapons/Projectile/All_Fire_Bullet_Pixel_16x16_07
+
 #begin Assets/Weapons/wand.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -3,7 +3,9 @@ using ModularAbyss.Scripts.Components;
 using ModularAbyss.Scripts.Components.Gameobjects;
 using ModularAbyss.Scripts.Components.Gameobjects.Entities;
 using ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies;
+using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Structures;
+using System.Numerics;
 
 namespace UnitTest
 {
@@ -138,6 +140,22 @@ namespace UnitTest
             // Assert
             Assert.AreEqual(expected, player.Stats.getStat(STATS_ID.HEALTH).Value);
         }
+
+
+        [DataTestMethod]
+        [DataRow(23, 25, 59, 21, 23, 12)]
+        public void Projectile_TestSetDirection_DirectionIsCorrectlySet(int currentPosX, int currentPosY, int targetPosX, int targetPosY)
+        {
+            Fireball fireBall = new Fireball();
+            fireBall.Position = new Microsoft.Xna.Framework.Vector2(currentPosX, currentPosY);
+            Vector2 target = new Vector2(targetPosX, targetPosY);
+
+            fireBall.setDirectionFromVector(target);
+
+
+            Assert.AreEqual(new Vector2(), fireBall.Direction);
+        }
+        
         #endregion
 
     }

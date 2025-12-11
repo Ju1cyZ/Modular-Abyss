@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Components.Gameobjects;
+using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Components.HudObjects;
 using ModularAbyss.Scripts.Components.Tilemaps;
 using ModularAbyss.Scripts.Structures;

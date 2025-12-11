@@ -1,0 +1,73 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Core;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ModularAbyss.Scripts.Components.Gameobjects
+{
+    public abstract class Projectile : GameObject
+    {
+        // La direction du projectile
+        private Vector2 _direction;
+        // La cible
+        private Vector2 _target;
+        // La position de depart
+        private Vector2 _startPos;
+
+        public Vector2 Direction
+        {
+            get
+            {
+                return _direction;
+            }
+            set
+            {
+                _direction = value;
+            }
+        }
+
+        private Rectangle _rect;
+
+
+        public Projectile(Vector2 target, Vector2 startPos) : base()
+        {
+            _target = target;
+            _startPos = startPos;
+            Position = _startPos;
+            setTextureRectangle(ref _rect);
+            setDirectionFromVector(_target);
+        }
+
+        protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
+        {
+            Position += Direction * 20.0f;
+        }
+
+        protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
+        {
+            //base.Draw(gameTime, ref spriteBatch);
+
+            double angleRadians = GameManager.AngleBetweenVectors(_startPos, _target);
+
+            spriteBatch.Draw(GetTexture2D(), Position, _rect, Color.White, (float)angleRadians, new Vector2(0, 0), new Vector2(5, 5), SpriteEffects.None, 0f);
+        }
+
+
+
+        /// <summary>
+        /// Permet de definir la direction avec la position de la cible
+        /// </summary>
+        /// <param name="target">La position de la cible</param>
+        public void setDirectionFromVector(Vector2 target)
+        {
+            Direction = Vector2.Normalize(target - Position);
+        }
+
+        public abstract void setTextureRectangle(ref Rectangle rect);
+    }
+}
