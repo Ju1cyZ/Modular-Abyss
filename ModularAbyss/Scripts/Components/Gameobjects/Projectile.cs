@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Core;
+using ModularAbyss.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +21,9 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         private Vector2 _startPos;
 
         public int Speed = 20;
+
+        public delegate void OnTouchHandler(Projectile projectile, ICollider target);
+        public event OnTouchHandler OnTouch;
 
         public Vector2 Direction
         {
@@ -48,6 +52,22 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
         {
             Position += Direction * Speed;
+            SetColliderBounds();
+
+            foreach (ICollider collider in colliders)
+            {
+                if (Bounds.Intersects(collider.Bounds))
+                {
+                    OnTouch?.Invoke(this, collider);
+                    Destroy();
+                }
+            }
+
+            // Detruit le projectile si est trop loin du joueur
+            if (Vector2.Distance(Main.ActiveScene.Player.Position, Position) >= 5000)
+            {
+                Destroy();
+            }
         }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
@@ -71,5 +91,11 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         }
 
         public abstract void setTextureRectangle(ref Rectangle rect);
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            OnTouch = null; // desabonne TOUT le monde
+        }
     }
 }

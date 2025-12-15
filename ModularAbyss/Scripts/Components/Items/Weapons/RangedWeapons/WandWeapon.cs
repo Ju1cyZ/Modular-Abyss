@@ -10,12 +10,19 @@ using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Structures;
+using System.Diagnostics;
 
 namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
 {
     public class WandWeapon : RangedWeapon
     {
         private bool playingAnimation = false;
+
+        /// <summary>
+        /// L'ajustement de la position d'apparition du projectile a partir de l'arme
+        /// </summary>
+        [Obsolete("Cet variable n'est pas utilisee actuellement")]
+        public Vector2 ProjectilePosRelativeToWeapon = Vector2.Zero;
 
         public WandWeapon()
         {
@@ -42,7 +49,7 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
 
 
                 //La position central du joueur (sprite)
-                Vector2 characterPos = new Vector2(Main.ActiveScene.Player.Position.X + 160 + 80 / 2, Main.ActiveScene.Player.Position.Y + 160 + 80 / 2);
+                Vector2 characterPos = new Vector2(Main.ActiveScene.Player.Position.X + 160 + 80 / 2, Main.ActiveScene.Player.Position.Y + 160 + 80 / 2) - ProjectilePosRelativeToWeapon;
 
                 //L'angle de rotation depuis le joueur vers la souris
                 double angleRadians = GameManager.AngleBetweenVectors(characterPos, InputManager.MouseObject.mState.Position.ToVector2());
@@ -53,7 +60,14 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
                 //La position final de l'item
                 Vector2 itemPos = characterPos + offsetPos;
 
-                new Fireball(InputManager.MouseObject.mState.Position.ToVector2(), Main.ActiveScene.Player.Position);
+                Projectile p = new Fireball(InputManager.MouseObject.mState.Position.ToVector2(), itemPos);
+
+                Debug.Print($"le projectile : {p} a été tirer");
+
+                p.OnTouch += (p, c) =>
+                {
+                    Debug.Print($"le projectile : {p} a touché le ICollider : {c}");
+                };
 
                 playingAnimation = true;
 

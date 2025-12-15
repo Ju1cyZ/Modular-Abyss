@@ -126,9 +126,8 @@ namespace ModularAbyss.Scripts.Components
         protected abstract void setTexture2D(ref Texture2D texture2D);
 
         /// <summary>
-        /// Defini la texture du GameObject
+        /// Defini le boite de collision ainsi que sa position
         /// </summary>
-        /// <param name="texture2D">La variable qui va etre modifier</param>
         public abstract void SetColliderBounds();
 
         /// <summary>

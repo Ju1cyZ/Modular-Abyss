@@ -40,6 +40,7 @@ namespace ModularAbyss.Scripts.Structures
             Texture2D = SPRITES.WEAPON_WAND,
             SpriteRectangle = new Rectangle(0, 0, 13, 32),
             Damage = 3,
+            ProjectilePosRelativeToWeapon = new Vector2(0, +50)
         };
     }
 }
