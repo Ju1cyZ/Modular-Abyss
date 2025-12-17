@@ -52,7 +52,7 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
                 Vector2 characterPos = new Vector2(Main.ActiveScene.Player.Position.X + 160 + 80 / 2, Main.ActiveScene.Player.Position.Y + 160 + 80 / 2) - ProjectilePosRelativeToWeapon;
 
                 //L'angle de rotation depuis le joueur vers la souris
-                double angleRadians = GameManager.AngleBetweenVectors(characterPos, InputManager.MouseObject.mState.Position.ToVector2());
+                double angleRadians = GameManager.AngleBetweenVectors(characterPos, InputManager.MouseObject.Position.ToVector2());
 
                 //La position de l'item selon la rotation
                 Vector2 offsetPos = new Vector2((float)Math.Cos(angleRadians) * itemOffset, (float)Math.Sin(angleRadians) * itemOffset);
@@ -60,7 +60,7 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
                 //La position final de l'item
                 Vector2 itemPos = characterPos + offsetPos;
 
-                Projectile p = new Fireball(InputManager.MouseObject.mState.Position.ToVector2(), itemPos);
+                Projectile p = new Fireball(InputManager.MouseObject.Position.ToVector2(), itemPos);
 
                 Debug.Print($"le projectile : {p} a été tirer");
 

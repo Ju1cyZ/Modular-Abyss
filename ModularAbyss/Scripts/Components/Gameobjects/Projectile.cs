@@ -76,7 +76,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
             double angleRadians = GameManager.AngleBetweenVectors(_startPos, _target);
 
-            spriteBatch.Draw(GetTexture2D(), Position, _rect, Color.White, (float)angleRadians, new Vector2(0, 0), new Vector2(5, 5), SpriteEffects.None, 0f);
+            spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, _rect, Color.White, (float)angleRadians, new Vector2(0, 0), new Vector2(5, 5), SpriteEffects.None, 0f);
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Components.InputDevices;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;

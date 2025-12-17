@@ -103,13 +103,13 @@ namespace ModularAbyss.Scripts.Components.Items
         /// <param name="playerTextureSize">La taille de la texture du Joueur</param>
         /// <param name="mState">L'etat dans la souris</param>
         /// <param name="spriteBatch">Le spriteBatch</param>
-        public virtual void RenderItem(Player player, float playerTextureSize, MouseState mState, ref SpriteBatch spriteBatch)
+        public virtual void RenderItem(Player player, float playerTextureSize, ref SpriteBatch spriteBatch)
         {
             //La position central du joueur (sprite)
             Vector2 characterPos = new Vector2(player.Position.X + 160 + playerTextureSize / 2, player.Position.Y + 160 + playerTextureSize / 2);
 
             //L'angle de rotation depuis le joueur vers la souris
-            double angleRadians = GameManager.AngleBetweenVectors(characterPos, mState.Position.ToVector2());
+            double angleRadians = GameManager.AngleBetweenVectors(characterPos, InputManager.MouseObject.Position.ToVector2());
 
             //La position de l'item selon la rotation
             Vector2 offsetPos = new Vector2((float)Math.Cos(angleRadians) * itemOffset, (float)Math.Sin(angleRadians) * itemOffset);
@@ -119,7 +119,7 @@ namespace ModularAbyss.Scripts.Components.Items
 
             spriteBatch.Draw(
                 GetTexture2D(),
-                itemPos,
+                itemPos + GameManager.CameraPosition,
                 SpriteRectangle,
                 Color.White,
                 (float)angleRadians + (float)Math.PI / 2,

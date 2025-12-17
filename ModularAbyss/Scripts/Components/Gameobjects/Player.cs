@@ -130,9 +130,6 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            KeyboardState kState = Keyboard.GetState();
-            MouseState mState = Mouse.GetState();
-
             if (GLOBAL.DEBUGING)
             {
                 Texture2D _texture = new Texture2D(Main.GraphicsDevice, 1, 1);
@@ -145,7 +142,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
             if (!IsDead)
             {
-                DrawItems(inventory, mState, spriteBatch);
+                DrawItems(inventory, spriteBatch);
             }
         }
 
@@ -392,13 +389,13 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// Dessine les items des slots principaux (1-5)
         /// </summary>
         /// <param name="inventory">L'inventaire qui contient les items</param>
-        public void DrawItems(List<Item> inventory, MouseState mState, SpriteBatch spriteBatch)
+        public void DrawItems(List<Item> inventory, SpriteBatch spriteBatch)
         {
             foreach (Item item in inventory)
             {
                 if (typeof(Weapon).IsAssignableFrom(item.GetType()))
                 {
-                    (item as Weapon).RenderItem(this, TEXTURE_SIZE, mState, ref spriteBatch);
+                    (item as Weapon).RenderItem(this, TEXTURE_SIZE, ref spriteBatch);
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace ModularAbyss.Scripts.Components.InputDevices
 {
     public class MouseObject
     {
-        public MouseState mState
+        private MouseState mState
         {
             get => Mouse.GetState();
         }
@@ -47,7 +48,7 @@ namespace ModularAbyss.Scripts.Components.InputDevices
         {
             get
             {
-                return mState.Position;
+                return mState.Position - GameManager.CameraPosition.ToPoint();
             }
         }
 
@@ -90,7 +91,7 @@ namespace ModularAbyss.Scripts.Components.InputDevices
 
             spriteBatch.Draw(
                 _main.Content.Load<Texture2D>(SPRITES.MOUSE_ICONS),
-                Position.ToVector2(),
+                Position.ToVector2() + GameManager.CameraPosition,
                 MouseType,
                 Color.White, 0,
                 new Vector2(0, 0),

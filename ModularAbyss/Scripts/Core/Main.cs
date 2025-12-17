@@ -11,6 +11,7 @@ using ModularAbyss.Scripts.Components;
 using System.Diagnostics;
 using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Components.Gameobjects;
+using ModularAbyss.Scripts.Core;
 
 namespace ModularAbyss
 {
@@ -84,10 +85,27 @@ namespace ModularAbyss
             }
             base.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.M))
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                new Fireball(ActiveScene.Player.Position, new Vector2(0,0));
+                GameManager.MoveCamera(-1, 0);
             }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                GameManager.MoveCamera(1, 0);
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                GameManager.MoveCamera(0, -1);
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                GameManager.MoveCamera(0, 1);
+            }
+
         }
 
         /// <summary>

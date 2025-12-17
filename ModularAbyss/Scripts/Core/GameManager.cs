@@ -23,10 +23,10 @@ namespace ModularAbyss.Scripts.Core
         {
             Vector2 destination = new Vector2(x, y);
 
-            destination.X += GLOBAL.WINDOW_WIDTH / 2;
-            destination.Y += GLOBAL.WINDOW_HEIGHT / 2;
+            //destination.X += GLOBAL.WINDOW_WIDTH / 2;
+            //destination.Y += GLOBAL.WINDOW_HEIGHT / 2;
 
-            CameraPosition = destination;
+            CameraPosition += destination;
         }
 
         /// <summary>

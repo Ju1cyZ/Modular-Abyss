@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
         private int _barID = 4;
         private int _progressBarSizeX = 48;
         private int _progressBarSizeY = 16;
+        public bool isSticky = false;
 
         public int value;
         public int maxValue;
@@ -32,7 +34,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GetTexture2D(), Position, getCorrectProgressBar(value, maxValue), Color.White, 0, new Vector2(0, 0), new Vector2(Scale, Scale), SpriteEffects.None, 0f);
+            spriteBatch.Draw(GetTexture2D(), isSticky ? Position : Position + GameManager.CameraPosition, getCorrectProgressBar(value, maxValue), Color.White, 0, new Vector2(0, 0), new Vector2(Scale, Scale), SpriteEffects.None, 0f);
         }
 
         /// <summary>

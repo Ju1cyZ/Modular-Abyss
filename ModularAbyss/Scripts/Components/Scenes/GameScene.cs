@@ -42,6 +42,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
                 (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).value = Player.Health;
                 (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).maxValue = Player.MAX_HEALTH;
                 HudObjects.GetValueOrDefault("HealthBar").Scale = 5;
+                (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).isSticky = true;
             }
 
             Text healthInfo = HudObjects.GetValueOrDefault("HealthInfo") as Text;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModularAbyss.Scripts.Interfaces;
+using ModularAbyss.Scripts.Core;
 
 namespace ModularAbyss.Scripts.Components
 {
@@ -84,7 +85,7 @@ namespace ModularAbyss.Scripts.Components
             {
                 for (int X = 0; X < Width; X++)
                 {
-                    spriteBatch.Draw(_tileset.GetTexture2D(), new Vector2(X * _tileset.TILE_SIZE * 10, Y * _tileset.TILE_SIZE * 10) + Position, _tileset.getTile(_tilesIds[X, Y]), Color.White, 0, Vector2.Zero, 10, SpriteEffects.None, 0);
+                    spriteBatch.Draw(_tileset.GetTexture2D(), new Vector2(X * _tileset.TILE_SIZE * 10, Y * _tileset.TILE_SIZE * 10) + Position + GameManager.CameraPosition, _tileset.getTile(_tilesIds[X, Y]), Color.White, 0, Vector2.Zero, 10, SpriteEffects.None, 0);
                 }
             }
         } 
