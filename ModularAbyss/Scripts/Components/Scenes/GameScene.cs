@@ -6,12 +6,15 @@ using ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies;
 using ModularAbyss.Scripts.Components.HudObjects;
 using ModularAbyss.Scripts.Components.Tilemaps;
 using ModularAbyss.Scripts.Structures;
+using System;
 using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components.Scene.Scenes
 {
     public class GameScene : Scene
     {
+        Wave currentWave;
+
         protected override void LoadContent()
         {
             tilemap = new Tilemap(TILESET.FLOOR, 10, 5);
@@ -51,39 +54,15 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         /// </summary>
         protected override void CreateGameObjects()
         {
-            //GameObjects.Add("Slime", new Slime());
-            //GameObjects.GetValueOrDefault("Slime").Position = new Vector2(500, 200);
-            //(GameObjects.GetValueOrDefault("Slime") as Entity).Destroyed += DestroyGameobject;
-
-            //GameObjects.Add("Slime_01", new Slime());
-            //GameObjects.GetValueOrDefault("Slime_01").Position = new Vector2(700, 200);
-            //(GameObjects.GetValueOrDefault("Slime_01") as Entity).Destroyed += DestroyGameobject;
-
             GameObjects.Add("Player", new Player());
             Player.inventory.Add(ITEMS.WOODEN_WAND);
+            Player.Stats.setStatValue(STATS_ID.RANGED_DAMAGE, 23);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(
             };
 
-
-            List<Enemy> enemies = new List<Enemy>();
-            for (int i = 0; i < 10; i++)
-            {
-                Enemy enemy = new Slime(true);
-                enemy.Initialize();
-                enemy.OnDestroyed += DestroyGameobject;
-                enemies.Add(enemy);
-            }
-
-            Wave wave = new Wave(enemies);
-            wave.mapSize = new Vector2(1920 - 160, 1080 - 160);
-            List<Enemy> spawnedEnemies = wave.SpawnEnemies();
-
-            foreach (Enemy item in spawnedEnemies)
-            {
-                GameObjects.Add(item.GetType().ToString() + GameObjects.Count, item);
-            }
+            currentWave = GenerateNewWave(50);
         }
 
         /// <summary>
@@ -113,5 +92,27 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             tilemapCollider.LoadFromCSV(TILEMAPS.GAME_WALL);
         }
 
+        public Wave GenerateNewWave(int waveNumber)
+        {
+            List<Enemy> enemies = new List<Enemy>();
+            for (int i = 0; i < 5 + Math.Pow(waveNumber / 2, 2); i++)
+            {
+                Enemy enemy = new Slime(true);
+                enemy.Initialize();
+                enemy.OnDestroyed += DestroyGameobject;
+                enemies.Add(enemy);
+            }
+
+            Wave wave = new Wave(enemies);
+            wave.mapSize = new Vector2(1920 - 160, 1080 - 160);
+            List<Enemy> spawnedEnemies = wave.SpawnEnemies();
+
+            foreach (Enemy item in spawnedEnemies)
+            {
+                GameObjects.Add(item.GetType().ToString() + GameObjects.Count, item);
+            }
+
+            return wave;
+        }
     }
 }

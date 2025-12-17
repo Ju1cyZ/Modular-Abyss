@@ -16,8 +16,8 @@ namespace ModularAbyss.Scripts.Components
 {
     public static class InputManager
     {
-        public static MouseObject mouseObject = new();
-        public static KeyboardObject keyboardObject = new();
+        private static MouseObject mouseObject = new();
+        private static KeyboardObject keyboardObject = new();
 
         public static MouseObject MouseObject
         {

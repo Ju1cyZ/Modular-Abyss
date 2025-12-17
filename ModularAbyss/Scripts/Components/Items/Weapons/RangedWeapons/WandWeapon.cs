@@ -11,6 +11,7 @@ using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Structures;
 using System.Diagnostics;
+using ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies;
 
 namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
 {
@@ -21,7 +22,6 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
         /// <summary>
         /// L'ajustement de la position d'apparition du projectile a partir de l'arme
         /// </summary>
-        [Obsolete("Cet variable n'est pas utilisee actuellement")]
         public Vector2 ProjectilePosRelativeToWeapon = Vector2.Zero;
 
         public WandWeapon()
@@ -67,6 +67,12 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
                 p.OnTouch += (p, c) =>
                 {
                     Debug.Print($"le projectile : {p} a touché le ICollider : {c}");
+                    if (c.GetType().IsAssignableTo(typeof(Enemy)))
+                    {
+                        Enemy enemy = (Enemy)c;
+
+                        enemy.HurtWithStats(Damage, Main.ActiveScene.Player, STATS_ID.RANGED_DAMAGE);
+                    }
                 };
 
                 playingAnimation = true;
