@@ -16,9 +16,19 @@ namespace ModularAbyss.Scripts.Components
         private Main _main;
         private List<Enemy> _enemies;
 
+        private bool _eventTrigered = false;
+
+        public Dictionary<string, GameObject> Enemies
+        {
+            get => Main.ActiveScene.GameObjects.Where(g => typeof(Enemy).IsAssignableFrom(g.Value.GetType())).ToDictionary();
+        }
+
         public Vector2 mapSize = new Vector2();
         public int SpawnRaduisMax = 800;
         public int SpawnRaduisMin = 200;
+
+        public delegate void OnEnemiesAllDeadHandler(Wave wave);
+        public event OnEnemiesAllDeadHandler OnEnemiesAllDead;
 
         public Wave(List<Enemy> enemies)
         {
@@ -31,9 +41,12 @@ namespace ModularAbyss.Scripts.Components
 
         protected virtual void Update(GameTime gameTime, List<ICollider> colliders)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.M))
-                SpawnEnemies();
-
+            // Quand tous les enemies sont morts
+            if (Enemies.Count == 0 && !_eventTrigered)
+            {
+                OnEnemiesAllDead?.Invoke(this);
+                _eventTrigered = true;
+            }
         }
 
         /// <summary>

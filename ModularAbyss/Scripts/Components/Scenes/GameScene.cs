@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Components.Gameobjects;
 using ModularAbyss.Scripts.Components.Gameobjects.Entities;
@@ -14,6 +15,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
     public class GameScene : Scene
     {
         Wave currentWave;
+        private int waveNumber = 0;
 
         protected override void LoadContent()
         {
@@ -62,7 +64,8 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
                 // PLAYER DED :(
             };
 
-            currentWave = GenerateNewWave(50);
+            currentWave = GenerateNewWave(waveNumber);
+            currentWave.OnEnemiesAllDead += EndOfWave;
         }
 
         /// <summary>
@@ -113,6 +116,14 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             }
 
             return wave;
+        }
+
+        public void EndOfWave(Wave wave)
+        {
+            wave.Destroy();
+            waveNumber++;
+            currentWave = GenerateNewWave(waveNumber);
+            currentWave.OnEnemiesAllDead += EndOfWave;
         }
     }
 }
