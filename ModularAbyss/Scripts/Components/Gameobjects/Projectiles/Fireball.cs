@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,29 @@ namespace ModularAbyss.Scripts.Components.Gameobjects.Projectiles
     {
         public Fireball(Vector2 target, Vector2 startPos) : base(target, startPos) { }
 
+        protected override void OnTwoGameObjectsCollision(ICollider object1, ICollider object2)
+        {
+            // Verifie si c'est la collision de l'object qui a ete toucher
+            if (object1 != this && object2 != this)
+            {
+                return;
+            }
+
+            ICollider gameObjectTouched;
+
+            // On determine lequelle des deux objet est la cible
+            if (object1 == this)
+            {
+                gameObjectTouched = object2;
+            }
+            else
+            {
+                gameObjectTouched = object1;
+            }
+
+            Touch(this, gameObjectTouched);
+            
+        }
         public override void SetColliderBounds()
         {
             Bounds = new Rectangle(new Point((int)Position.X, (int)Position.Y), new Point(13, 24));

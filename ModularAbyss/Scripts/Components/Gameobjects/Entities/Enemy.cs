@@ -26,12 +26,12 @@ namespace ModularAbyss.Scripts.Components.Gameobjects.Entities
             (this as ILifeBar).Initialize(MAX_HEALTH);
         }
 
-        protected override void Update(GameTime gameTime, List<ICollider> colliders)
+        protected override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, colliders);
+            base.Update(gameTime);
             (this as ILifeBar).Update(Health);
             attackTime -= gameTime.ElapsedGameTime.TotalSeconds;
-            Position += IAi.moveTowardsPlayer(Position) * Stats.getStatValue(STATS_ID.MOVEMENT_SPEED);
+            Position += IAi.moveTowardsPlayer(Position) * Stats.getStatValue(STATS_ID.MOVEMENT_SPEED) * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             SetColliderBounds();
         }

@@ -12,6 +12,7 @@ using System.Diagnostics;
 using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Components.Gameobjects;
 using ModularAbyss.Scripts.Core;
+using System;
 
 namespace ModularAbyss
 {
@@ -22,17 +23,23 @@ namespace ModularAbyss
 
         private static Main _instance;
         public static Scene ActiveScene;
-        //public static MouseObject Mouse;
+
+        int frameCount = 0;
+        double elapsedTime = 0;
+        public static int FPS = 0;
 
         /* EVENTS */
         public delegate void OnInitializeHandler();
         public event OnInitializeHandler OnInitialize;
         public delegate void OnLoadContentHandler();
         public event OnLoadContentHandler OnLoadContent;
-        public delegate void OnUpdateHandler(GameTime gameTime, List<ICollider> colliders);
+        public delegate void OnUpdateHandler(GameTime gameTime);
         public event OnUpdateHandler OnUpdate;
         public delegate void OnDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
         public event OnDrawHandler OnDraw;
+
+        public delegate void OnTwoGameObjectsCollisionHandler(ICollider object1, ICollider object2);
+        public event OnTwoGameObjectsCollisionHandler OnTwoGameObjectsCollision;
 
         private Main()
         {
@@ -47,9 +54,9 @@ namespace ModularAbyss
 
             GameManager.Camera = new CameraObject();
 
-            //_graphics.SynchronizeWithVerticalRetrace = false;
-            //IsFixedTimeStep = false;
-            //_graphics.ApplyChanges();
+            _graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
+            _graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -83,31 +90,26 @@ namespace ModularAbyss
             
             if (ActiveScene.isInitialized)
             {
-                OnUpdate?.Invoke(gameTime, ActiveScene.CollidersObjects);
+                OnUpdate?.Invoke(gameTime);
             }
             base.Update(gameTime);
 
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (!ActiveScene.Player.IsDead )
             {
-                GameManager.MoveCamera(-1, 0);
+                CheckCollision(ActiveScene.CollidersObjects);
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
+            frameCount++;
+
+            if (elapsedTime >= 1.0)
             {
-                GameManager.MoveCamera(1, 0);
+                FPS = frameCount;
+                frameCount = 0;
+                elapsedTime = 0;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                GameManager.MoveCamera(0, -1);
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                GameManager.MoveCamera(0, 1);
-            }
-
+            Debug.Print($"FPS : {FPS}");
         }
 
         /// <summary>
@@ -133,6 +135,20 @@ namespace ModularAbyss
             _spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void CheckCollision(List<ICollider> colliders)
+        {
+            for (int I = 0; I < colliders.Count; I++)
+            {
+                for (int II = I; II < colliders.Count; II++)
+                {
+                    if (colliders[I] != colliders[II] && colliders[I].Bounds.Intersects(colliders[II].Bounds))
+                    {
+                        OnTwoGameObjectsCollision?.Invoke(colliders[I], colliders[II]);
+                    }
+                }
+            }
         }
 
         /// <summary>

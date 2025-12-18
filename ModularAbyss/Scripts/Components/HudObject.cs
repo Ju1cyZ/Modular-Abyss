@@ -46,7 +46,7 @@ namespace ModularAbyss.Scripts.Components
 
         protected virtual void Initialize() { }
 
-        protected virtual void Update(GameTime gameTime, List<ICollider> colliders) { }
+        protected virtual void Update(GameTime gameTime) { }
 
         protected abstract void Draw(GameTime gameTime, ref SpriteBatch spriteBatch);
 

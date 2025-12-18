@@ -59,11 +59,14 @@ namespace ModularAbyss.Scripts.Components
             //On s'abonne aux events
             Main.OnInitialize += Initialize;
             Main.OnLoadContent += LoadContent;
+            Main.OnTwoGameObjectsCollision += OnTwoGameObjectsCollision;
             if (!needsToBeCreated)
             {
                 Create();
             }
         }
+
+        protected abstract void OnTwoGameObjectsCollision(ICollider object1, ICollider object2);
 
         /// <summary>
         /// Permet d'initializer la variable de bases du gameObject
@@ -80,7 +83,7 @@ namespace ModularAbyss.Scripts.Components
         /// </summary>
         /// <param name="gameTime">Le temps entre l'appel precedent et l'appel actuel</param>
         /// <param name="colliders"></param>
-        protected virtual void Update(GameTime gameTime, List<ICollider> colliders) { }
+        protected virtual void Update(GameTime gameTime) { }
 
         /// <summary>
         /// Dessine le gameObject, est appele tous les ticks apres update
@@ -141,6 +144,7 @@ namespace ModularAbyss.Scripts.Components
             if (_created)
             {
                 Main.OnUpdate -= Update;
+                Main.OnTwoGameObjectsCollision -= OnTwoGameObjectsCollision;
                 Main.OnDraw -= Draw;
             }
 

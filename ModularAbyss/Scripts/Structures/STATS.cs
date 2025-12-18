@@ -25,7 +25,7 @@ namespace ModularAbyss.Scripts.Structures
             Id = STATS_ID.MOVEMENT_SPEED,
             Name = "Vitesse",
             Description = "La vitesse de déplacement.",
-            Value = 1,
+            Value = 60,
         };
         public static Stat ATTACK_SPEED => new Stat()
         {

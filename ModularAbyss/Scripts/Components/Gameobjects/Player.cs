@@ -9,6 +9,7 @@ using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +32,8 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         private const int TEXTURE_SIZE = 80;
 
         /* Movement */
-        public const int WALK_SPEED = 6;
-        public const int RUN_SPEED = 9;
+        public const int WALK_SPEED = 300;
+        public const int RUN_SPEED = 450;
         public int currentSpeed = 0;
         public PlayerMovementStates PlayerMovementStates;
 
@@ -107,7 +108,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             DefineStats();
         }
 
-        protected override void Update(GameTime gameTime, List<ICollider> colliders)
+        protected override void Update(GameTime gameTime)
         {
             /* INPUT */
             KeyboardState kState = Keyboard.GetState();
@@ -118,7 +119,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             PlayerMoveDirections playerMoveDirection = ManageMovementInputs(kState);
             PlayerMovementStates playerMovementState = ManageMovementStatesInputs(kState, playerMoveDirection);
 
-            ManageMovement(playerMoveDirection, playerMovementState, colliders, gameTime);
+            ManageMovement(playerMoveDirection, playerMovementState, gameTime);
 
             /* Player Animation */
             ManagePlayerAnimation(playerMoveDirection, playerMovementState);
@@ -155,7 +156,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// Permet de deplacer le joueur
         /// </summary>
         /// <param name="direction">La direction de deplacement</param>
-        public void ManageMovement(PlayerMoveDirections direction, PlayerMovementStates states, List<ICollider> colliders, GameTime gameTime)
+        public void ManageMovement(PlayerMoveDirections direction, PlayerMovementStates states, GameTime gameTime)
         {
             switch (states)
             {
@@ -163,10 +164,10 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
                     currentSpeed = 0;
                     break;
                 case PlayerMovementStates.walk:
-                    currentSpeed = WALK_SPEED + Stats.getStatValue(STATS_ID.MOVEMENT_SPEED);
+                    currentSpeed = 1;
                     break;
                 case PlayerMovementStates.run:
-                    currentSpeed = RUN_SPEED + Stats.getStatValue(STATS_ID.MOVEMENT_SPEED);
+                    currentSpeed = 2;
                     break;
             }
 
@@ -202,12 +203,12 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
                     break;
             }
 
-            Position += movement;
+            Position += movement * Stats.getStatValue(STATS_ID.MOVEMENT_SPEED) * (float)gameTime.ElapsedGameTime.TotalSeconds * 200;
 
             SetColliderBounds();
 
             //Collision detection
-            manageCollision(movement, colliders, gameTime);
+            manageCollision(movement, Main.ActiveScene.CollidersObjects, gameTime);
 
         }
 
@@ -499,5 +500,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             }
             return Health += amount;
         }
+
+        protected override void OnTwoGameObjectsCollision(ICollider object1, ICollider object2) { return; }
     }
 }

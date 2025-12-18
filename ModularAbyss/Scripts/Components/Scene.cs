@@ -70,16 +70,9 @@ namespace ModularAbyss.Scripts.Components.Scene
             {
                 item.Initialize();
             }
-
-            //Recupere tous les elemets de la liste qui implementes l'interface ICollider et l'ajoute a colliders
-            foreach (ICollider collider in GameObjects.Values.Where(gameObject => typeof(ICollider).IsAssignableFrom(gameObject.GetType())))
-            {
-                collider.SetColliderBounds();
-                CollidersObjects.Add(collider);
-            }
         }
 
-        protected virtual void Update(GameTime gameTime, List<ICollider> colliders)
+        protected virtual void Update(GameTime gameTime)
         {
             UpdateHudObjects();
         }

@@ -32,9 +32,9 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
             itemOffset = 90;
         }
 
-        protected override void Update(GameTime gameTime, List<ICollider> colliders)
+        protected override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, colliders);
+            base.Update(gameTime);
 
             PlayAttackAnimation(gameTime);
         }

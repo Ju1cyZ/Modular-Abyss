@@ -31,7 +31,7 @@ namespace ModularAbyss.Scripts.Core
         
         }
 
-        private void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
+        private void Update(GameTime gameTime)
         {
             Vector2 cameraMovePos = new Vector2(-(GLOBAL.WINDOW_WIDTH / 2), -(GLOBAL.WINDOW_HEIGHT / 2));
 
@@ -67,8 +67,8 @@ namespace ModularAbyss.Scripts.Core
         {
             Vector2 destination = new Vector2(x, y);
 
-            //destination.X += GLOBAL.WINDOW_WIDTH / 2;
-            //destination.Y += GLOBAL.WINDOW_HEIGHT / 2;
+            destination.X += GLOBAL.WINDOW_WIDTH / 2;
+            destination.Y += GLOBAL.WINDOW_HEIGHT / 2;
 
             Position += destination;
 
@@ -86,33 +86,41 @@ namespace ModularAbyss.Scripts.Core
         {
             destination.X += GLOBAL.WINDOW_WIDTH / 2;
             destination.Y += GLOBAL.WINDOW_HEIGHT / 2;
-
-            float distance = Vector2.Distance(Position, destination);
-
-            //Le gameObject est arriver a destination
-            if (distance <= 10)
+            if (Main.FPS >= 50) // Le mouvement commence a bugger en dessous de 50 FPS
             {
+
+                float distance = Vector2.Distance(Position, destination);
+
+                //Le gameObject est arriver a destination
+                if (distance <= 10)
+                {
+                    return true;
+                }
+
+                //Defini si il doit reculer ou pas 
+                float movementX = Position.X > destination.X ? -speed : speed;
+                //Defini si il doit monter ou pas
+                float movementY = Position.Y > destination.Y ? -speed : speed;
+
+                //Cas ou la position N est egale a la destination N donc on bouge pas dans l'axe N
+                movementX = Position.X == destination.X ? 0 : movementX;
+                movementY = Position.Y == destination.Y ? 0 : movementY;
+
+                Vector2 movement = new(movementX, movementY);
+
+                //Effectue le mouvement
+                Position += movement * (float)deltaTime;
+                //Position.X += movementX * (float)deltaTime;
+                //Position.Y += movementY * (float)deltaTime;
+
+                OnCameraMove?.Invoke(Position);
+                return false;
+            }
+            else
+            {
+                Position = destination;
                 return true;
             }
-
-            //Defini si il doit reculer ou pas 
-            float movementX = Position.X > destination.X ? -speed : speed;
-            //Defini si il doit monter ou pas
-            float movementY = Position.Y > destination.Y ? -speed : speed;
-
-            //Cas ou la position N est egale a la destination N donc on bouge pas dans l'axe N
-            movementX = Position.X == destination.X ? 0 : movementX;
-            movementY = Position.Y == destination.Y ? 0 : movementY;
-
-            Vector2 movement = new(movementX, movementY);
-
-            //Effectue le mouvement
-            Position += movement * (float)deltaTime;
-            //Position.X += movementX * (float)deltaTime;
-            //Position.Y += movementY * (float)deltaTime;
-
-            OnCameraMove?.Invoke(Position);
-            return false;
         }
 
         /// <summary>

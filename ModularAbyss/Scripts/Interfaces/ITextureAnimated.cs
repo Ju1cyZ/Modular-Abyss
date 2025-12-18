@@ -21,7 +21,7 @@ namespace ModularAbyss.Scripts.Interfaces
         {
             animationTimeBetweenFrame += deltaTime;
 
-            if(animationTimeBetweenFrame >= 0.08f)
+            if (animationTimeBetweenFrame >= 0.08f)
             {
                 frameIndex += 1;
                 animationTimeBetweenFrame = 0;

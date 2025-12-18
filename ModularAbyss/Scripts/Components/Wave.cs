@@ -39,7 +39,7 @@ namespace ModularAbyss.Scripts.Components
             _main.OnUpdate += Update;
         }
 
-        protected virtual void Update(GameTime gameTime, List<ICollider> colliders)
+        protected virtual void Update(GameTime gameTime)
         {
             // Quand tous les enemies sont morts
             if (Enemies.Count == 0 && !_eventTrigered)

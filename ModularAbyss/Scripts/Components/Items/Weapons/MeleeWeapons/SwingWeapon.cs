@@ -20,8 +20,10 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.MeleeWeapons
             itemOffset = 120;
         }
 
-        protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
+        protected override void Update(GameTime gameTime)
         {
+            // TODO : Adapter au nouveau system de detection de collision
+
             foreach (GameObject gameObject in Main.ActiveScene.CollidersObjects)
             {
                 //Detecte si le joueur touche un Collider avec son SwingWeapon

@@ -20,7 +20,10 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         // La position de depart
         private Vector2 _startPos;
 
-        public int Speed = 20;
+        // utiliser comme identifiant dans le liste de gameobjects
+        private string projectileId;
+
+        public int Speed = 2000;
 
         public delegate void OnTouchHandler(Projectile projectile, ICollider target);
         public event OnTouchHandler OnTouch;
@@ -47,21 +50,16 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             Position = _startPos;
             setTextureRectangle(ref _rect);
             setDirectionFromVector(_target);
+
+            projectileId = Guid.NewGuid().ToString();
+
+            Main.ActiveScene.GameObjects.Add(projectileId, this);
         }
 
-        protected override void Update(GameTime gameTime, List<Interfaces.ICollider> colliders)
+        protected override void Update(GameTime gameTime)
         {
-            Position += Direction * Speed;
+            Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             SetColliderBounds();
-
-            foreach (ICollider collider in colliders)
-            {
-                if (Bounds.Intersects(collider.Bounds))
-                {
-                    OnTouch?.Invoke(this, collider);
-                    Destroy();
-                }
-            }
 
             // Detruit le projectile si est trop loin du joueur
             if (Vector2.Distance(Main.ActiveScene.Player.Position, Position) >= 5000)
@@ -80,6 +78,11 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         }
 
 
+        protected void Touch(Projectile projectile, ICollider object2) 
+        {
+            OnTouch?.Invoke(projectile, object2);
+            Destroy();
+        }
 
         /// <summary>
         /// Permet de definir la direction avec la position de la cible
@@ -95,6 +98,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         public override void Destroy()
         {
             base.Destroy();
+            Main.ActiveScene.GameObjects.Remove(projectileId);
             OnTouch = null; // desabonne TOUT le monde
         }
     }

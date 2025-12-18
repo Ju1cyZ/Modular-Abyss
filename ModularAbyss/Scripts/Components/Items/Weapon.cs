@@ -75,7 +75,7 @@ namespace ModularAbyss.Scripts.Components.Items
             Attack = _attack;
         }
 
-        protected virtual void Update(GameTime gameTime, List<Interfaces.ICollider> colliders) { }
+        protected virtual void Update(GameTime gameTime) { }
 
         /// <summary>
         /// L'attaque par defaut de l'arme

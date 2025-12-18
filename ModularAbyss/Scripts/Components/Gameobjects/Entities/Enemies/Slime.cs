@@ -33,14 +33,15 @@ namespace ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies
             };
             _currentAnim = _entityAnimations.GetValueOrDefault("ANIM_IDLE");
         }
+        protected override void OnTwoGameObjectsCollision(ICollider object1, ICollider object2) { return; }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, ref spriteBatch);
-            Texture2D _texture = new Texture2D(Main.GraphicsDevice, 1, 1);
-            _texture.SetData(new Color[] { Color.Blue });
             if (GLOBAL.DEBUGING)
             {
+                Texture2D _texture = new Texture2D(Main.GraphicsDevice, 1, 1);
+                _texture.SetData(new Color[] { Color.Blue });
                 spriteBatch.Draw(_texture, new Vector2(Position.X + 120, Position.Y + 120), Bounds, Color.White);
             }
 

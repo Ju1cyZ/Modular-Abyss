@@ -68,9 +68,9 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch) { }
 
-        protected override void Update(GameTime gameTime, List<ICollider> colliders)
+        protected override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, colliders);
+            base.Update(gameTime);
         }
 
         /// <summary>
