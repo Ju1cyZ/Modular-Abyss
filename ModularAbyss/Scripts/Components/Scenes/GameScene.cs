@@ -59,7 +59,6 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         {
             GameObjects.Add("Player", new Player());
             Player.inventory.Add(ITEMS.WOODEN_WAND);
-            Player.Stats.setStatValue(STATS_ID.RANGED_DAMAGE, 23);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(
@@ -84,6 +83,11 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             HudObjects.Add("HealthInfo", new Text($"{Player.Health} / {Player.MAX_HEALTH}"));
             HudObjects.GetValueOrDefault("HealthInfo").Position = new Vector2(54, 29);
             HudObjects.GetValueOrDefault("HealthInfo").Destroyed += DestroyHudobject;
+
+            HudObjects.Add("CurrentWave", new Text($"{waveNumber + 1}"));
+            HudObjects.GetValueOrDefault("CurrentWave").Position = new Vector2(54, 69);
+            HudObjects.GetValueOrDefault("CurrentWave").Scale = 5;
+            HudObjects.GetValueOrDefault("CurrentWave").Destroyed += DestroyHudobject;
         }
 
 
@@ -125,6 +129,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             waveNumber++;
             currentWave = GenerateNewWave(waveNumber);
             currentWave.OnEnemiesAllDead += EndOfWave;
+            (HudObjects.GetValueOrDefault("CurrentWave") as Text).setText($"{waveNumber + 1}");
         }
     }
 }

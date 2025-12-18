@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace ModularAbyss.Scripts.Components
             Main.OnInitialize += Initialize;
             Main.OnUpdate += Update;
             Main.OnDraw += Draw;
+            CameraObject.OnCameraMove += CameraMove;
 
             Position = position;
             Scale = scale;
@@ -113,5 +115,11 @@ namespace ModularAbyss.Scripts.Components
 
             Destroyed?.Invoke(this);
         }
+
+        /// <summary>
+        /// Est appeler quand la camera bouge
+        /// </summary>
+        /// <param name="newPos">La nouvelle position de la camera</param>
+        public virtual void CameraMove(Vector2 newPos) { }
     }
 }

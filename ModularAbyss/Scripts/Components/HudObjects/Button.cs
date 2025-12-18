@@ -4,6 +4,7 @@ using ModularAbyss.Scripts.Components.InputDevices;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
+using System;
 using System.Collections.Generic;
 
 namespace ModularAbyss.Scripts.Components.HudObjects
@@ -56,7 +57,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
             {
                 Texture2D _texture = new Texture2D(Main.getInstance().GraphicsDevice, 1, 1);
                 _texture.SetData(new Color[] { Color.Green });
-                spriteBatch.Draw(_texture, new Vector2(Position.X, Position.Y), _buttonRect, Color.White);
+                spriteBatch.Draw(_texture, new Vector2(Position.X, Position.Y) - GameManager.CameraPosition, _buttonRect, Color.White);
             }
 
             _buttonRect.Location = Position.ToPoint();
@@ -78,6 +79,8 @@ namespace ModularAbyss.Scripts.Components.HudObjects
             base.Update(gameTime, colliders);
 
             MouseObject mouse = InputManager.MouseObject;
+
+            _buttonRect = new Rectangle(_buttonRect.Location - GameManager.CameraPosition.ToPoint(), _buttonRect.Size);
 
             if (mouse.CollisionRect.Intersects(_buttonRect))
             {

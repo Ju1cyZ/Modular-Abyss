@@ -45,6 +45,8 @@ namespace ModularAbyss
 
             _instance = this;
 
+            GameManager.Camera = new CameraObject();
+
             //_graphics.SynchronizeWithVerticalRetrace = false;
             //IsFixedTimeStep = false;
             //_graphics.ApplyChanges();
@@ -114,7 +116,13 @@ namespace ModularAbyss
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
+            Color backgroundColor = new Color();
+            
+            backgroundColor.R = 29;
+            backgroundColor.G = 28;
+            backgroundColor.B = 43;
+
+            GraphicsDevice.Clear(backgroundColor);
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             if (ActiveScene.isInitialized)
