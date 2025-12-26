@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Components.InputDevices.InputElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,37 +15,35 @@ namespace ModularAbyss.Scripts.Components.InputDevices
             get => Keyboard.GetState();
         }
 
-        private Keys MOVE_UP = Keys.W;
-        private Keys MOVE_LEFT = Keys.A;
-        private Keys MOVE_DOWN = Keys.S;
-        private Keys MOVE_RIGHT = Keys.D;
-        private Keys SPRINT = Keys.LeftShift;
+        private Input MOVE_UP = new Input(Keys.W);
+        private Input MOVE_LEFT = new Input(Keys.A);
+        private Input MOVE_DOWN = new Input(Keys.S);
+        private Input MOVE_RIGHT = new Input(Keys.D);
+        private Input SPRINT = new Input(Keys.LeftShift);
 
         public bool MOVE_UP_PRESSED
         {
-            get => kState.IsKeyDown(MOVE_UP);
+            get => MOVE_UP.IsKeyDownThisFrame();
         }
 
         public bool MOVE_LEFT_PRESSED
         {
-            get => kState.IsKeyDown(MOVE_LEFT);
+            get => MOVE_LEFT.IsKeyDownThisFrame();
         }
 
         public bool MOVE_DOWN_PRESSED
         {
-            get => kState.IsKeyDown(MOVE_DOWN);
+            get => MOVE_DOWN.IsKeyDownThisFrame();
         }
 
         public bool MOVE_RIGHT_PRESSED
         {
-            get => kState.IsKeyDown(MOVE_RIGHT);
+            get => MOVE_RIGHT.IsKeyDownThisFrame();
         }
 
         public bool SPRINT_PRESSED
         {
-            get => kState.IsKeyDown(SPRINT);
+            get => SPRINT.IsKeyDownThisFrame();
         }
-
-
     }
 }

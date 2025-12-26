@@ -15,7 +15,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
     public class GameScene : Scene
     {
         Wave currentWave;
-        private int waveNumber = 30;
+        private int waveNumber = 0;
 
         protected override void LoadContent()
         {
@@ -58,7 +58,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         protected override void CreateGameObjects()
         {
             GameObjects.Add("Player", new Player());
-            Player.inventory.Add(ITEMS.STEEL_SWORD);
+            Player.inventory.Add(ITEMS.WOODEN_WAND);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(

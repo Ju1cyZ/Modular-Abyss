@@ -99,7 +99,7 @@ namespace ModularAbyss.Scripts.Components.Items.Weapons.RangedWeapons
             if (!playingAnimation && itemOffset != MAX_ITEM_OFFSET) // Permet de remettre l'arme a zero
             {
                 itemOffset += 1 * gameTime.ElapsedGameTime.Milliseconds;
-                if (itemOffset == MAX_ITEM_OFFSET)
+                if (itemOffset >= MAX_ITEM_OFFSET)
                 {
                     itemOffset = MAX_ITEM_OFFSET;
                     asAttacked = false;

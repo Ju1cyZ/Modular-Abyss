@@ -86,7 +86,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
             {
                 OnHover?.Invoke(this);
                 isHovered = true;
-                if (mouse.LeftButtonPressed)
+                if (InputManager.MouseObject.LeftButtonPressedThisFrame)
                 {
                     OnClick?.Invoke(this);
                 }

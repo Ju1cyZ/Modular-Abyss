@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Components.InputDevices.InputElements;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
@@ -10,10 +11,13 @@ namespace ModularAbyss.Scripts.Components.InputDevices
 {
     public class MouseObject
     {
-        private MouseState mState
+        public MouseState mState
         {
             get => Mouse.GetState();
         }
+
+        private Input LeftButton = new Input(MouseButtons.LeftButton);
+        private Input RightButton = new Input(MouseButtons.RightButton);
 
         private Main _main;
         public Rectangle CollisionRect;
@@ -26,9 +30,21 @@ namespace ModularAbyss.Scripts.Components.InputDevices
         {
             get
             {
-                return mState.LeftButton == ButtonState.Pressed;
+                return LeftButton.IsKeyDown();
             }
         }
+
+        /// <summary>
+        /// Get Left Click State
+        /// </summary>
+        public bool LeftButtonPressedThisFrame
+        {
+            get
+            {
+                return LeftButton.IsKeyDownThisFrame();
+            }
+        }
+
 
         /// <summary>
         /// Get Right Click State
@@ -37,7 +53,18 @@ namespace ModularAbyss.Scripts.Components.InputDevices
         {
             get
             {
-                return mState.RightButton == ButtonState.Pressed;
+                return RightButton.IsKeyDown();
+            }
+        }
+
+        /// <summary>
+        /// Get Right Click State
+        /// </summary>
+        public bool RightButtonPressedThisFrame
+        {
+            get
+            {
+                return RightButton.IsKeyDownThisFrame();
             }
         }
 
@@ -69,7 +96,7 @@ namespace ModularAbyss.Scripts.Components.InputDevices
             CollisionRect.X = Position.X;
             CollisionRect.Y = Position.Y;
 
-            if (LeftButtonPressed)
+            if (LeftButtonPressedThisFrame)
             {
                 MouseType = MOUSE_ID.HAND_FINGER_CLICKED;
             }

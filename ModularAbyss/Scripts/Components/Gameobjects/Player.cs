@@ -111,13 +111,11 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         protected override void Update(GameTime gameTime)
         {
             /* INPUT */
-            KeyboardState kState = Keyboard.GetState();
-            MouseState mState = Mouse.GetState();
 
             #region Player Movement/Animation
             /* Player Movement */
-            PlayerMoveDirections playerMoveDirection = ManageMovementInputs(kState);
-            PlayerMovementStates playerMovementState = ManageMovementStatesInputs(kState, playerMoveDirection);
+            PlayerMoveDirections playerMoveDirection = ManageMovementInputs();
+            PlayerMovementStates playerMovementState = ManageMovementStatesInputs(playerMoveDirection);
 
             ManageMovement(playerMoveDirection, playerMovementState, gameTime);
 
@@ -126,7 +124,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
             #endregion
 
-            ManageInputs(kState, mState);
+            ManageInputs();
         }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
@@ -217,7 +215,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// </summary>
         /// <param name="kState">Le KeyboardState</param>
         /// <returns>La direction trouver</returns>
-        public PlayerMoveDirections ManageMovementInputs(KeyboardState kState)
+        public PlayerMoveDirections ManageMovementInputs()
         {
             //La direction par defaut
             PlayerMoveDirections direction = PlayerMoveDirections.None;
@@ -273,12 +271,12 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// <param name="kState">Le KeyboardState</param>
         /// <param name="direction">La direction du mouvement</param>
         /// <returns></returns>
-        public PlayerMovementStates ManageMovementStatesInputs(KeyboardState kState, PlayerMoveDirections direction)
+        public PlayerMovementStates ManageMovementStatesInputs(PlayerMoveDirections direction)
         {
             //L'etat par defaut
             PlayerMovementStates state = PlayerMovementStates.idle;
 
-            if (kState.GetPressedKeys().Contains(KEYBINDS.MOVE_SPRINT) && direction != PlayerMoveDirections.None)
+            if (InputManager.KeyboardObject.kState.GetPressedKeys().Contains(KEYBINDS.MOVE_SPRINT) && direction != PlayerMoveDirections.None)
             {
                 state = PlayerMovementStates.run;
             }
@@ -296,10 +294,10 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// </summary>
         /// <param name="kState">Le KeyboardState</param>
         /// <param name="mState">Le MouseState</param>
-        public void ManageInputs(KeyboardState kState, MouseState mState)
+        public void ManageInputs()
         {
             //Attaquer
-            if (mState.LeftButton == ButtonState.Pressed)
+            if (InputManager.MouseObject.LeftButtonPressed)
             {
                 asAttacked = true;
                 if (inventory.Count > 0 && typeof(Weapon).IsAssignableFrom(inventory[0].GetType()))

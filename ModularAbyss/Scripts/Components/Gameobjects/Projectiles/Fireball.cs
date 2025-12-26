@@ -5,6 +5,7 @@ using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,7 +35,12 @@ namespace ModularAbyss.Scripts.Components.Gameobjects.Projectiles
                 gameObjectTouched = object1;
             }
 
-            Touch(this, gameObjectTouched);
+            // On desactive les colisions entre projectile
+            if (!typeof(Projectile).IsAssignableFrom(gameObjectTouched.GetType())) 
+            {
+
+                Touch(this, gameObjectTouched);
+            }
             
         }
         public override void SetColliderBounds()
