@@ -1,18 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ModularAbyss.Scripts.Components;
+using ModularAbyss.Scripts.Components.Gameobjects;
+using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
+using ModularAbyss.Scripts.Components.InputDevices;
 using ModularAbyss.Scripts.Components.Scene;
 using ModularAbyss.Scripts.Components.Scene.Scenes;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
-using System.Collections.Generic;
-using ModularAbyss.Scripts.Components.InputDevices;
-using ModularAbyss.Scripts.Components;
-using System.Diagnostics;
-using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
-using ModularAbyss.Scripts.Components.Gameobjects;
-using ModularAbyss.Scripts.Core;
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace ModularAbyss
 {
@@ -147,18 +149,29 @@ namespace ModularAbyss
 
         public void CheckCollision(List<ICollider> colliders)
         {
-            for (int I = 0; I < colliders.Count; I++)
+            ConcurrentBag<(ICollider A, ICollider B)> collisions = new ConcurrentBag<(ICollider A, ICollider B)>();
+
+            Parallel.For(0, colliders.Count, i =>
             {
-                for (int II = I; II < colliders.Count; II++)
+                for (int ii = i + 1; ii < colliders.Count; ii++) // Commence a i + 1 pour eviter les doublons
                 {
-                    if (colliders[I] != colliders[II] && colliders[I].Bounds.Intersects(colliders[II].Bounds))
+                    ICollider a = colliders[i];
+                    ICollider b = colliders[ii];
+
+                    if (a != b && a.Bounds.Intersects(b.Bounds))
                     {
-                        if (colliders[I].GetType() != colliders[II].GetType()) // On skip les instance de meme classe
+                        if (a.GetType() != b.GetType())
                         {
-                            OnTwoGameObjectsCollision?.Invoke(colliders[I], colliders[II]);
+                            collisions.Add((a, b));
                         }
                     }
                 }
+            });
+
+            // Invocation séquentielle (safe)
+            foreach ((ICollider A, ICollider B) detectedCollision in collisions)
+            {
+                OnTwoGameObjectsCollision?.Invoke(detectedCollision.A, detectedCollision.B);
             }
         }
 
@@ -187,7 +200,12 @@ namespace ModularAbyss
 
         public double GetTimeBetweenCollisionCheck()
         {
-            return (double)ActiveScene.CollidersObjects.Count / 20000;
+            double time = (double)ActiveScene.CollidersObjects.Count / 20000;
+            if (time >= 0.04)
+            {
+                return 0.04;
+            }
+            return time;
         }
 
     }
