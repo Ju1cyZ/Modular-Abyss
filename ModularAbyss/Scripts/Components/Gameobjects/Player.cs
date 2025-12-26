@@ -37,10 +37,9 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         public int currentSpeed = 0;
         public PlayerMovementStates PlayerMovementStates;
 
-        /* Attack */
-        private bool asAttacked = false;
-
         /* Player Attributes */
+        public bool isInvicible = false;
+
         public Stats Stats { get; set; } = new Stats();
 
         private bool _isDead = false;
@@ -67,13 +66,16 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             }
             set
             {
-                if (value >= Stats.getStat(STATS_ID.HEALTH).MAX_VALUE)
+                if (!isInvicible)
                 {
-                    Stats.setStatValue(STATS_ID.HEALTH, Stats.getStat(STATS_ID.HEALTH).MAX_VALUE);
-                }
-                else
-                {
-                    Stats.setStatValue(STATS_ID.HEALTH, value);
+                    if (value >= Stats.getStat(STATS_ID.HEALTH).MAX_VALUE)
+                    {
+                        Stats.setStatValue(STATS_ID.HEALTH, Stats.getStat(STATS_ID.HEALTH).MAX_VALUE);
+                    }
+                    else
+                    {
+                        Stats.setStatValue(STATS_ID.HEALTH, value);
+                    }
                 }
             }
         }
@@ -201,12 +203,14 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
                     break;
             }
 
-            Position += movement * Stats.getStatValue(STATS_ID.MOVEMENT_SPEED) * (float)gameTime.ElapsedGameTime.TotalSeconds * 200;
+            Vector2 movementWithDeltatime = movement * Stats.getStatValue(STATS_ID.MOVEMENT_SPEED) * (float)gameTime.ElapsedGameTime.TotalSeconds * 200;
+
+            Position += movementWithDeltatime;
 
             SetColliderBounds();
 
             //Collision detection
-            manageCollision(movement, Main.ActiveScene.CollidersObjects, gameTime);
+            manageCollision(movementWithDeltatime, Main.ActiveScene.CollidersObjects, gameTime);
 
         }
 
@@ -299,7 +303,6 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             //Attaquer
             if (InputManager.MouseObject.LeftButtonPressed)
             {
-                asAttacked = true;
                 if (inventory.Count > 0 && typeof(Weapon).IsAssignableFrom(inventory[0].GetType()))
                 {
                     (inventory[0] as Weapon).Attack();

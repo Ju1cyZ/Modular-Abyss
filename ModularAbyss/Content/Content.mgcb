@@ -992,7 +992,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Player/walk.png;Assets/Player/walk
 
-#begin Assets/Tilesets/floor.png
+#begin Assets/Tilesets/Grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1002,9 +1002,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Tilesets/floor.png;Assets/Tilesets/floor
+/build:Assets/Tilesets/Grass.png;Assets/Tilesets/Grass
 
-#begin Assets/Tilesets/wall.png
+#begin Assets/Tilesets/StoneGround.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1014,7 +1014,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Tilesets/wall.png;Assets/Tilesets/wall
+/build:Assets/Tilesets/StoneGround.png;Assets/Tilesets/StoneGround
+
+#begin Assets/Tilesets/Wall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Tilesets/Wall.png;Assets/Tilesets/Wall
 
 #begin Assets/Weapons/hand.png
 /importer:TextureImporter

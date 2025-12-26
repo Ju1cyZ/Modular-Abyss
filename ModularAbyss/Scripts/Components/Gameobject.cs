@@ -47,6 +47,11 @@ namespace ModularAbyss.Scripts.Components
             }
         }
 
+        public Vector2 DrawPosition
+        {
+            get => Position + GameManager.CameraPosition; 
+        }
+
         /// <summary>
         /// Construire 
         /// </summary>
@@ -92,7 +97,7 @@ namespace ModularAbyss.Scripts.Components
         /// <param name="spriteBatch"></param>
         protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, Color.White);
+            spriteBatch.Draw(GetTexture2D(), DrawPosition, Color.White);
         }
 
         /// <summary>

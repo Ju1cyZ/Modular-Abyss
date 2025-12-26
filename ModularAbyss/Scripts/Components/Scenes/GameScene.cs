@@ -15,13 +15,14 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
     public class GameScene : Scene
     {
         Wave currentWave;
-        private int waveNumber = 0;
+        private int waveNumber = 100;
 
         protected override void LoadContent()
         {
-            tilemap = new Tilemap(TILESET.FLOOR, 10, 5);
-            tilemap.Position = new Vector2(160, 160);
-            tilemapCollider = new TilemapCollider(TILESET.WALL, 12, 7);
+            tilemap = new Tilemap(TILESET.FLOOR, 30, 20);
+            tilemap.Position = new Vector2(0, 0);
+            tilemapCollider = new TilemapCollider(TILESET.WALL, 30, 20);
+            tilemapCollider.Position = new Vector2(0, 0);
             defineTiles();
 
             base.LoadContent();
@@ -58,7 +59,8 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         protected override void CreateGameObjects()
         {
             GameObjects.Add("Player", new Player());
-            Player.inventory.Add(ITEMS.WOODEN_WAND);
+            Player.Position = new Vector2(500, 500);
+            Player.inventory.Add(ITEMS.STEEL_SWORD);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(

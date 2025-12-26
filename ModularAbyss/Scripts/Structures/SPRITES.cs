@@ -40,8 +40,9 @@ namespace ModularAbyss.Scripts.Structures
         public const string FIRE_BULLETS_LIGHT_RED =    ASSETS_FOLDER + PROJECTILES_FOLDER + "All_Fire_Bullet_Pixel_16x16_07";
 
         /* TILESETS */
-        public const string FLOOR_TILESET = ASSETS_FOLDER + "Tilesets/floor";
-        public const string WALL_TILESET = ASSETS_FOLDER + "Tilesets/wall";
+        public const string GRASS_TILESET = ASSETS_FOLDER + "Tilesets/Grass";
+        public const string WALL_TILESET = ASSETS_FOLDER + "Tilesets/Wall";
+        public const string STONE_FLOOT_TILESET = ASSETS_FOLDER + "Tilesets/StoneGround";
 
         /* FONTS */
         public const string ARIAL_FONT = ASSETS_FOLDER + "Fonts/Arial";

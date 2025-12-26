@@ -59,7 +59,7 @@ namespace ModularAbyss.Scripts.Components.Tilemaps
                 {
                     if (_tilesIds[X, Y] != -1)
                     {
-                        Colliders.Add(new Rectangle(new Point(160 * X, 160 * Y), new Point(160, 160)));
+                        Colliders.Add(new Rectangle(new Vector2(_tileset.TILE_SIZE * Scale * X, _tileset.TILE_SIZE * Scale * Y).ToPoint(), new Vector2(_tileset.TILE_SIZE * Scale, _tileset.TILE_SIZE * Scale).ToPoint()));
                     }
                 }
             }

@@ -41,6 +41,8 @@ namespace ModularAbyss
         public delegate void OnTwoGameObjectsCollisionHandler(ICollider object1, ICollider object2);
         public event OnTwoGameObjectsCollisionHandler OnTwoGameObjectsCollision;
 
+        private double timeBerforeNextCollisionCheck = 0;
+
         private Main()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -92,11 +94,16 @@ namespace ModularAbyss
             {
                 OnUpdate?.Invoke(gameTime);
             }
-            base.Update(gameTime);
 
-            if (!ActiveScene.Player.IsDead )
+            if (!ActiveScene.Player.IsDead && timeBerforeNextCollisionCheck < 0)
             {
+                timeBerforeNextCollisionCheck = GetTimeBetweenCollisionCheck(); // temps entre verification de collision
+                Debug.Print($"Time between collision detections : {timeBerforeNextCollisionCheck}");
                 CheckCollision(ActiveScene.CollidersObjects);
+            }
+            else if(!ActiveScene.Player.IsDead)
+            {
+                timeBerforeNextCollisionCheck -= gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
@@ -109,7 +116,8 @@ namespace ModularAbyss
                 elapsedTime = 0;
             }
 
-            Debug.Print($"FPS : {FPS}");
+            base.Update(gameTime);
+            //Debug.Print($"FPS : {FPS}");
         }
 
         /// <summary>
@@ -145,7 +153,10 @@ namespace ModularAbyss
                 {
                     if (colliders[I] != colliders[II] && colliders[I].Bounds.Intersects(colliders[II].Bounds))
                     {
-                        OnTwoGameObjectsCollision?.Invoke(colliders[I], colliders[II]);
+                        if (colliders[I].GetType() != colliders[II].GetType()) // On skip les instance de meme classe
+                        {
+                            OnTwoGameObjectsCollision?.Invoke(colliders[I], colliders[II]);
+                        }
                     }
                 }
             }
@@ -172,6 +183,11 @@ namespace ModularAbyss
         {
             ActiveScene.DestroyScene();
             ActiveScene = new T();
+        }
+
+        public double GetTimeBetweenCollisionCheck()
+        {
+            return (double)ActiveScene.CollidersObjects.Count / 20000;
         }
 
     }

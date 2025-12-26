@@ -1,0 +1,90 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Tilemap/GameScene.tmx",
+    "expandedProjectPaths": [
+        "Tileset",
+        ".",
+        "Tilemap"
+    ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "GameWall.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 182.8333333333333,
+                "y": 171.66666666666663
+            }
+        },
+        "Tilemap/GameScene.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 213.99999999999994,
+                "y": 166.33333333333334
+            }
+        },
+        "Tilemap/GameScene.tmx#Wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilemap/GameWall.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 198.66666666666666,
+                "y": 171.33333333333331
+            }
+        },
+        "Tilemap/GameWall.tmx#Wall": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset/Grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset/StoneGround.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "Tileset/Wall.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Wall.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "E:/Projet/MonoGame/Modular-Abyss/Tiled/Export",
+    "last.externalTilesetPath": "E:/Projet/MonoGame/Modular-Abyss/Tiled/Tileset",
+    "last.imagePath": "E:/Projet/MonoGame/Modular-Abyss/Assets/Tilesets/Pixel Art Top Down - Basic v1.2.2/Texture",
+    "map.lastUsedExportFilter": "Fichiers CSV (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "Tilemap/GameScene.tmx"
+    ],
+    "project": "ModularAbyss.tiled-project",
+    "recentFiles": [
+        "Tileset/StoneGround.tsx",
+        "Tilemap/GameScene.tmx",
+        "Tileset/Grass.tsx",
+        "Tilemap/GameWall.tmx",
+        "Tileset/Wall.tsx",
+        "Wall.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
