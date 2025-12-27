@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Tilemap/GameScene.tmx",
+    "activeFile": "Tilemap/MainMenuScene.tmx",
     "expandedProjectPaths": [
         "Tileset",
-        "Tilemap",
-        "."
+        ".",
+        "Tilemap"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
@@ -46,6 +46,14 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "Tilemap/MainMenuScene.tmx": {
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 130.625,
+                "y": 129
+            }
+        },
         "Tileset/Grass.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -73,15 +81,17 @@
     "map.tileWidth": 16,
     "map.width": 24,
     "openFiles": [
-        "Tilemap/GameScene.tmx",
+        "Tilemap/MainMenuScene.tmx",
         "Tileset/Grass.tsx",
+        "Tileset/StoneGround.tsx",
         "Tileset/Wall.tsx"
     ],
     "project": "ModularAbyss.tiled-project",
     "recentFiles": [
+        "Tileset/Wall.tsx",
         "Tileset/StoneGround.tsx",
         "Tileset/Grass.tsx",
-        "Tileset/Wall.tsx",
+        "Tilemap/MainMenuScene.tmx",
         "Tilemap/GameScene.tmx",
         "Tilemap/GameWall.tmx",
         "Wall.tsx"

@@ -49,7 +49,7 @@ namespace ModularAbyss.Scripts.Components
 
         public virtual Vector2 DrawPosition
         {
-            get => Position + GameManager.CameraPosition; 
+            get => Position + GameManager.CameraPosition;
         }
 
         /// <summary>
@@ -146,10 +146,10 @@ namespace ModularAbyss.Scripts.Components
             // On se desabonne des events du Main
             Main.OnInitialize -= Initialize;
             Main.OnLoadContent -= LoadContent;
+            Main.OnTwoGameObjectsCollision -= OnTwoGameObjectsCollision;
             if (_created)
             {
                 Main.OnUpdate -= Update;
-                Main.OnTwoGameObjectsCollision -= OnTwoGameObjectsCollision;
                 Main.OnDraw -= Draw;
             }
 
