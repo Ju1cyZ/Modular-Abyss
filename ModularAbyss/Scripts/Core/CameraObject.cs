@@ -18,6 +18,7 @@ namespace ModularAbyss.Scripts.Core
 
         public static CameraObject Instance;
 
+        public bool isSticky = true;
         public CameraObject()
         {
             Instance = this;
@@ -33,28 +34,31 @@ namespace ModularAbyss.Scripts.Core
 
         private void Update(GameTime gameTime)
         {
-            Vector2 cameraMovePos = Position + new Vector2(GLOBAL.WINDOW_WIDTH / 2, GLOBAL.WINDOW_HEIGHT / 2);
-
-            if (Main.ActiveScene.Player.DrawPosition.Y < GLOBAL.WINDOW_HEIGHT * 0.3f)
+            if (!isSticky)
             {
-                cameraMovePos.Y += 50;
-            }
-            else if (Main.ActiveScene.Player.DrawPosition.Y > GLOBAL.WINDOW_HEIGHT * 0.5f)
-            {
-                cameraMovePos.Y -= 50;
-            }
+                Vector2 cameraMovePos = Position + new Vector2(GLOBAL.WINDOW_WIDTH / 2, GLOBAL.WINDOW_HEIGHT / 2);
+
+                if (Main.ActiveScene.Player.DrawPosition.Y < GLOBAL.WINDOW_HEIGHT * 0.3f)
+                {
+                    cameraMovePos.Y += 50;
+                }
+                else if (Main.ActiveScene.Player.DrawPosition.Y > GLOBAL.WINDOW_HEIGHT * 0.5f)
+                {
+                    cameraMovePos.Y -= 50;
+                }
 
 
-            if (Main.ActiveScene.Player.DrawPosition.X < GLOBAL.WINDOW_WIDTH * 0.3f)
-            {
-                cameraMovePos.X += 50;
-            }
-            else if (Main.ActiveScene.Player.DrawPosition.X > GLOBAL.WINDOW_WIDTH * 0.5f)
-            {
-                cameraMovePos.X -= 50;
-            }
+                if (Main.ActiveScene.Player.DrawPosition.X < GLOBAL.WINDOW_WIDTH * 0.3f)
+                {
+                    cameraMovePos.X += 50;
+                }
+                else if (Main.ActiveScene.Player.DrawPosition.X > GLOBAL.WINDOW_WIDTH * 0.5f)
+                {
+                    cameraMovePos.X -= 50;
+                }
 
-            MoveLinearCamera(gameTime.ElapsedGameTime.TotalSeconds, 250, cameraMovePos);
+                MoveLinearCamera(gameTime.ElapsedGameTime.TotalSeconds, 250, cameraMovePos);
+            }
         }
 
         /// <summary>

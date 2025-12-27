@@ -5,7 +5,7 @@ namespace ModularAbyss.Scripts.Structures
 {
     public struct TILESET
     {
-        public static Tileset FLOOR => new Tileset(16, 16, 16)
+        public static Tileset GRASS => new Tileset(16, 16, 16)
         {
             texture = Main.getInstance().Content.Load<Texture2D>(SPRITES.GRASS_TILESET)
         };
@@ -14,6 +14,12 @@ namespace ModularAbyss.Scripts.Structures
         {
             texture = Main.getInstance().Content.Load<Texture2D>(SPRITES.WALL_TILESET),
             defaultTileId = 0,
+        };
+
+        public static Tileset STONE_GROUND => new Tileset(16, 16, 16)
+        {
+            texture = Main.getInstance().Content.Load<Texture2D>(SPRITES.STONE_GROUND_TILESET),
+            defaultTileId = 123,
         };
 
     }

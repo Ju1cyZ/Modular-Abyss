@@ -31,6 +31,11 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /* Texture*/
         private const int TEXTURE_SIZE = 80;
 
+        public static int TextureSize
+        {
+            get { return TEXTURE_SIZE; }
+        }
+
         /* Movement */
         public const int WALK_SPEED = 300;
         public const int RUN_SPEED = 450;
@@ -376,7 +381,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
         /// <returns>La texture</returns>
         public override Texture2D GetTexture2D()
         {
-            return _currentAnim;
+            return _currentAnim ?? Main.Content.Load<Texture2D>(SPRITES.PLAYER_IDLE);
         }
 
         /// <summary>

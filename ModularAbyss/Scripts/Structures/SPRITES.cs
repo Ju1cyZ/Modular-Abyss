@@ -42,7 +42,7 @@ namespace ModularAbyss.Scripts.Structures
         /* TILESETS */
         public const string GRASS_TILESET = ASSETS_FOLDER + "Tilesets/Grass";
         public const string WALL_TILESET = ASSETS_FOLDER + "Tilesets/Wall";
-        public const string STONE_FLOOT_TILESET = ASSETS_FOLDER + "Tilesets/StoneGround";
+        public const string STONE_GROUND_TILESET = ASSETS_FOLDER + "Tilesets/StoneGround";
 
         /* FONTS */
         public const string ARIAL_FONT = ASSETS_FOLDER + "Fonts/Arial";

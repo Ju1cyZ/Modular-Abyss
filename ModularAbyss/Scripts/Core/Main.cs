@@ -101,7 +101,7 @@ namespace ModularAbyss
             {
                 timeBerforeNextCollisionCheck = GetTimeBetweenCollisionCheck(); // temps entre verification de collision
                 Debug.Print($"Time between collision detections : {timeBerforeNextCollisionCheck}");
-                CheckCollision(ActiveScene.CollidersObjects);
+                CheckCollision(ActiveScene.CollidersObjects, gameTime);
             }
             else if(!ActiveScene.Player.IsDead)
             {
@@ -147,10 +147,19 @@ namespace ModularAbyss
             base.Draw(gameTime);
         }
 
-        public void CheckCollision(List<ICollider> colliders)
+        /// <summary>
+        /// Permet de verifier les collisions entre tous les ICollider
+        /// </summary>
+        /// <param name="colliders">La liste de ICollider</param>
+        /// <param name="gameTime">Le deltatime</param>
+        public void CheckCollision(List<ICollider> colliders, GameTime gameTime)
         {
             ConcurrentBag<(ICollider A, ICollider B)> collisions = new ConcurrentBag<(ICollider A, ICollider B)>();
-
+           
+            Vector2 force = Vector2.Zero;
+            float separationRadius = 80f;   // distance minimale entre ennemis
+            float separationStrength = 1.5f;
+            
             Parallel.For(0, colliders.Count, i =>
             {
                 for (int ii = i + 1; ii < colliders.Count; ii++) // Commence a i + 1 pour eviter les doublons
@@ -165,10 +174,27 @@ namespace ModularAbyss
                             collisions.Add((a, b));
                         }
                     }
+
+                    // Separation des gameobjects
+                    if (a.GetType() != typeof(Player))
+                    {
+                        Vector2 diff = (a as GameObject).Position - (b as GameObject).Position;
+                        float distance = diff.Length();
+
+                        if (distance > 0 && distance < separationRadius)
+                        {
+                            diff.Normalize();
+                            force = diff * (separationRadius - distance);
+
+                            // On applique la force au gameobject
+                            (a as GameObject).Position += force * separationStrength * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        }
+
+                    }
                 }
             });
 
-            // Invocation séquentielle (safe)
+            // On declanche les events de maniere non parallel (sequentielle)
             foreach ((ICollider A, ICollider B) detectedCollision in collisions)
             {
                 OnTwoGameObjectsCollision?.Invoke(detectedCollision.A, detectedCollision.B);
@@ -198,6 +224,10 @@ namespace ModularAbyss
             ActiveScene = new T();
         }
 
+        /// <summary>
+        /// Permet de calculer le temps entre deux verification de collision
+        /// </summary>
+        /// <returns></returns>
         public double GetTimeBetweenCollisionCheck()
         {
             double time = (double)ActiveScene.CollidersObjects.Count / 20000;

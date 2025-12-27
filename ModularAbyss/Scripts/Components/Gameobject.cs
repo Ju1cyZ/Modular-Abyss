@@ -34,7 +34,7 @@ namespace ModularAbyss.Scripts.Components
             }
         }
 
-        public Vector2 Position
+        public virtual Vector2 Position
         {
             get
             {
@@ -47,7 +47,7 @@ namespace ModularAbyss.Scripts.Components
             }
         }
 
-        public Vector2 DrawPosition
+        public virtual Vector2 DrawPosition
         {
             get => Position + GameManager.CameraPosition; 
         }

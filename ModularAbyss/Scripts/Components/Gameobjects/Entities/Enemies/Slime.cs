@@ -33,6 +33,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies
             };
             _currentAnim = _entityAnimations.GetValueOrDefault("ANIM_IDLE");
         }
+
         protected override void OnTwoGameObjectsCollision(ICollider object1, ICollider object2) { return; }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)

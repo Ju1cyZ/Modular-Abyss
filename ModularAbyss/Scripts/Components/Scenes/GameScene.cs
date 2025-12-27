@@ -6,6 +6,7 @@ using ModularAbyss.Scripts.Components.Gameobjects.Entities;
 using ModularAbyss.Scripts.Components.Gameobjects.Entities.Enemies;
 using ModularAbyss.Scripts.Components.HudObjects;
 using ModularAbyss.Scripts.Components.Tilemaps;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Structures;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,25 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
     public class GameScene : Scene
     {
         Wave currentWave;
-        private int waveNumber = 100;
+        private int waveNumber = 0;
 
         protected override void LoadContent()
         {
-            tilemap = new Tilemap(TILESET.FLOOR, 30, 20);
+            tilemap = new Tilemap(TILESET.GRASS, 30, 20);
             tilemap.Position = new Vector2(0, 0);
             tilemapCollider = new TilemapCollider(TILESET.WALL, 30, 20);
             tilemapCollider.Position = new Vector2(0, 0);
             defineTiles();
 
             base.LoadContent();
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+
+            GameManager.Camera.isSticky = false;
+            CameraObject.Position = new Vector2(0, 0);
         }
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
@@ -60,6 +69,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         {
             GameObjects.Add("Player", new Player());
             Player.Position = new Vector2(500, 500);
+            Player.isInvicible = true;
             Player.inventory.Add(ITEMS.STEEL_SWORD);
             Player.OnDeath += (player) =>
             {

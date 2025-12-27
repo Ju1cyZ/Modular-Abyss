@@ -4,6 +4,7 @@ using ModularAbyss.Scripts.Components.Gameobjects;
 using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
 using ModularAbyss.Scripts.Components.HudObjects;
 using ModularAbyss.Scripts.Components.Tilemaps;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 
@@ -11,29 +12,40 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 {
     public class MainMenuScene : Scene
     {
+        Tilemap props;
+
         protected override void LoadContent()
         {
             // Fond
-            tilemap = new Tilemap(TILESET.FLOOR, 12, 7);
-            //tilemap.Position = new Vector2(160, 145);
-            tilemapCollider = new TilemapCollider(TILESET.WALL, 12, 7);
+            tilemap = new Tilemap(TILESET.STONE_GROUND, 24, 14); // Floor
+            tilemapCollider = new TilemapCollider(TILESET.WALL, 24, 14);
+            props = new Tilemap(TILESET.GRASS, 24, 14); // Props
             defineTiles();
 
             base.LoadContent();
         }
 
+        protected override void Initialize()
+        {
+            base.Initialize();
+
+            GameManager.Camera.isSticky = true;
+            CameraObject.Position = new Vector2(0, 0);
+        }
+
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
             // Fond
-            tilemap.Draw(gameTime, ref spriteBatch);
+            props.Draw(gameTime, ref spriteBatch);
             tilemapCollider.Draw(gameTime, ref spriteBatch);
+            tilemap.Draw(gameTime, ref spriteBatch);
             base.Draw(gameTime, ref spriteBatch);
         }
 
         protected override void CreateGameObjects()
         {
             GameObjects.Add("Player", new Player());
-            Player.Position = new Vector2(1400, 600);
+            Player.Position = new Vector2(1300, 400);
             Player.OnDeath += (player) =>
             {
                 // PLAYER DED :(
@@ -78,6 +90,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
         {
             tilemap.LoadFromCSV(TILEMAPS.MAIN_MENU_FLOOR);
             tilemapCollider.LoadFromCSV(TILEMAPS.MAIN_MENU_WALL);
+            props.LoadFromCSV(TILEMAPS.MAIN_MENU_PROPS);
         }
     }
 }
