@@ -1,8 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ModularAbyss.Scripts.Components.Gameobjects;
+using ModularAbyss.Scripts.Components.Gameobjects.Entities;
+using ModularAbyss.Scripts.Components.Scene.Scenes;
 using ModularAbyss.Scripts.Components.Tilemaps;
+using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
+using ModularAbyss.Scripts.Structures;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -52,16 +56,12 @@ namespace ModularAbyss.Scripts.Components.Scene
             //On s'abonne aux events
             main.OnUpdate += Update;
             main.OnDraw += Draw;
-
-            Initialize();
-            LoadContent();
-            isInitialized = true;
         }
 
         /// <summary>
         /// Permet d'initialiser les elements
         /// </summary>
-        protected virtual void Initialize()
+        public virtual void Initialize()
         {
             CreateGameObjects();
             CreateHudObjects();
@@ -70,14 +70,29 @@ namespace ModularAbyss.Scripts.Components.Scene
             {
                 item.Initialize();
             }
+            LoadContent();
+            isInitialized = true;
         }
 
         protected virtual void Update(GameTime gameTime)
         {
             UpdateHudObjects();
+
+            if (InputManager.KeyboardObject.kState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.M))
+            {
+                List<Enemy> spawnedEnemies = (Main.ActiveScene as GameScene).currentWave.SpawnEnemies();
+            }
         }
 
-        protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch) { }
+        protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch) 
+        {
+            if (GLOBAL.DEBUGING)
+            {
+                Texture2D _texture = new Texture2D(Main.getInstance().GraphicsDevice, 1, 1);
+                _texture.SetData(new Color[] { Color.LightCyan });
+                spriteBatch.Draw(_texture, new Rectangle(GetPlayableMapPosition().ToPoint() + CameraObject.Position.ToPoint(), GetPlayableMapSize().ToPoint()), Color.White);
+            }
+        }
 
         protected virtual void LoadContent() { }
 
@@ -133,6 +148,10 @@ namespace ModularAbyss.Scripts.Components.Scene
                 item.Destroy();
             }
         }
+
+        public abstract Vector2 GetPlayableMapSize();
+
+        public abstract Vector2 GetPlayableMapPosition();
 
     }
 }

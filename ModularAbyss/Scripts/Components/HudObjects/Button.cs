@@ -65,7 +65,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
                 GetTexture2D(),
                 Position,
                 isHovered ? UI_COMPONENTS.BUTTON_HOVER : UI_COMPONENTS.BUTTON,
-                Color.White,
+                BackgroundColor,
                 0,
                 new Vector2(0, 0),
                 new Vector2(Scale, Scale),

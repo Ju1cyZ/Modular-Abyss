@@ -34,7 +34,7 @@ namespace ModularAbyss.Scripts.Components.HudObjects
 
         protected override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GetTexture2D(), isSticky ? Position : Position + GameManager.CameraPosition, getCorrectProgressBar(value, maxValue), Color.White, 0, new Vector2(0, 0), new Vector2(Scale, Scale), SpriteEffects.None, 0f);
+            spriteBatch.Draw(GetTexture2D(), isSticky ? Position : Position + GameManager.CameraPosition, getCorrectProgressBar(value, maxValue), BackgroundColor, 0, new Vector2(0, 0), new Vector2(Scale, Scale), SpriteEffects.None, 0f);
         }
 
         /// <summary>

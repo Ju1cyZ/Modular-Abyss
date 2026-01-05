@@ -15,8 +15,11 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 {
     public class GameScene : Scene
     {
-        Wave currentWave;
+        public Wave currentWave;
         private int waveNumber = 0;
+
+        Vector2 _playableMapSize = new Vector2(29 * 80 - 80, 19 * 80 - 320);
+        Vector2 _playableMapPosition = new Vector2(80,320);
 
         protected override void LoadContent()
         {
@@ -29,7 +32,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             base.LoadContent();
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
 
@@ -52,7 +55,6 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
                 (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).value = Player.Health;
                 (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).maxValue = Player.MAX_HEALTH;
                 HudObjects.GetValueOrDefault("HealthBar").Scale = 5;
-                (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).isSticky = true;
             }
 
             Text healthInfo = HudObjects.GetValueOrDefault("HealthInfo") as Text;
@@ -94,6 +96,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
 
             HudObjects.Add("HealthInfo", new Text($"{Player.Health} / {Player.MAX_HEALTH}"));
             HudObjects.GetValueOrDefault("HealthInfo").Position = new Vector2(54, 29);
+            (HudObjects.GetValueOrDefault("HealthBar") as ProgressBar).isSticky = true;
             HudObjects.GetValueOrDefault("HealthInfo").Destroyed += DestroyHudobject;
 
             HudObjects.Add("CurrentWave", new Text($"{waveNumber + 1}"));
@@ -124,7 +127,6 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             }
 
             Wave wave = new Wave(enemies);
-            wave.mapSize = new Vector2(1920 - 160, 1080 - 160);
             List<Enemy> spawnedEnemies = wave.SpawnEnemies();
 
             foreach (Enemy item in spawnedEnemies)
@@ -142,6 +144,15 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             currentWave = GenerateNewWave(waveNumber);
             currentWave.OnEnemiesAllDead += EndOfWave;
             (HudObjects.GetValueOrDefault("CurrentWave") as Text).setText($"{waveNumber + 1}");
+        }
+        public override Vector2 GetPlayableMapSize()
+        {
+            return _playableMapSize;
+        }
+
+        public override Vector2 GetPlayableMapPosition()
+        {
+            return _playableMapPosition;
         }
     }
 }

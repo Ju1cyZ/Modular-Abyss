@@ -19,20 +19,11 @@ namespace ModularAbyss.Scripts.Components.Tilemaps
             set => throw new NotImplementedException(); 
         }
 
-        public TilemapCollider()
-        {
+        public TilemapCollider() { }
 
-        }
+        public TilemapCollider(Tileset tileset, int width, int height) : base(tileset, width, height) { }
 
-        public TilemapCollider(Tileset tileset, int width, int height) : base(tileset, width, height)
-        {
-
-        }
-
-        public TilemapCollider(Tileset tileset, int width, int height, int[,] tilesIds) : base(tileset, width, height, tilesIds)
-        {
-
-        }
+        public TilemapCollider(Tileset tileset, int width, int height, int[,] tilesIds) : base(tileset, width, height, tilesIds) { }
 
 
         public override void Draw(GameTime gameTime, ref SpriteBatch spriteBatch)

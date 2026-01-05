@@ -23,9 +23,8 @@ namespace ModularAbyss.Scripts.Components
             get => Main.ActiveScene.GameObjects.Where(g => typeof(Enemy).IsAssignableFrom(g.Value.GetType())).ToDictionary();
         }
 
-        public Vector2 mapSize = new Vector2();
         public int SpawnRaduisMax = 800;
-        public int SpawnRaduisMin = 200;
+        public int SpawnRaduisMin = 400;
 
         public delegate void OnEnemiesAllDeadHandler(Wave wave);
         public event OnEnemiesAllDeadHandler OnEnemiesAllDead;
@@ -56,7 +55,7 @@ namespace ModularAbyss.Scripts.Components
         {
             Parallel.For(0, _enemies.Count, (i) =>
             {
-                FindSpawnablePos(_enemies[i], i);
+                FindSpawnablePos(_enemies[i]);
                 _enemies[i].Create();
             });
 
@@ -67,19 +66,22 @@ namespace ModularAbyss.Scripts.Components
         /// Permet de recuperer un endroit ou une entiter peut apparaitre
         /// </summary>
         /// <returns>Une position</returns>
-        private Vector2 FindSpawnablePos(Entity entity, int iteration)
+        private Vector2 FindSpawnablePos(Entity entity)
         {
             Player player = Main.ActiveScene.Player;
             Random rnd;
             Vector2 spawnPos;
-            bool checkCollision;
-            int maxIteration = 500;
+            Vector2 mapSize = Main.ActiveScene.GetPlayableMapSize();
+            Vector2 mapPos = Main.ActiveScene.GetPlayableMapPosition(); 
+            bool isSpawnValid;
+            //int maxIteration = 500;
             int i = 0;
 
             do
             {
-                checkCollision = false;
+                isSpawnValid = true;
                 rnd = new Random();
+                
 
                 // Recupere un direction aleatoire depuis le joueur
                 Vector2 rndPos = new Vector2(rnd.Next(0, (int)mapSize.X), rnd.Next(0, (int)mapSize.Y));
@@ -92,18 +94,24 @@ namespace ModularAbyss.Scripts.Components
 
                 entity.Position = spawnPos;
 
-                foreach (Rectangle item in Main.ActiveScene.tilemapCollider.Colliders)
+                if (entity.Position.X < mapPos.X || entity.Position.X > mapPos.X + mapSize.X - entity.Bounds.Width ||
+                    entity.Position.Y < mapPos.Y || entity.Position.Y > mapPos.Y + mapSize.Y - entity.Bounds.Height)
                 {
-                    if (item.Intersects(entity.Bounds))
-                    {
-                        checkCollision = true;
-                        break;
-                    }
+                    isSpawnValid = false;
                 }
+
+                //foreach (Rectangle item in Main.ActiveScene.tilemapCollider.Colliders)
+                //{
+                //    if (item.Intersects(entity.Bounds))
+                //    {
+                //        checkCollision = true;
+                //        break;
+                //    }
+                //}
 
                 i++;
             }
-            while (checkCollision);
+            while (!isSpawnValid);
 
             return spawnPos;
         }

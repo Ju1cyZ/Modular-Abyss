@@ -20,7 +20,7 @@ namespace ModularAbyss.Scripts.Components
         public Vector2 Size;
         public float Rotation = 0;
         public float Scale = 1;
-        public Color BackgroundColor = Color.Transparent;
+        public Color BackgroundColor = Color.White;
 
         protected bool _hidden = false;
 
@@ -34,7 +34,7 @@ namespace ModularAbyss.Scripts.Components
 
             Main.OnInitialize += Initialize;
             Main.OnUpdate += Update;
-            Main.OnDraw += Draw;
+            Main.OnHudDraw += Draw;
             CameraObject.OnCameraMove += CameraMove;
 
             Position = position;
@@ -111,7 +111,7 @@ namespace ModularAbyss.Scripts.Components
             //On se desabonne aux events
             Main.OnInitialize -= Initialize;
             Main.OnUpdate -= Update;
-            Main.OnDraw -= Draw;
+            Main.OnHudDraw -= Draw;
 
             Destroyed?.Invoke(this);
         }

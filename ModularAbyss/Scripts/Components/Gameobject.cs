@@ -147,6 +147,7 @@ namespace ModularAbyss.Scripts.Components
             Main.OnInitialize -= Initialize;
             Main.OnLoadContent -= LoadContent;
             Main.OnTwoGameObjectsCollision -= OnTwoGameObjectsCollision;
+            Main.OnPlayerDraw -= Draw;
             if (_created)
             {
                 Main.OnUpdate -= Update;

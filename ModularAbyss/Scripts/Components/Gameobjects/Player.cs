@@ -102,6 +102,9 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             // Define max Health
             Stats.setStatMaxValue(STATS_ID.HEALTH, 25, true);
 
+            Main.OnDraw -= Draw;
+            Main.OnPlayerDraw += Draw;
+
             /* Animation */
             _playerAnimations = new Dictionary<string, Texture2D>()
             {

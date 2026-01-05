@@ -14,6 +14,10 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
     {
         Tilemap props;
 
+        static Vector2 _playableMapSize = new Vector2(30, 20);
+        static Vector2 _playableMapPosition = new Vector2(0, 0);
+
+
         protected override void LoadContent()
         {
             // Fond
@@ -25,7 +29,7 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             base.LoadContent();
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
 
@@ -91,6 +95,16 @@ namespace ModularAbyss.Scripts.Components.Scene.Scenes
             tilemap.LoadFromCSV(TILEMAPS.MAIN_MENU_FLOOR);
             tilemapCollider.LoadFromCSV(TILEMAPS.MAIN_MENU_WALL);
             props.LoadFromCSV(TILEMAPS.MAIN_MENU_PROPS);
+        }
+
+        public override Vector2 GetPlayableMapSize()
+        {
+            return _playableMapSize;
+        }
+
+        public override Vector2 GetPlayableMapPosition()
+        {
+            return _playableMapPosition;
         }
     }
 }

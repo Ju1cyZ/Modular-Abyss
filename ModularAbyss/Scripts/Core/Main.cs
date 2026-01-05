@@ -32,15 +32,21 @@ namespace ModularAbyss
 
         /* EVENTS */
         public delegate void OnInitializeHandler();
-        public event OnInitializeHandler OnInitialize;
         public delegate void OnLoadContentHandler();
-        public event OnLoadContentHandler OnLoadContent;
         public delegate void OnUpdateHandler(GameTime gameTime);
-        public event OnUpdateHandler OnUpdate;
         public delegate void OnDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
-        public event OnDrawHandler OnDraw;
+        public delegate void OnPlayerDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
+        public delegate void OnHudDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
 
         public delegate void OnTwoGameObjectsCollisionHandler(ICollider object1, ICollider object2);
+
+        public event OnInitializeHandler OnInitialize;
+        public event OnLoadContentHandler OnLoadContent;
+        public event OnUpdateHandler OnUpdate;
+        public event OnDrawHandler OnDraw;
+        public event OnPlayerDrawHandler OnPlayerDraw;
+        public event OnHudDrawHandler OnHudDraw;
+
         public event OnTwoGameObjectsCollisionHandler OnTwoGameObjectsCollision;
 
         private double timeBerforeNextCollisionCheck = 0;
@@ -77,7 +83,8 @@ namespace ModularAbyss
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            ActiveScene = new MainMenuScene();
+            LoadScene<MainMenuScene>();
+            //ActiveScene = new MainMenuScene();
             OnLoadContent?.Invoke();
         }
 
@@ -97,13 +104,13 @@ namespace ModularAbyss
                 OnUpdate?.Invoke(gameTime);
             }
 
-            if (!ActiveScene.Player.IsDead && timeBerforeNextCollisionCheck < 0)
+            if (ActiveScene.isInitialized && !ActiveScene.Player.IsDead && timeBerforeNextCollisionCheck < 0)
             {
                 timeBerforeNextCollisionCheck = GetTimeBetweenCollisionCheck(); // temps entre verification de collision
                 Debug.Print($"Time between collision detections : {timeBerforeNextCollisionCheck}");
                 CheckCollision(ActiveScene.CollidersObjects, gameTime);
             }
-            else if(!ActiveScene.Player.IsDead)
+            else if(ActiveScene.isInitialized && !ActiveScene.Player.IsDead)
             {
                 timeBerforeNextCollisionCheck -= gameTime.ElapsedGameTime.TotalSeconds;
             }
@@ -141,6 +148,8 @@ namespace ModularAbyss
             {
                 OnDraw?.Invoke(gameTime, ref _spriteBatch);
             }
+            OnPlayerDraw?.Invoke(gameTime, ref _spriteBatch);
+            OnHudDraw?.Invoke(gameTime, ref _spriteBatch);
             InputManager.Draw(gameTime, ref _spriteBatch);
             _spriteBatch.End();
 
@@ -220,8 +229,11 @@ namespace ModularAbyss
         /// <typeparam name="T">Le Type de la scene a charger</typeparam>
         public static void LoadScene<T>() where T : Scene, new()
         {
-            ActiveScene.DestroyScene();
+            if (ActiveScene != null)
+                ActiveScene.DestroyScene();
+
             ActiveScene = new T();
+            ActiveScene.Initialize();
         }
 
         /// <summary>
