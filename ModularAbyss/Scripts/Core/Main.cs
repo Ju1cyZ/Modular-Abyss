@@ -3,14 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ModularAbyss.Scripts.Components;
 using ModularAbyss.Scripts.Components.Gameobjects;
-using ModularAbyss.Scripts.Components.Gameobjects.Projectiles;
-using ModularAbyss.Scripts.Components.InputDevices;
 using ModularAbyss.Scripts.Components.Scene;
 using ModularAbyss.Scripts.Components.Scene.Scenes;
 using ModularAbyss.Scripts.Core;
 using ModularAbyss.Scripts.Interfaces;
 using ModularAbyss.Scripts.Structures;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +33,7 @@ namespace ModularAbyss
         public delegate void OnUpdateHandler(GameTime gameTime);
         public delegate void OnDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
         public delegate void OnPlayerDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
+        public delegate void OnInGameHudDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch); // ex : Bar de vie des enemies
         public delegate void OnHudDrawHandler(GameTime gameTime, ref SpriteBatch spriteBatch);
 
         public delegate void OnTwoGameObjectsCollisionHandler(ICollider object1, ICollider object2);
@@ -45,6 +43,7 @@ namespace ModularAbyss
         public event OnUpdateHandler OnUpdate;
         public event OnDrawHandler OnDraw;
         public event OnPlayerDrawHandler OnPlayerDraw;
+        public event OnInGameHudDrawHandler OnInGameHudDraw;
         public event OnHudDrawHandler OnHudDraw;
 
         public event OnTwoGameObjectsCollisionHandler OnTwoGameObjectsCollision;
@@ -104,13 +103,13 @@ namespace ModularAbyss
                 OnUpdate?.Invoke(gameTime);
             }
 
-            if (ActiveScene.isInitialized && !ActiveScene.Player.IsDead && timeBerforeNextCollisionCheck < 0)
+            if (ActiveScene.isInitialized && timeBerforeNextCollisionCheck < 0)
             {
                 timeBerforeNextCollisionCheck = GetTimeBetweenCollisionCheck(); // temps entre verification de collision
                 Debug.Print($"Time between collision detections : {timeBerforeNextCollisionCheck}");
                 CheckCollision(ActiveScene.CollidersObjects, gameTime);
             }
-            else if(ActiveScene.isInitialized && !ActiveScene.Player.IsDead)
+            else if(ActiveScene.isInitialized)
             {
                 timeBerforeNextCollisionCheck -= gameTime.ElapsedGameTime.TotalSeconds;
             }
@@ -147,9 +146,10 @@ namespace ModularAbyss
             if (ActiveScene.isInitialized)
             {
                 OnDraw?.Invoke(gameTime, ref _spriteBatch);
+                OnPlayerDraw?.Invoke(gameTime, ref _spriteBatch);
+                OnInGameHudDraw?.Invoke(gameTime, ref _spriteBatch);
+                OnHudDraw?.Invoke(gameTime, ref _spriteBatch);
             }
-            OnPlayerDraw?.Invoke(gameTime, ref _spriteBatch);
-            OnHudDraw?.Invoke(gameTime, ref _spriteBatch);
             InputManager.Draw(gameTime, ref _spriteBatch);
             _spriteBatch.End();
 
@@ -168,13 +168,16 @@ namespace ModularAbyss
             Vector2 force = Vector2.Zero;
             float separationRadius = 80f;   // distance minimale entre ennemis
             float separationStrength = 1.5f;
-            
-            Parallel.For(0, colliders.Count, i =>
+
+            Vector2 mapSize = ActiveScene.GetPlayableMapSize();
+            Vector2 mapPos = ActiveScene.GetPlayableMapPosition();
+
+            Parallel.For(0, colliders.Count, I =>
             {
-                for (int ii = i + 1; ii < colliders.Count; ii++) // Commence a i + 1 pour eviter les doublons
+                for (int II = I + 1; II < colliders.Count; II++) // Commence a i + 1 pour eviter les doublons
                 {
-                    ICollider a = colliders[i];
-                    ICollider b = colliders[ii];
+                    ICollider a = colliders[I];
+                    ICollider b = colliders[II];
 
                     if (a != b && a.Bounds.Intersects(b.Bounds))
                     {
@@ -195,8 +198,18 @@ namespace ModularAbyss
                             diff.Normalize();
                             force = diff * (separationRadius - distance);
 
+                            Vector2 mouvement = force * separationStrength * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
                             // On applique la force au gameobject
-                            (a as GameObject).Position += force * separationStrength * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            (a as GameObject).Position += mouvement;
+
+                            // On verifie si le ICollider est en dehors de la map
+                            if ((a as GameObject).Position.X < mapPos.X - (a as GameObject).Bounds.Width || (a as GameObject).Position.X > mapPos.X + mapSize.X - (a as GameObject).Bounds.Width * 2 ||
+                                (a as GameObject).Position.Y < mapPos.Y - (a as GameObject).Bounds.Height || (a as GameObject).Position.Y > mapPos.Y + mapSize.Y - (a as GameObject).Bounds.Height * 2)
+                            {
+                                // Si oui, on annule le mouvenement
+                                (a as GameObject).Position -= mouvement;
+                            }
                         }
 
                     }

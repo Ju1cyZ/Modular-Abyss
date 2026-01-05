@@ -15,7 +15,29 @@ namespace ModularAbyss.Scripts.Components.HudObjects
         private int _barID = 4;
         private int _progressBarSizeX = 48;
         private int _progressBarSizeY = 16;
-        public bool isSticky = false;
+        private bool _isSticky = false;
+        public bool isSticky 
+        {
+            get => _isSticky;
+            set 
+            {
+                _isSticky = value;
+                if (_isSticky) // permet de changer l'ordre de dessin
+                {
+                    Main.OnHudDraw -= Draw;
+                    Main.OnInGameHudDraw -= Draw;
+
+                    Main.OnHudDraw += Draw; // HUD qui est accrocher a l'ecrans (Layer du Dessus)
+                }
+                else
+                {
+                    Main.OnHudDraw -= Draw;
+                    Main.OnInGameHudDraw -= Draw;
+
+                    Main.OnInGameHudDraw += Draw; // HUD qui n'est pas accrocher a l'ecrans (Layer du Dessous)
+                }
+            }
+        }
 
         public int value;
         public int maxValue;
@@ -25,6 +47,8 @@ namespace ModularAbyss.Scripts.Components.HudObjects
             _progressBarSizeX = progressBarSizeX;
             _progressBarSizeY = progressBarSizeY;
             _barID = barId;
+
+            isSticky = false;
         }
 
         protected override void setTexture2D(ref Texture2D texture2D)

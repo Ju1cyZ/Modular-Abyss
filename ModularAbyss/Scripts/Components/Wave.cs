@@ -74,7 +74,6 @@ namespace ModularAbyss.Scripts.Components
             Vector2 mapSize = Main.ActiveScene.GetPlayableMapSize();
             Vector2 mapPos = Main.ActiveScene.GetPlayableMapPosition(); 
             bool isSpawnValid;
-            //int maxIteration = 500;
             int i = 0;
 
             do
@@ -94,23 +93,15 @@ namespace ModularAbyss.Scripts.Components
 
                 entity.Position = spawnPos;
 
-                if (entity.Position.X < mapPos.X || entity.Position.X > mapPos.X + mapSize.X - entity.Bounds.Width ||
-                    entity.Position.Y < mapPos.Y || entity.Position.Y > mapPos.Y + mapSize.Y - entity.Bounds.Height)
+                // On verifie si le point se trouve dans la map jouable
+                if (entity.Position.X < mapPos.X - entity.Bounds.Width || entity.Position.X > mapPos.X + mapSize.X - entity.Bounds.Width * 2 ||
+                    entity.Position.Y < mapPos.Y - entity.Bounds.Height || entity.Position.Y > mapPos.Y + mapSize.Y - entity.Bounds.Height * 2)
                 {
                     isSpawnValid = false;
                 }
 
-                //foreach (Rectangle item in Main.ActiveScene.tilemapCollider.Colliders)
-                //{
-                //    if (item.Intersects(entity.Bounds))
-                //    {
-                //        checkCollision = true;
-                //        break;
-                //    }
-                //}
-
                 i++;
-            }
+            } 
             while (!isSpawnValid);
 
             return spawnPos;

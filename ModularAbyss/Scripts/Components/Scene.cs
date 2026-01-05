@@ -77,11 +77,6 @@ namespace ModularAbyss.Scripts.Components.Scene
         protected virtual void Update(GameTime gameTime)
         {
             UpdateHudObjects();
-
-            if (InputManager.KeyboardObject.kState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.M))
-            {
-                List<Enemy> spawnedEnemies = (Main.ActiveScene as GameScene).currentWave.SpawnEnemies();
-            }
         }
 
         protected virtual void Draw(GameTime gameTime, ref SpriteBatch spriteBatch) 

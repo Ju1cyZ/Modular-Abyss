@@ -13,6 +13,7 @@ namespace ModularAbyss.Scripts.Structures
         public const string PLAYER_IDLE = ASSETS_FOLDER + "Player/idle";
         public const string PLAYER_WALK = ASSETS_FOLDER + "Player/walk";
         public const string PLAYER_RUN = ASSETS_FOLDER + "Player/run";
+        public const string PLAYER_HIT = ASSETS_FOLDER + "Player/hurt";
         public const string PLAYER_DEATH = ASSETS_FOLDER + "Player/death";
 
         /* ENEMIES */

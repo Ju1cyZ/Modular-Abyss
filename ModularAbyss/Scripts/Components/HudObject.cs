@@ -121,5 +121,9 @@ namespace ModularAbyss.Scripts.Components
         /// </summary>
         /// <param name="newPos">La nouvelle position de la camera</param>
         public virtual void CameraMove(Vector2 newPos) { }
+
+        protected void ChangeDrawLayer(bool isSticky)
+        {
+        }
     }
 }

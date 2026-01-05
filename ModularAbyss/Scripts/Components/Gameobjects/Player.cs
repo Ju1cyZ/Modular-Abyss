@@ -49,6 +49,9 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
         private bool _isDead = false;
 
+        private double damageAnimationTime = 0; // Le current time de l'animation (Logique)
+        private double damageAnimationDuration = 0.5; // Le temps de l'animation (Param)
+
         public bool IsDead
         {
             get
@@ -111,6 +114,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
                 {"ANIM_IDLE", Main.Content.Load<Texture2D>(SPRITES.PLAYER_IDLE)},
                 {"ANIM_WALK", Main.Content.Load<Texture2D>(SPRITES.PLAYER_WALK)},
                 {"ANIM_RUN", Main.Content.Load<Texture2D>(SPRITES.PLAYER_RUN)},
+                {"ANIM_HIT", Main.Content.Load<Texture2D>(SPRITES.PLAYER_HIT)},
                 {"ANIM_DEATH", Main.Content.Load<Texture2D>(SPRITES.PLAYER_DEATH)},
             };
             _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
@@ -120,7 +124,17 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
         protected override void Update(GameTime gameTime)
         {
-            /* INPUT */
+            if (damageAnimationTime >= 0)
+            {
+                damageAnimationTime -= gameTime.ElapsedGameTime.TotalSeconds;
+                if(damageAnimationTime < 0)
+                {
+                    damageAnimationTime = 0;
+                }
+            }
+
+            if (IsDead)
+                return;
 
             #region Player Movement/Animation
             /* Player Movement */
@@ -147,7 +161,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             }
 
             Rectangle rect = ((ITextureAnimated)this).GenerateTextureRect(TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE * _textureY, _animationFrameCount, ref _currentAnimIndex, (float)gameTime.ElapsedGameTime.TotalSeconds, ref _animationTimeBetweenFrame, IsDead);
-            spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, rect, Color.White, 0, new Vector2(0, 0), new Vector2(5, 5), _spriteEffect, 0f);
+            spriteBatch.Draw(GetTexture2D(), Position + GameManager.CameraPosition, rect, damageAnimationTime != 0 ? Color.Red : Color.White, 0, new Vector2(0, 0), new Vector2(5, 5), _spriteEffect, 0f);
 
             if (!IsDead)
             {
@@ -330,20 +344,28 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
                 return;
             }
 
-            switch (playerMovementState)
+            if (damageAnimationTime == 0) // verifie si le joueur est dans l'animation de degat
             {
-                case PlayerMovementStates.idle:
-                    _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_IDLE");
-                    _animationFrameCount = 4;
-                    return;
-                case PlayerMovementStates.walk:
-                    _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_WALK");
-                    _animationFrameCount = 8;
-                    break;
-                case PlayerMovementStates.run:
-                    _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
-                    _animationFrameCount = 8;
-                    break;
+                switch (playerMovementState)
+                {
+                    case PlayerMovementStates.idle:
+                        _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_IDLE");
+                        _animationFrameCount = 4;
+                        return;
+                    case PlayerMovementStates.walk:
+                        _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_WALK");
+                        _animationFrameCount = 8;
+                        break;
+                    case PlayerMovementStates.run:
+                        _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_RUN");
+                        _animationFrameCount = 8;
+                        break;
+                }
+            }
+            else
+            {
+                _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_HIT");
+                _animationFrameCount = 4;
             }
 
             switch (playerMoveDirection)
@@ -367,6 +389,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
                     _textureY = 2;
                     break;
             }
+
         }
 
         /// <summary>
@@ -462,6 +485,7 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
             {
                 Health -= damage;
                 damageDealt = damage;
+                damageAnimationTime = damageAnimationDuration;
             }
             else if (Health - damage <= 0)
             {
@@ -486,8 +510,6 @@ namespace ModularAbyss.Scripts.Components.Gameobjects
 
         public void Die()
         {
-            Main.OnUpdate -= Update;
-
             _isDead = true;
             _currentAnim = _playerAnimations.GetValueOrDefault("ANIM_DEATH");
             _animationFrameCount = 6;
