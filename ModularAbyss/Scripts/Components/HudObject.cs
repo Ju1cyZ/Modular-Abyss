@@ -112,6 +112,7 @@ namespace ModularAbyss.Scripts.Components
             Main.OnInitialize -= Initialize;
             Main.OnUpdate -= Update;
             Main.OnHudDraw -= Draw;
+            Main.OnInGameHudDraw -= Draw;
 
             Destroyed?.Invoke(this);
         }
